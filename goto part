@@ -1,0 +1,19 @@
+getgenv().ok = true
+
+while ok do
+
+for _,v in pairs(workspace.Morphs:GetDescendants()) do
+
+if v:IsA("UnionOperation") then
+                 
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+task.wait(0.200)
+
+if v:FindFirstChild("ProximityPrompt") then
+                      fireproximityprompt(v.ProximityPrompt)
+                      end
+end
+end
+
+wait()
+end
