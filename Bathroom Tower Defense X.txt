@@ -1,0 +1,81 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Bathroom Tower Defense X", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroText = "SirenHead Hub"})
+
+local Tab = Window:MakeTab({
+	Name = "Units",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Free Units"
+})
+
+Tab:AddButton({
+	Name = "Supreme Snowball Cameraguy Cost 1100",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Supreme Snowball Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+ 
+Tab:AddButton({
+	Name = "Witch Cameragal Cost 950",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Witch Cameragal", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+ 
+Tab:AddButton({
+	Name = "Trick-Or-Treat Speakerguy Cost 500",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Trick-Or-Treat Speakerguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+ 
+Tab:AddButton({
+	Name = "Supreme Pumpkin Sorcerer Cost 1650",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Supreme Pumpkin Sorcerer", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+ 
+Tab:AddButton({
+	Name = "Demon Supreme Cinemaguy Cost 1900",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Demon Supreme Cinemaguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+ 
+Tab:AddButton({
+	Name = "Savior Pumpkin King Cost 2300",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Savior Pumpkin King", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+ 
+Tab:AddButton({
+	Name = "Enraged Supreme Cinemaguy Cost 2400",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Enraged Supreme Cinemaguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+ 
+Tab:AddButton({
+	Name = "Spooky Cameraguy Cost 550",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Spooky Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Made By ???"
+})
+Tab:AddLabel("???")
+Tab:AddLabel("Subscribe!")
