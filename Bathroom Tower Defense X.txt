@@ -68,6 +68,13 @@ Tab:AddButton({
   	end    
 })
 
+Tab:AddButton({
+	Name = "Commander Boss Toilet Cost 1650",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Commander Boss Toilet", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
 local Tab = Window:MakeTab({
 	Name = "Credits",
 	Icon = "rbxassetid://4483345998",
