@@ -78,7 +78,7 @@ Tab:AddButton({
 Tab:AddButton({
 	Name = "Super Strider Cameraguy Cost 1675",
 	Callback = function()
-      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Super Strider Cameraguy Toilet", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Super Strider Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
   	end    
 })
 
