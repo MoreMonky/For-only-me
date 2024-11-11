@@ -1,0 +1,1252 @@
+local Playrrr=owner
+
+wait()
+script.Parent = nil
+
+local genv={}
+Decode =  function(str,t,props,classes,values,ICList,Model,CurPar,LastIns,split,RemoveAndSplit,InstanceList)
+	local tonum,table_remove,inst,parnt,comma,table_foreach = tonumber,table.remove,Instance.new,"Parent",",",
+	function(t,f)
+		for a,b in pairs(t) do
+			f(a,b)
+		end
+	end
+	local Types = {
+		Color3 = Color3.new,
+		Vector3 = Vector3.new,
+		Vector2 = Vector2.new,
+		UDim = UDim.new,
+		UDim2 = UDim2.new,
+		CFrame = CFrame.new,
+		Rect = Rect.new,
+		NumberRange = NumberRange.new,
+		BrickColor = BrickColor.new,
+		PhysicalProperties = PhysicalProperties.new,
+		NumberSequence = function(...)
+			local a = {...}
+			local t = {}
+			repeat
+				t[#t+1] = NumberSequenceKeypoint.new(table_remove(a,1),table_remove(a,1),table_remove(a,1))
+			until #a==0
+			return NumberSequence.new(t)
+		end,
+		ColorSequence = function(...)
+			local a = {...}
+			local t = {}
+			repeat
+				t[#t+1] = ColorSequenceKeypoint.new(table_remove(a,1),Color3.new(table_remove(a,1),table_remove(a,1),table_remove(a,1)))
+			until #a==0
+			return ColorSequence.new(t)
+		end,
+		number = tonumber,
+		boolean = function(a)
+			return a=="1"
+		end
+	}
+	split = function(str,sep)
+		if not str then return end
+		local fields = {}
+		local ConcatNext = false
+		str:gsub(("([^%s]+)"):format(sep),function(c)
+			if ConcatNext == true then
+				fields[#fields] = fields[#fields]..sep..c
+				ConcatNext = false
+			else
+				fields[#fields+1] = c
+			end
+			if c:sub(#c)=="\\" then
+				c = fields[#fields]
+				fields[#fields] = c:sub(1,#c-1)
+				ConcatNext = true
+			end
+		end)
+		return fields
+	end
+	RemoveAndSplit = function(t)
+		return split(table_remove(t,1),comma)
+	end
+	t = split(str,";")
+	props = RemoveAndSplit(t)
+	classes = RemoveAndSplit(t)
+	values = split(table_remove(t,1),'|')
+	ICList = RemoveAndSplit(t)
+	InstanceList = {}
+	Model = inst"Model"
+	CurPar = Model
+	table_foreach(t,function(ct,c)
+		if c=="n" or c=="p" then
+			CurPar = c=="n" and LastIns or CurPar[parnt]
+		else
+			ct = split(c,"|")
+			local class = classes[tonum(table_remove(ct,1))]
+			if class=="UnionOperation" then
+				LastIns = {UsePartColor="1"}
+			else
+				LastIns = inst(class)
+				if LastIns:IsA"Script" then
+					s(LastIns)
+				elseif LastIns:IsA("ModuleScript") then
+					ms(LastIns)
+				end
+			end
+
+			local function SetProperty(LastIns,p,str,s)
+				s = Types[typeof(LastIns[p])]
+				if p=="CustomPhysicalProperties" then
+					s = PhysicalProperties.new
+				end
+				if s then
+					LastIns[p] = s(unpack(split(str,comma)))
+				else
+					LastIns[p] = str
+				end
+			end
+
+			local UnionData
+			table_foreach(ct,function(s,p,a,str)
+				a = p:find":"
+				p,str = props[tonum(p:sub(1,a-1))],values[tonum(p:sub(a+1))]
+				if p=="UnionData" then
+					UnionData = split(str," ")
+					return
+				end
+				if class=="UnionOperation" then
+					LastIns[p] = str
+					return
+				end
+				SetProperty(LastIns,p,str)
+			end)
+
+			if UnionData then
+				local LI_Data = LastIns
+				LastIns = DecodeUnion(UnionData)
+				table_foreach(LI_Data,function(p,str)
+					SetProperty(LastIns,p,str)
+				end)
+			end
+			table.insert(InstanceList,LastIns)
+			LastIns[parnt] = CurPar
+		end
+	end)
+	table_remove(ICList,1)
+	table_foreach(ICList,function(a,b)
+		b = split(b,">")
+		InstanceList[tonum(b[1])][props[tonum(b[2])]] = InstanceList[tonum(b[3])]
+	end)
+
+	return Model:GetChildren()
+end
+
+local Objects = Decode('Name,PrimaryPart,Locked,Position,Orientation,Velocity,Size,TopSurface,Scale,Texture,CFrame,Color,Transparency,LightInfluence,Speed,LightEmission,ZOffset,Acceleration,Lifetime,LockedToPart,Rate,RotSpee'
+	..'d,Rotation,LeftSurface,RightSurface,MaxVelocity,C0,C1,Part0,Part1,CanCollide,BottomSurface;Part,Model,SpecialMesh,Decal,Attachment,ParticleEmitter,Motor6D,Humanoid;Part|Rig|Head|1|-0.0001,6.5,0|0,-0.0'
+	..'701,0|-0.0001,0,0|2,1,1|0|1.25,1.25,1.25|face|rbxasset://textures/face.png|HairAttachment|0,0.6,0|0,0.6,0,1,0,0,0,1,0,0,0,1|HatAttachment|FaceFrontAttachment|0,0,-0.6001|0,0,-0.6001,1,0,0,0,1,0,0,0,1|'
+	..'FaceCenterAttachment|-0.1001,0.25,-0.6001|-0.1001,0.25,-0.6001,1,0,0,0,1,0,0,0,1|0,0.6352,0,1,0.5121,0.6243,0.0173,1,1,0,1,1|0,0.75,0,1,1,0|0,0.1299,0,1,0,0|rbxassetid://5313817234|0,0|0.2|-0.8845,0.8'
+	..',0|2,2|inf|-360,360|Torso|0,5,0|2,2,1|2|NeckAttachment|0,1,0|0,1,0,1,0,0,0,1,0,0,0,1|BodyFrontAttachment|0,0,-0.5|0,0,-0.5,1,0,0,0,1,0,0,0,1|BodyBackAttachment|0,0,0.5|0,0,0.5,1,0,0,0,1,0,0,0,1|LeftCo'
+	..'llarAttachment|-1,1,0|-1,1,0,1,0,0,0,1,0,0,0,1|RightCollarAttachment|1,1,0|1,1,0,1,0,0,0,1,0,0,0,1|WaistFrontAttachment|0,-1,-0.5|0,-1,-0.5,1,0,0,0,1,0,0,0,1|WaistCenterAttachment|0,-1,0|0,-1,0,1,0,0,'
+	..'0,1,0,0,0,1|WaistBackAttachment|0,-1,0.5|0,-1,0.5,1,0,0,0,1,0,0,0,1|Right Shoulder|0.1|1,0.5,0,0,0,1,0,1,-0,-1,0,0|-0.5,0.5,0,0,0,1,0,1,-0,-1,0,0|Left Shoulder|-1,0.5,0,0,0,-1,0,1,0,1,0,0|0.5,0.5,0,0,'
+	..'0,-1,0,1,0,1,0,0|Right Hip|1,-1,0,0,0,1,0,1,-0,-1,0,0|0.5,1,0,0,0,1,0,1,-0,-1,0,0|Left Hip|-1,-1,0,0,0,-1,0,1,0,1,0,0|-0.5,1,0,0,0,-1,0,1,0,1,0,0|Neck|0,1,0,-1,0,0,0,0,1,0,1,-0|0,-0.5,0,-1,0,0,0,0,1,0'
+	..',1,-0|Left Arm|-1.5,5,-0.0019|1,2,1|0|LeftShoulderAttachment|0,0.5,0|0,0.5,0,1,0,0,0,1,0,0,0,1|Right Arm|1.4999,5,0.0018|RightShoulderAttachment|Left Leg|-0.5,3,-0.0007|Right Leg|0.4999,3,0.0006|Human'
+	..'oidRootPart|RootJoint|0,0,0,-1,0,0,0,0,1,0,1,-0;0,1>2>2,20>29>11,20>30>27,21>29>11,21>30>25,22>29>11,22>30>30,23>29>11,23>30>29,24>29>11,24>30>2,33>29>32,33>30>11;2|1:2;n;1|1:3|3:4|4:5|5:6|6:7|7:8|8:9'
+	..';n;3|9:10;4|1:11|10:12;5|1:13|4:14|11:15;5|1:16|4:14|11:15;5|1:17|4:18|11:19;5|1:20;5|4:21|11:22;n;6|12:23|13:24|7:25|10:26|14:4|12:23|15:27|16:4|17:28|18:29|12:23|19:30|20:4|21:31|22:32|23:32;p;p;1|1'
+	..':33|3:4|4:34|5:6|6:7|7:35|24:36|25:36;n;5|1:37|4:38|11:39;5|1:40|4:41|11:42;5|1:43|4:44|11:45;5|1:46|4:47|11:48;5|1:49|4:50|11:51;5|1:52|4:53|11:54;5|1:55|4:56|11:57;5|1:58|4:59|11:60;7|1:61|26:62|27:'
+	..'63|28:64;7|1:65|26:62|27:66|28:67;7|1:68|26:62|27:69|28:70;7|1:71|26:62|27:72|28:73;7|1:74|26:62|27:75|28:76;p;1|1:77|3:4|4:78|5:6|6:7|7:79|31:80;n;5|1:81|4:82|11:83;p;1|1:84|3:4|4:85|5:6|6:7|7:79|31:'
+	..'80;n;5|1:86|4:82|11:83;p;1|1:87|3:4|4:88|5:6|6:7|7:79|31:80|32:9;1|1:89|3:4|4:90|5:6|6:7|7:79|31:80|32:9;8;1|1:91|3:4|13:4|4:34|5:6|6:7|7:35|31:80|32:9|8:9;n;7|1:92|26:62|27:93|28:93;p;p;')
+for _,Object in pairs(Objects) do
+	Object.Parent = script
+end
+
+
+BillboardGui0 = Instance.new("BillboardGui")
+TextLabel1 = Instance.new("TextLabel")
+BillboardGui0.Name = "Chat"
+BillboardGui0.Parent = script
+BillboardGui0.Size = UDim2.new(15, 0, 7, 0)
+BillboardGui0.Active = true
+BillboardGui0.ClipsDescendants = true
+BillboardGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+TextLabel1.Parent = BillboardGui0
+TextLabel1.Size = UDim2.new(1, 0, 1, 0)
+TextLabel1.BackgroundColor = BrickColor.new("Institutional white")
+TextLabel1.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel1.BackgroundTransparency = 1
+TextLabel1.Font = Enum.Font.Arcade
+TextLabel1.FontSize = Enum.FontSize.Size14
+TextLabel1.Text = ""
+TextLabel1.TextColor = BrickColor.new("Institutional white")
+TextLabel1.TextColor3 = Color3.new(1, 1, 1)
+TextLabel1.TextScaled = true
+TextLabel1.TextSize = 14
+TextLabel1.TextStrokeTransparency = 0
+TextLabel1.TextWrap = true
+TextLabel1.TextWrapped = true
+
+
+local plr = Playrrr
+local rig = script.Rig
+pcall(function()
+	for i,v in pairs(plr.Character:GetChildren()) do
+		if v:IsA'Shirt' or v:IsA'BodyColors' or v:IsA'Pants' or v:IsA'Accessory' or v:IsA'ShirtGraphic' then
+			v:Clone().Parent = rig
+		elseif v:IsA'BasePart' and rig:FindFirstChild(v.Name) ~= nil then
+			rig:FindFirstChild(v.Name).Color = v.Color
+		end
+	end
+	if plr.Character:FindFirstChild('Head') ~= nil and plr.Character:FindFirstChild('Head'):FindFirstChild('face') ~= nil then
+		rig:FindFirstChild('Head'):FindFirstChild('face').Texture = plr.Character:FindFirstChild('Head'):FindFirstChild('face').Texture
+	end
+	if plr.Character:FindFirstChild('HumanoidRootPart') ~= nil then
+		rig:FindFirstChild('HumanoidRootPart').CFrame = plr.Character:FindFirstChild('HumanoidRootPart').CFrame
+	end
+end)
+local chr = rig:Clone()
+chr:FindFirstChildOfClass('Humanoid').DisplayDistanceType="None"
+chr.Parent = workspace
+plr.Character = chr
+local head = chr["Head"]
+local torso = chr["Torso"]
+local larm = chr["Left Arm"]
+local lleg = chr["Left Leg"]
+local rarm = chr["Right Arm"]
+local rleg = chr["Right Leg"]
+local root = chr["HumanoidRootPart"]
+local att = head["Attachment"]
+local RootJoint = root.RootJoint
+local RootCF = CFrame.fromEulerAnglesXYZ(-1.57, 0, 3.14)
+local Necko = CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, 0)
+local sin = 0
+function rayCast(Pos, Dir, Max, Ignore)
+	return game:service("Workspace"):FindPartOnRay(Ray.new(Pos, Dir.unit * (Max or 999.999)), Ignore) 
+end
+local hitfloor, posfloor = rayCast(root.Position, CFrame.new(root.Position, root.Position - Vector3.new(0, 1, 0)).LookVector, 4, chr)
+local sndid = 11703498431
+local vol = 4
+local pit = 1
+local pos = 0
+local mus
+local Attack = false
+local rem
+local lines = {
+	"what? you think i'm just gonna stand there and take it?",
+	"our reports showed a massive anomaly in the timespace continuum. timelines jumping left and right, stopping and starting... until suddenly, everything ends. heh heh heh... that's your fault, isn't it?",
+	"you can't understand how this feels. knowing that one day, without any warning... it's all going to be reset.",
+	"look. i gave up trying to go back a long time ago. and getting to the surface doesn't really appeal anymore, either. cause even if we do... we'll just end up right back here, without any memory of it, right?",
+	"to be blunt... it makes it kind of hard to give it my all. ... or is that just a poor excuse for being lazy...? hell if i know.",
+	"ugh... that being said... you, uh, really like swinging that thing around, huh?",
+	"y'see... all this fighting is really tiring me out. and if you keep pushing me... then i'll be forced to use my special attack."
+}
+
+function DescRem(v)
+	if v.Name == "Head" or v.Name == "HumanoidRootPart" or v.Name == "Left Arm" or v.Name == "Left Leg" or v.Name == "Right Arm" or v.Name == "Right Leg" or v.Name == "Torso" or v.Name == "RootJoint" or v.Name == "Left Hip" or v.Name == "Left Shoulder" or v.Name == "Neck" or v.Name == "Right Hip" or v.Name == "Right Shoulder" or v:IsA('Humanoid') then
+		pcall(function()
+			Refit()
+		end)
+	end
+end
+
+chr.DescendantRemoving:Connect(DescRem)
+
+function teleport(pos)
+	for i,v in next, chr:GetDescendants() do
+		if v:IsA('BasePart') then
+			local a = v:Clone()
+			v = a
+			a.Parent = workspace
+			a:BreakJoints()
+			a.Color = Color3.new(1,1,1)
+			a.Material = Enum.Material.Neon
+			a.Anchored = true
+			a.CanCollide = false
+			for i,v in next, a:GetDescendants() do
+				if v:IsA('Sound') or v:IsA('ParticleEmitter') or v:IsA("GuiObject") then
+					pcall(function()
+						v.PlayOnRemove = false
+					end)
+					v:Destroy()
+				elseif v:IsA("SpecialMesh") then
+					v.TextureId = ""
+				end
+			end
+			game:GetService('TweenService'):Create(a,TweenInfo.new(2),{
+				Position = a.Position+Vector3.new(0,5,0),
+				Orientation = a.Orientation + Vector3.new(math.random(-180,180),math.random(-180,180),math.random(-180,180)),
+				Transparency = 1,
+				Color = Color3.new(0,0,0)
+			}):Play()
+			coroutine.wrap(function()
+				wait(2)
+				a:Destroy()
+			end)()
+		end
+	end
+	local a = Instance.new("Part",workspace)
+	a.Transparency = 1
+	a.CanCollide = false
+	a.Anchored = true
+	a.Position = chr.HumanoidRootPart.Position
+	local s = Instance.new('Sound',a)
+	s.SoundId = "rbxassetid://3815044721"
+	s.Volume = 3
+	s.Pitch = 1
+	s.PlayOnRemove = true
+	s:Play()
+	s:Destroy()
+	coroutine.wrap(function()
+		wait()
+		a:Destroy()
+	end)()
+	chr:MoveTo(pos+Vector3.new(0,2,0))
+	local a = Instance.new("Part",workspace)
+	a.Transparency = 1
+	a.CanCollide = false
+	a.Anchored = true
+	a.Position = chr.HumanoidRootPart.Position
+	local s = Instance.new('Sound',a)
+	s.SoundId = "rbxassetid://3815044721"
+	s.Volume = 3
+	s.Pitch = 1
+	s.PlayOnRemove = true
+	s:Play()
+	s:Destroy()
+	coroutine.wrap(function()
+		wait()
+		a:Destroy()
+	end)()
+end
+
+function Check()
+	if not chr:IsDescendantOf(workspace) then
+		Refit()
+	end
+	chr:FindFirstChildOfClass('Humanoid').DisplayDistanceType="Subject"
+	chr:FindFirstChildOfClass('Humanoid').DisplayName = "sans."
+	chr:FindFirstChildOfClass('Humanoid').MaxHealth = 1
+	chr:FindFirstChildOfClass('Humanoid').Health = 1
+	att.ParticleEmitter.Acceleration = Vector3.new(-0.6 - 0.4 * math.sin(sin/10),0.8,0)
+	hitfloor, posfloor = rayCast(root.Position, CFrame.new(root.Position, root.Position - Vector3.new(0, 1, 0)).LookVector, 4, chr)
+	if hitfloor then
+		for i,v in pairs(rig:GetChildren()) do
+			if v:IsA'BasePart' and chr:FindFirstChild(v.Name) then
+				v.CFrame = chr:FindFirstChild(v.Name).CFrame
+			end
+		end
+	end
+	if game:GetService('ReplicatedStorage'):FindFirstChild(plr.Name.."Mouse") == nil then
+		rem = Instance.new('RemoteEvent')
+		rem.Name = plr.Name.."Mouse"
+		rem.Parent = game:GetService('ReplicatedStorage')
+		rem.OnServerEvent:Connect(function(_,k,h)
+			if k == "z" then
+				Blaster(h.p)
+			elseif k == "r" then
+				teleport(h.p)
+			elseif k == "p" then
+				Refit()
+			end
+		end)
+	end
+	if plr:FindFirstChildOfClass('PlayerGui'):FindFirstChild('Mouse') == nil then
+		NLS([[local plr = game:GetService('Players').LocalPlayer
+			local m = plr:GetMouse()
+			m.KeyDown:Connect(function(k)
+			game:GetService('ReplicatedStorage'):FindFirstChild(plr.Name.."Mouse"):FireServer(tostring(k),m.Hit)
+		end)]],plr:FindFirstChildOfClass('PlayerGui')).Name = "Mouse"
+	end
+	if mus == nil or torso:FindFirstChild('Music') == nil then
+		if mus ~= nil and mus:IsA'Sound' then
+			mus:Destroy()
+		end
+		mus = Instance.new('Sound')
+		mus.Parent = torso
+		mus.Name = "Music"
+		mus.SoundId = "rbxassetid://"..sndid
+		mus.Volume = vol
+		mus.Pitch = pit
+		mus.TimePosition = pos
+		mus.Looped = true
+		mus:Play()
+	elseif mus ~= nil and torso:FindFirstChild('Music') ~= nil then
+		pos = mus.TimePosition
+		mus.Parent = torso
+		mus.Name = "Music"
+		mus.SoundId = "rbxassetid://"..sndid
+		mus.Volume = vol
+		mus.Pitch = pit
+		mus.Looped = true
+		mus:Resume()
+	end
+end
+
+function SetScripts()
+	Instance.new('Animator',chr:FindFirstChildOfClass('Humanoid'))
+	LocalScript0 = Instance.new("LocalScript")
+	StringValue1 = Instance.new("StringValue")
+	Animation2 = Instance.new("Animation")
+	NumberValue3 = Instance.new("NumberValue")
+	Animation4 = Instance.new("Animation")
+	NumberValue5 = Instance.new("NumberValue")
+	StringValue6 = Instance.new("StringValue")
+	Animation7 = Instance.new("Animation")
+	StringValue8 = Instance.new("StringValue")
+	Animation9 = Instance.new("Animation")
+	StringValue10 = Instance.new("StringValue")
+	Animation11 = Instance.new("Animation")
+	StringValue12 = Instance.new("StringValue")
+	Animation13 = Instance.new("Animation")
+	StringValue14 = Instance.new("StringValue")
+	Animation15 = Instance.new("Animation")
+	StringValue16 = Instance.new("StringValue")
+	Animation17 = Instance.new("Animation")
+	StringValue18 = Instance.new("StringValue")
+	Animation19 = Instance.new("Animation")
+	NumberValue20 = Instance.new("NumberValue")
+	LocalScript0 = NLS([[local Figure = script.Parent
+local Torso = Figure:WaitForChild("Torso")
+local RightShoulder = Torso:WaitForChild("Right Shoulder")
+local LeftShoulder = Torso:WaitForChild("Left Shoulder")
+local RightHip = Torso:WaitForChild("Right Hip")
+local LeftHip = Torso:WaitForChild("Left Hip")
+local Neck = Torso:WaitForChild("Neck")
+local Humanoid = Figure:WaitForChild("Humanoid")
+local pose = "Standing"
+
+local currentAnim = ""
+local currentAnimInstance = nil
+local currentAnimTrack = nil
+local currentAnimKeyframeHandler = nil
+local currentAnimSpeed = 1.0
+local animTable = {}
+local animNames = { 
+	idle = 	{	
+				{ id = "http://www.roblox.com/asset/?id=180435571", weight = 9 },
+				{ id = "http://www.roblox.com/asset/?id=180435792", weight = 1 }
+			},
+	walk = 	{ 	
+				{ id = "http://www.roblox.com/asset/?id=180426354", weight = 10 } 
+			}, 
+	run = 	{
+				{ id = "run.xml", weight = 10 } 
+			}, 
+	jump = 	{
+				{ id = "http://www.roblox.com/asset/?id=125750702", weight = 10 } 
+			}, 
+	fall = 	{
+				{ id = "http://www.roblox.com/asset/?id=180436148", weight = 10 } 
+			}, 
+	climb = {
+				{ id = "http://www.roblox.com/asset/?id=180436334", weight = 10 } 
+			}, 
+	sit = 	{
+				{ id = "http://www.roblox.com/asset/?id=178130996", weight = 10 } 
+			},	
+	toolnone = {
+				{ id = "http://www.roblox.com/asset/?id=182393478", weight = 10 } 
+			},
+	toolslash = {
+				{ id = "http://www.roblox.com/asset/?id=129967390", weight = 10 } 
+--				{ id = "slash.xml", weight = 10 } 
+			},
+	toollunge = {
+				{ id = "http://www.roblox.com/asset/?id=129967478", weight = 10 } 
+			},
+	wave = {
+				{ id = "http://www.roblox.com/asset/?id=128777973", weight = 10 } 
+			},
+	point = {
+				{ id = "http://www.roblox.com/asset/?id=128853357", weight = 10 } 
+			},
+	dance1 = {
+				{ id = "http://www.roblox.com/asset/?id=182435998", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=182491037", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=182491065", weight = 10 } 
+			},
+	dance2 = {
+				{ id = "http://www.roblox.com/asset/?id=182436842", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=182491248", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=182491277", weight = 10 } 
+			},
+	dance3 = {
+				{ id = "http://www.roblox.com/asset/?id=182436935", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=182491368", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=182491423", weight = 10 } 
+			},
+	laugh = {
+				{ id = "http://www.roblox.com/asset/?id=129423131", weight = 10 } 
+			},
+	cheer = {
+				{ id = "http://www.roblox.com/asset/?id=129423030", weight = 10 } 
+			},
+}
+local dances = {"dance1", "dance2", "dance3"}
+
+-- Existance in this list signifies that it is an emote, the value indicates if it is a looping emote
+local emoteNames = { wave = false, point = false, dance1 = true, dance2 = true, dance3 = true, laugh = false, cheer = false}
+
+function configureAnimationSet(name, fileList)
+	if (animTable[name] ~= nil) then
+		for _, connection in pairs(animTable[name].connections) do
+			connection:disconnect()
+		end
+	end
+	animTable[name] = {}
+	animTable[name].count = 0
+	animTable[name].totalWeight = 0	
+	animTable[name].connections = {}
+
+	-- check for config values
+	local config = script:FindFirstChild(name)
+	if (config ~= nil) then
+--		print("Loading anims " .. name)
+		table.insert(animTable[name].connections, config.ChildAdded:connect(function(child) configureAnimationSet(name, fileList) end))
+		table.insert(animTable[name].connections, config.ChildRemoved:connect(function(child) configureAnimationSet(name, fileList) end))
+		local idx = 1
+		for _, childPart in pairs(config:GetChildren()) do
+			if (childPart:IsA("Animation")) then
+				table.insert(animTable[name].connections, childPart.Changed:connect(function(property) configureAnimationSet(name, fileList) end))
+				animTable[name][idx] = {}
+				animTable[name][idx].anim = childPart
+				local weightObject = childPart:FindFirstChild("Weight")
+				if (weightObject == nil) then
+					animTable[name][idx].weight = 1
+				else
+					animTable[name][idx].weight = weightObject.Value
+				end
+				animTable[name].count = animTable[name].count + 1
+				animTable[name].totalWeight = animTable[name].totalWeight + animTable[name][idx].weight
+	--			print(name .. " [" .. idx .. "] " .. animTable[name][idx].anim.AnimationId .. " (" .. animTable[name][idx].weight .. ")")
+				idx = idx + 1
+			end
+		end
+	end
+
+	-- fallback to defaults
+	if (animTable[name].count <= 0) then
+		for idx, anim in pairs(fileList) do
+			animTable[name][idx] = {}
+			animTable[name][idx].anim = Instance.new("Animation")
+			animTable[name][idx].anim.Name = name
+			animTable[name][idx].anim.AnimationId = anim.id
+			animTable[name][idx].weight = anim.weight
+			animTable[name].count = animTable[name].count + 1
+			animTable[name].totalWeight = animTable[name].totalWeight + anim.weight
+--			print(name .. " [" .. idx .. "] " .. anim.id .. " (" .. anim.weight .. ")")
+		end
+	end
+end
+
+-- Setup animation objects
+function scriptChildModified(child)
+	local fileList = animNames[child.Name]
+	if (fileList ~= nil) then
+		configureAnimationSet(child.Name, fileList)
+	end	
+end
+
+script.ChildAdded:connect(scriptChildModified)
+script.ChildRemoved:connect(scriptChildModified)
+
+
+for name, fileList in pairs(animNames) do 
+	configureAnimationSet(name, fileList)
+end	
+
+-- ANIMATION
+
+-- declarations
+local toolAnim = "None"
+local toolAnimTime = 0
+
+local jumpAnimTime = 0
+local jumpAnimDuration = 0.3
+
+local toolTransitionTime = 0.1
+local fallTransitionTime = 0.3
+local jumpMaxLimbVelocity = 0.75
+
+-- functions
+
+function stopAllAnimations()
+	local oldAnim = currentAnim
+
+	-- return to idle if finishing an emote
+	if (emoteNames[oldAnim] ~= nil and emoteNames[oldAnim] == false) then
+		oldAnim = "idle"
+	end
+
+	currentAnim = ""
+	currentAnimInstance = nil
+	if (currentAnimKeyframeHandler ~= nil) then
+		currentAnimKeyframeHandler:disconnect()
+	end
+
+	if (currentAnimTrack ~= nil) then
+		currentAnimTrack:Stop()
+		currentAnimTrack:Destroy()
+		currentAnimTrack = nil
+	end
+	return oldAnim
+end
+
+function setAnimationSpeed(speed)
+	if speed ~= currentAnimSpeed then
+		currentAnimSpeed = speed
+		currentAnimTrack:AdjustSpeed(currentAnimSpeed)
+	end
+end
+
+function keyFrameReachedFunc(frameName)
+	if (frameName == "End") then
+
+		local repeatAnim = currentAnim
+		-- return to idle if finishing an emote
+		if (emoteNames[repeatAnim] ~= nil and emoteNames[repeatAnim] == false) then
+			repeatAnim = "idle"
+		end
+		
+		local animSpeed = currentAnimSpeed
+		playAnimation(repeatAnim, 0.0, Humanoid)
+		setAnimationSpeed(animSpeed)
+	end
+end
+
+-- Preload animations
+function playAnimation(animName, transitionTime, humanoid) 
+		
+	local roll = math.random(1, animTable[animName].totalWeight) 
+	local origRoll = roll
+	local idx = 1
+	while (roll > animTable[animName][idx].weight) do
+		roll = roll - animTable[animName][idx].weight
+		idx = idx + 1
+	end
+--		print(animName .. " " .. idx .. " [" .. origRoll .. "]")
+	local anim = animTable[animName][idx].anim
+
+	-- switch animation		
+	if (anim ~= currentAnimInstance) then
+		
+		if (currentAnimTrack ~= nil) then
+			currentAnimTrack:Stop(transitionTime)
+			currentAnimTrack:Destroy()
+		end
+
+		currentAnimSpeed = 1.0
+	
+		-- load it to the humanoid; get AnimationTrack
+		currentAnimTrack = humanoid:LoadAnimation(anim)
+		currentAnimTrack.Priority = Enum.AnimationPriority.Core
+		 
+		-- play the animation
+		currentAnimTrack:Play(transitionTime)
+		currentAnim = animName
+		currentAnimInstance = anim
+
+		-- set up keyframe name triggers
+		if (currentAnimKeyframeHandler ~= nil) then
+			currentAnimKeyframeHandler:disconnect()
+		end
+		currentAnimKeyframeHandler = currentAnimTrack.KeyframeReached:connect(keyFrameReachedFunc)
+		
+	end
+
+end
+
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+
+local toolAnimName = ""
+local toolAnimTrack = nil
+local toolAnimInstance = nil
+local currentToolAnimKeyframeHandler = nil
+
+function toolKeyFrameReachedFunc(frameName)
+	if (frameName == "End") then
+--		print("Keyframe : ".. frameName)	
+		playToolAnimation(toolAnimName, 0.0, Humanoid)
+	end
+end
+
+
+function playToolAnimation(animName, transitionTime, humanoid, priority)	 
+		
+		local roll = math.random(1, animTable[animName].totalWeight) 
+		local origRoll = roll
+		local idx = 1
+		while (roll > animTable[animName][idx].weight) do
+			roll = roll - animTable[animName][idx].weight
+			idx = idx + 1
+		end
+--		print(animName .. " * " .. idx .. " [" .. origRoll .. "]")
+		local anim = animTable[animName][idx].anim
+
+		if (toolAnimInstance ~= anim) then
+			
+			if (toolAnimTrack ~= nil) then
+				toolAnimTrack:Stop()
+				toolAnimTrack:Destroy()
+				transitionTime = 0
+			end
+					
+			-- load it to the humanoid; get AnimationTrack
+			toolAnimTrack = humanoid:LoadAnimation(anim)
+			if priority then
+				toolAnimTrack.Priority = priority
+			end
+			 
+			-- play the animation
+			toolAnimTrack:Play(transitionTime)
+			toolAnimName = animName
+			toolAnimInstance = anim
+
+			currentToolAnimKeyframeHandler = toolAnimTrack.KeyframeReached:connect(toolKeyFrameReachedFunc)
+		end
+end
+
+function stopToolAnimations()
+	local oldAnim = toolAnimName
+
+	if (currentToolAnimKeyframeHandler ~= nil) then
+		currentToolAnimKeyframeHandler:disconnect()
+	end
+
+	toolAnimName = ""
+	toolAnimInstance = nil
+	if (toolAnimTrack ~= nil) then
+		toolAnimTrack:Stop()
+		toolAnimTrack:Destroy()
+		toolAnimTrack = nil
+	end
+
+
+	return oldAnim
+end
+
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+
+
+function onRunning(speed)
+	if speed > 0.01 then
+		playAnimation("walk", 0.1, Humanoid)
+		if currentAnimInstance and currentAnimInstance.AnimationId == "http://www.roblox.com/asset/?id=180426354" then
+			setAnimationSpeed(speed / 14.5)
+		end
+		pose = "Running"
+	else
+		if emoteNames[currentAnim] == nil then
+			playAnimation("idle", 0.1, Humanoid)
+			pose = "Standing"
+		end
+	end
+end
+
+function onDied()
+	pose = "Dead"
+end
+
+function onJumping()
+	playAnimation("jump", 0.1, Humanoid)
+	jumpAnimTime = jumpAnimDuration
+	pose = "Jumping"
+end
+
+function onClimbing(speed)
+	playAnimation("climb", 0.1, Humanoid)
+	setAnimationSpeed(speed / 12.0)
+	pose = "Climbing"
+end
+
+function onGettingUp()
+	pose = "GettingUp"
+end
+
+function onFreeFall()
+	if (jumpAnimTime <= 0) then
+		playAnimation("fall", fallTransitionTime, Humanoid)
+	end
+	pose = "FreeFall"
+end
+
+function onFallingDown()
+	pose = "FallingDown"
+end
+
+function onSeated()
+	pose = "Seated"
+end
+
+function onPlatformStanding()
+	pose = "PlatformStanding"
+end
+
+function onSwimming(speed)
+	if speed > 0 then
+		pose = "Running"
+	else
+		pose = "Standing"
+	end
+end
+
+function getTool()	
+	for _, kid in ipairs(Figure:GetChildren()) do
+		if kid.className == "Tool" then return kid end
+	end
+	return nil
+end
+
+function getToolAnim(tool)
+	for _, c in ipairs(tool:GetChildren()) do
+		if c.Name == "toolanim" and c.className == "StringValue" then
+			return c
+		end
+	end
+	return nil
+end
+
+function animateTool()
+	
+	if (toolAnim == "None") then
+		playToolAnimation("toolnone", toolTransitionTime, Humanoid, Enum.AnimationPriority.Idle)
+		return
+	end
+
+	if (toolAnim == "Slash") then
+		playToolAnimation("toolslash", 0, Humanoid, Enum.AnimationPriority.Action)
+		return
+	end
+
+	if (toolAnim == "Lunge") then
+		playToolAnimation("toollunge", 0, Humanoid, Enum.AnimationPriority.Action)
+		return
+	end
+end
+
+function moveSit()
+	RightShoulder.MaxVelocity = 0.15
+	LeftShoulder.MaxVelocity = 0.15
+	RightShoulder:SetDesiredAngle(3.14 /2)
+	LeftShoulder:SetDesiredAngle(-3.14 /2)
+	RightHip:SetDesiredAngle(3.14 /2)
+	LeftHip:SetDesiredAngle(-3.14 /2)
+end
+
+local lastTick = 0
+
+function move(time)
+	local amplitude = 1
+	local frequency = 1
+  	local deltaTime = time - lastTick
+  	lastTick = time
+
+	local climbFudge = 0
+	local setAngles = false
+
+  	if (jumpAnimTime > 0) then
+  		jumpAnimTime = jumpAnimTime - deltaTime
+  	end
+
+	if (pose == "FreeFall" and jumpAnimTime <= 0) then
+		playAnimation("fall", fallTransitionTime, Humanoid)
+	elseif (pose == "Seated") then
+		playAnimation("sit", 0.5, Humanoid)
+		return
+	elseif (pose == "Running") then
+		playAnimation("walk", 0.1, Humanoid)
+	elseif (pose == "Dead" or pose == "GettingUp" or pose == "FallingDown" or pose == "Seated" or pose == "PlatformStanding") then
+--		print("Wha " .. pose)
+		stopAllAnimations()
+		amplitude = 0.1
+		frequency = 1
+		setAngles = true
+	end
+
+	if (setAngles) then
+		local desiredAngle = amplitude * math.sin(time * frequency)
+
+		RightShoulder:SetDesiredAngle(desiredAngle + climbFudge)
+		LeftShoulder:SetDesiredAngle(desiredAngle - climbFudge)
+		RightHip:SetDesiredAngle(-desiredAngle)
+		LeftHip:SetDesiredAngle(-desiredAngle)
+	end
+
+	-- Tool Animation handling
+	local tool = getTool()
+	if tool and tool:FindFirstChild("Handle") then
+	
+		local animStringValueObject = getToolAnim(tool)
+
+		if animStringValueObject then
+			toolAnim = animStringValueObject.Value
+			-- message recieved, delete StringValue
+			animStringValueObject.Parent = nil
+			toolAnimTime = time + .3
+		end
+
+		if time > toolAnimTime then
+			toolAnimTime = 0
+			toolAnim = "None"
+		end
+
+		animateTool()		
+	else
+		stopToolAnimations()
+		toolAnim = "None"
+		toolAnimInstance = nil
+		toolAnimTime = 0
+	end
+end
+
+-- connect events
+Humanoid.Died:connect(onDied)
+Humanoid.Running:connect(onRunning)
+Humanoid.Jumping:connect(onJumping)
+Humanoid.Climbing:connect(onClimbing)
+Humanoid.GettingUp:connect(onGettingUp)
+Humanoid.FreeFalling:connect(onFreeFall)
+Humanoid.FallingDown:connect(onFallingDown)
+Humanoid.Seated:connect(onSeated)
+Humanoid.PlatformStanding:connect(onPlatformStanding)
+Humanoid.Swimming:connect(onSwimming)
+
+-- setup emote chat hook
+game:GetService("Players").LocalPlayer.Chatted:connect(function(msg)
+	local emote = ""
+	if msg == "/e dance" then
+		emote = dances[math.random(1, #dances)]
+	elseif (string.sub(msg, 1, 3) == "/e ") then
+		emote = string.sub(msg, 4)
+	elseif (string.sub(msg, 1, 7) == "/emote ") then
+		emote = string.sub(msg, 8)
+	end
+	
+	if (pose == "Standing" and emoteNames[emote] ~= nil) then
+		playAnimation(emote, 0.1, Humanoid)
+	end
+
+end)
+
+
+-- main program
+
+-- initialize to idle
+playAnimation("idle", 0.1, Humanoid)
+pose = "Standing"
+
+while Figure.Parent ~= nil do
+	local _, time = wait(0.1)
+	move(time)
+end
+
+
+]],chr)
+	StringValue1.Name = "idle"
+	StringValue1.Parent = LocalScript0
+	Animation2.Name = "Animation1"
+	Animation2.Parent = StringValue1
+	Animation2.AnimationId = "http://www.roblox.com/asset/?id=180435571"
+	NumberValue3.Name = "Weight"
+	NumberValue3.Parent = Animation2
+	NumberValue3.Value = 9
+	Animation4.Name = "Animation2"
+	Animation4.Parent = StringValue1
+	Animation4.AnimationId = "http://www.roblox.com/asset/?id=180435792"
+	NumberValue5.Name = "Weight"
+	NumberValue5.Parent = Animation4
+	NumberValue5.Value = 1
+	StringValue6.Name = "walk"
+	StringValue6.Parent = LocalScript0
+	Animation7.Name = "WalkAnim"
+	Animation7.Parent = StringValue6
+	Animation7.AnimationId = "http://www.roblox.com/asset/?id=180426354"
+	StringValue8.Name = "run"
+	StringValue8.Parent = LocalScript0
+	Animation9.Name = "RunAnim"
+	Animation9.Parent = StringValue8
+	Animation9.AnimationId = "http://www.roblox.com/asset/?id=180426354"
+	StringValue10.Name = "jump"
+	StringValue10.Parent = LocalScript0
+	Animation11.Name = "JumpAnim"
+	Animation11.Parent = StringValue10
+	Animation11.AnimationId = "http://www.roblox.com/asset/?id=125750702"
+	StringValue12.Name = "climb"
+	StringValue12.Parent = LocalScript0
+	Animation13.Name = "ClimbAnim"
+	Animation13.Parent = StringValue12
+	Animation13.AnimationId = "http://www.roblox.com/asset/?id=180436334"
+	StringValue14.Name = "toolnone"
+	StringValue14.Parent = LocalScript0
+	Animation15.Name = "ToolNoneAnim"
+	Animation15.Parent = StringValue14
+	Animation15.AnimationId = "http://www.roblox.com/asset/?id=182393478"
+	StringValue16.Name = "fall"
+	StringValue16.Parent = LocalScript0
+	Animation17.Name = "FallAnim"
+	Animation17.Parent = StringValue16
+	Animation17.AnimationId = "http://www.roblox.com/asset/?id=180436148"
+	StringValue18.Name = "sit"
+	StringValue18.Parent = LocalScript0
+	Animation19.Name = "SitAnim"
+	Animation19.Parent = StringValue18
+	Animation19.AnimationId = "http://www.roblox.com/asset/?id=178130996"
+	NumberValue20.Name = "ScaleDampeningPercent"
+	NumberValue20.Parent = LocalScript0
+	NumberValue20.Value = 0.4000000059604645
+	NS([[-- Gradually regenerates the Humanoid's Health over time.
+	local REGEN_RATE = 1/100 -- Regenerate this fraction of MaxHealth per second.
+	local REGEN_STEP = 1 -- Wait this long between each regeneration step.
+
+	--------------------------------------------------------------------------------
+
+	local Character = script.Parent
+	local Humanoid = Character:WaitForChild'Humanoid'
+
+	--------------------------------------------------------------------------------
+
+	while true do
+		while Humanoid.Health < Humanoid.MaxHealth do
+			local dt = wait(REGEN_STEP)
+			local dh = dt*REGEN_RATE*Humanoid.MaxHealth
+			Humanoid.Health = math.min(Humanoid.Health + dh, Humanoid.MaxHealth)
+		end
+		Humanoid.HealthChanged:Wait()
+	end]],chr)
+
+	NLS([[local cf = workspace.CurrentCamera.CFrame
+		workspace.CurrentCamera.CameraSubject = game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
+		game:GetService('RunService').RenderStepped:Wait()
+		workspace.CurrentCamera.CFrame = cf
+	script:Destroy()]],Playrrr:FindFirstChildOfClass("PlayerGui"))
+end
+SetScripts()
+
+function chat(cf,text)
+	coroutine.wrap(function()
+		pcall(function()
+			local p = Instance.new('Part',chr)
+			p.CFrame = cf
+			p.Size = Vector3.new(0.05,0.05,0.05)
+			p.Transparency = 1
+			p.Anchored = true
+			p.CanCollide = false
+			local c = script.Chat:Clone()
+			c.Parent = p
+			c.Adornee = p
+			local t = c.TextLabel
+			for i = 1,string.len(text) do
+				if p == nil or not p:IsDescendantOf(chr) then
+					break
+				end
+				local snd = Instance.new('Sound',head)
+				snd.Volume = 1
+				snd.Pitch = 1
+				snd.Looped = false
+				snd.PlayOnRemove = true
+				snd.SoundId = "rbxassetid://2469886818"
+				snd:Play()
+				snd:Destroy()
+				t.Text = text:sub(1,i)
+				game:GetService('RunService').Heartbeat:wait()
+				game:GetService('RunService').Heartbeat:wait()
+				game:GetService('RunService').Heartbeat:wait()
+			end
+			local rot = math.random(-20,20)
+			game:GetService('TweenService'):Create(c,TweenInfo.new(10),{
+				StudsOffset = c.StudsOffset-Vector3.new(math.random(1,2),math.random(1,2),math.random(1,2))
+			}):Play()
+			game:GetService('TweenService'):Create(t,TweenInfo.new(10),{
+				TextTransparency = 1,
+				TextStrokeTransparency = 1,
+				Rotation = math.random(-20,20)
+			}):Play()
+			game:GetService('Debris'):AddItem(p,10)
+		end)
+	end)()
+end
+
+chat(root.CFrame*CFrame.new(10,5,0),"lets just get this over with.")
+
+function Refit()
+	if chr ~= nil and chr:IsA'Model' then
+		chr:Destroy()
+	end
+	chr = rig:Clone()
+	chr:FindFirstChildOfClass('Humanoid').DisplayDistanceType="Subject"
+	chr:FindFirstChildOfClass('Humanoid').DisplayName = "sans."
+	chr.Parent = workspace
+	plr.Character = chr
+	head = chr["Head"]
+	torso = chr["Torso"]
+	larm = chr["Left Arm"]
+	lleg = chr["Left Leg"]
+	rarm = chr["Right Arm"]
+	rleg = chr["Right Leg"]
+	root = chr["HumanoidRootPart"]
+	RootJoint = root["RootJoint"]
+	att = head["Attachment"]
+	teleport((root.CFrame*CFrame.new(math.random(-20,20),0,math.random(-20,20))).Position)
+	chr.DescendantRemoving:Connect(DescRem)
+	SetScripts()
+	chat(root.CFrame*CFrame.new(10,5,0),lines[math.random(1,#lines)])
+end
+
+function Kill(model)
+	model:BreakJoints()
+	for i,v in pairs(model:GetDescendants()) do
+		if v:IsA'BasePart' then
+			local p = Instance.new('Part',workspace)
+			p.Size = v.Size
+			p.CFrame = v.CFrame
+			p.Color = Color3.new(1,1,1)
+			p.Transparency = 0
+			p.Material = Enum.Material.Neon
+			p.CanCollide = false
+			p.Anchored = true
+			v:Destroy()
+			p:ClearAllChildren()
+			p:BreakJoints()
+			game:GetService('TweenService'):Create(p,TweenInfo.new(1),{
+				Orientation = p.Orientation+Vector3.new(math.random(-360,360),math.random(-360,360),math.random(-360,360)),
+				Position = p.Position+Vector3.new(math.random(-20,20),math.random(-20,20),math.random(-20,20)),
+				Size = Vector3.new(0,0,0),
+				Transparency = 1
+			}):Play()
+			game:GetService('Debris'):AddItem(p,1)
+		end
+	end
+	model:Destroy()
+end
+
+function Beam(Hit,parent,color,size)
+	local mag=(parent.Position-Hit).magnitude
+	local Laser = Instance.new("Part",workspace)
+	Laser.Name = "Laser"
+	Laser.CanCollide = false
+	Laser.Color = color
+	Laser.Transparency = 0
+	Laser.Anchored = true
+	Laser.Material = "Neon"
+	Laser.Size = Vector3.new(0.05,0.05,0.05)
+	local msh = Instance.new('SpecialMesh',Laser)
+	msh.MeshType="Sphere"
+	msh.Scale = Vector3.new(1 * mag, size, size) * 20
+	Laser.CFrame = parent.CFrame * CFrame.new(0,0,(-mag)/2) * CFrame.fromEulerAnglesXYZ(0,math.rad(90),0)
+	local Fire = Instance.new("Sound",parent)
+	Fire.SoundId = "rbxassetid://340722848"
+	Fire.Volume = 5
+	Fire.Pitch = 1
+	Fire.PlayOnRemove = true
+	Fire:Play()
+	Fire:Destroy()
+	local hit = Instance.new('Part',Laser)
+	hit.Anchored = true
+	hit.CanCollide = false
+	hit.Size = Vector3.new(1 * mag, size, size)*1.5
+	hit.CFrame = Laser.CFrame
+	hit.Transparency = 1
+	hit.Touched:connect(function(hit)
+		if hit:IsDescendantOf(chr) then return end
+		if hit.Parent:FindFirstChildOfClass('Humanoid') and hit.Parent:IsA'Model' then
+			local s = Instance.new('Sound',hit.Parent:FindFirstChildOfClass('Part'))
+			s.SoundId = "rbxassetid://5416548293"
+			s.Volume = 3
+			s.Pitch = 1
+			s.PlayOnRemove = true
+			s:Play()
+			s:Destroy()
+			game:GetService('RunService').Heartbeat:wait()
+			Kill(hit.Parent)
+		end
+	end)
+	coroutine.wrap(function()
+		local tw = game:GetService('TweenService'):Create(Laser,TweenInfo.new(1,0,0),{
+			Transparency = 1
+		})
+		tw:Play()
+		tw.Completed:wait()
+		Laser:Destroy()
+	end)()
+end
+
+function Blaster(Hit)
+	local shot = false
+	local GasterB = Instance.new("Part",workspace)
+	GasterB.CFrame = root.CFrame
+	GasterB.CanCollide = false
+	GasterB.Anchored = true
+	GasterB.Material = "SmoothPlastic"
+	GasterB.Color = Color3.new(1,1,1)
+	GasterB.Size = Vector3.new(0.05,0.05,0.05)
+	local zxc = Instance.new("SpecialMesh",GasterB)
+	zxc.MeshType = "FileMesh"
+	zxc.Scale = Vector3.new(1.5,1.5,1.5)
+	zxc.MeshId = "rbxassetid://2649585735"
+	coroutine.wrap(function()
+		pcall(function()
+			repeat
+				GasterB.CFrame = CFrame.new(GasterB.Position,Hit)
+				game:GetService('RunService').Heartbeat:wait()
+			until shot == true
+		end)
+	end)()
+	local Charge = Instance.new("Sound",GasterB)
+	Charge.SoundId = "rbxassetid://482211201"
+	Charge.Volume = 1
+	Charge.PlayOnRemove = true
+	Charge:Play()
+	Charge:Destroy()
+	local tw = game:GetService('TweenService'):Create(GasterB,TweenInfo.new(.4),{
+		Position = root.Position+Vector3.new(math.random(-17,17),math.random(5,8),math.random(-17,17))
+	})
+	tw:Play()
+	tw.Completed:wait()
+	zxc.MeshId = "rbxassetid://2649605211"
+	Beam(Hit,GasterB,Color3.new(1,1,1),5)
+	shot = true
+	wait(1)
+	local tw = game:GetService('TweenService'):Create(GasterB,TweenInfo.new(1),{
+		Transparency = 1
+	})
+	tw:Play()
+	tw.Completed:wait()
+	GasterB:Destroy()
+end
+
+local hb = game:GetService('RunService').Heartbeat:Connect(function()
+	Check()
+	sin = sin + 1
+end)
+
+local chatted = plr.Chatted:Connect(function(m)
+	local msg = ""
+	if m:sub(1,3) == "/e " then
+		msg = m:sub(4)
+	else
+		msg = m:sub(1)
+	end
+	if msg == "->stop" or msg == "-&gt;stop" then
+		disc()
+	end
+	chat(root.CFrame*CFrame.new(10,5,0),msg)
+end)
+
+local plrrem = game:GetService('Players').PlayerRemoving:Connect(function(p)
+	if p == plr then
+		disc()
+	end
+end)
+
+function disc()
+	hb:Disconnect()
+	chatted:Disconnect()
+	plrrem:Disconnect()
+	chr:Destroy()
+	rem:Destroy()
+	pcall(function()
+		if plr:FindFirstChildOfClass('PlayerGui'):FindFirstChild('Mouse') ~= nil then
+			plr:FindFirstChildOfClass('PlayerGui'):FindFirstChild('Mouse'):Destroy()
+		end
+		plr:LoadCharacter()
+	end)
+	script:ClearAllChildren()
+	script.Disabled=true
+	script:Destroy()
+end
