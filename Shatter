@@ -1,0 +1,308 @@
+function SoundEffect(parent,id,vol,pit,playonremove)
+	local snd = Instance.new("Sound", parent)
+	snd.Volume = vol
+	snd.SoundId = "rbxassetid://"..id
+	snd.Pitch = pit
+	snd.PlayOnRemove = playonremove or false
+	if(playonremove)then
+		snd:Destroy()
+	else
+		snd:Play()
+	end
+	game:GetService("Debris"):AddItem(snd, snd.TimeLength/snd.Pitch)
+end
+
+function CleanObject(obj,keep)
+	local function clean(v)
+		if v:IsA("DataModelMesh") and not table.find(keep,"SpecialMesh") then
+			v:Destroy()
+		elseif v:IsA("MeshPart") and not table.find(keep,"MeshPart") then
+			local a = Instance.new("Part", v.Parent)
+			a.Name = v.Name
+			a.Size = v.Size
+			a.CFrame = v.CFrame
+			a.Material = v.Material
+			a.Color = v.Color
+			a.Transparency = v.Transparency
+			a.Anchored = v.Anchored
+			a.CanCollide = v.CanCollide
+			a.CanQuery = v.CanQuery
+			a.Parent = v.Parent
+			pcall(game.Destroy,v)
+		elseif v:IsA("Sound") and not table.find(keep,"Sound") then
+			v.PlayOnRemove = false
+			v:Destroy()
+		elseif v:IsA("Decal") and not table.find(keep,"Decal") then
+			v:Destroy()
+		elseif v:IsA("JointInstance") and not table.find(keep,"JointInstance") then
+			v:Destroy()
+		elseif v:IsA("Script") and not table.find(keep,"Script") then
+			v.Disabled = true
+			v:Destroy()
+		elseif v:IsA("LocalScript") and not table.find(keep,"LocalScript") then
+			v.Disabled = true
+			v:Destroy()
+		elseif v:IsA("ModuleScript") and not table.find(keep,"ModuleScript") then
+			v:Destroy()
+		elseif v:IsA("Attachment") and not table.find(keep,"Attachment") then
+			v:Destroy()
+		elseif v:IsA("ParticleEmitter") and not table.find(keep,"ParticleEmitter") then
+			v:Destroy()
+		elseif v:IsA("PointLight") and not table.find(keep,"PointLight") then
+			v:Destroy()
+		end
+	end
+	clean(obj)
+	for i,v in next, obj:GetDescendants() do
+		clean(v)
+	end
+end
+
+function Shatter(p) --thx WomanMalder UwU
+	local function isdestroyed(inst)
+		if (inst.Parent ~= nil) then return (false) end
+		local _, b = pcall(function()
+			inst.Parent = inst
+		end)
+		if(b:match('locked'))then
+			return (true)
+		else
+			return (false)
+		end
+	end;
+
+	local function Subtract(Part:BasePart,Negation:{Instance}|Instance,CollisionFidelity:Enum.CollisionFidelity|nil)
+		if(CollisionFidelity==nil)then CollisionFidelity = 'Hull' end
+		if(typeof(Negation)=='table')then
+			for o, p in next, Negation do
+				if (p:IsDescendantOf(workspace)) then
+				else
+					return
+				end
+			end
+			return(Part:SubtractAsync(Negation, CollisionFidelity));
+		else
+			if(Part:IsDescendantOf(workspace))then
+				return(Part:SubtractAsync({Negation}, CollisionFidelity));
+			end
+		end
+	end;
+
+	local function Fragment(Part, Count, Depth)
+		local fragCount = 0;
+		local Fragments = {};
+		local partSize = Part.Size;
+		local partCF = Part.CFrame;
+
+		if(Part:IsDescendantOf(workspace) and Count >= 0)then
+			local c1 = Instance.new('Part')
+			c1.Size = partSize*4
+			c1.CFrame = partCF * CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))) * CFrame.new(0, -partSize.Y * 2, 0)
+			local c2 = c1:Clone()
+			c2.CFrame = partCF * CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))) * CFrame.new(0, partSize.Y * 2, 0)
+			local p1, p2
+			pcall(function()
+				p1 = Subtract(Part, c1)
+				p2 = Subtract(Part, c2)
+			end)
+			if (Depth ~= 0) then
+				Part.Parent = nil 
+			end
+			if(p1 and p2 and fragCount <= 65) then
+				p1.CFrame = partCF * partCF:ToObjectSpace(p1.CFrame)
+				p2.CFrame = partCF * partCF:ToObjectSpace(p2.CFrame)
+				p1.Parent = Part.Parent
+				p2.Parent = Part.Parent
+				local f1 = Fragment(p1, Count-1, Depth+1)
+				local f2 = Fragment(p2, Count-1, Depth+1)
+				table.insert(Fragments, p1)
+				table.insert(Fragments, p2)
+				fragCount = fragCount + 2
+				p1.AncestryChanged:Connect(function(inst, parent)
+					if (parent == nil and isdestroyed(inst)) then
+						fragCount = fragCount - 1
+					end
+				end)
+				p2.AncestryChanged:Connect(function(inst, parent)
+					if (parent == nil and isdestroyed(inst)) then
+						fragCount = fragCount - 1
+					end
+				end)
+				for i, v in next, f1 do
+					table.insert(Fragments, v)
+				end
+				for i, v in next, f2 do
+					table.insert(Fragments, v)
+				end
+			end
+		end
+		for i, v in next, Fragments do
+			v.Parent = nil
+		end
+		if(#Fragments == 0) then
+			Fragments = {Part:Clone()}
+		end
+		return (Fragments)
+	end
+
+	local function getbiggestaxis(vector)
+		local biggest = 0
+		if(vector.X>biggest)then
+			biggest = vector.X
+		end
+		if(vector.Y>biggest)then
+			biggest = vector.Y
+		end
+		if(vector.Z>biggest)then
+			biggest = vector.Z
+		end
+		return biggest
+	end
+
+	local function shatterify(b)
+		if(b:IsA("BasePart"))then
+			b.Anchored = true
+			local fragments = Fragment(b, -1, 5)
+			for i,v in next, fragments do
+				coroutine.wrap(function()
+					v.Anchored = true
+					v.Parent = workspace
+					v.Material = Enum.Material.Glass
+					local biggest = 1+(getbiggestaxis(v.Size)/2)
+					local pos = v.Position + (Vector3.new(math.random(-3,3),math.random(2,5),math.random(-3,3))*Vector3.new(biggest,biggest,biggest))
+					local mag = (v.Position - pos).Magnitude
+					game:GetService("TweenService"):Create(v,TweenInfo.new((mag/2)/biggest, Enum.EasingStyle.Back),{
+						Position = pos,
+						Size = v.Size/2,
+						Orientation = Vector3.new(math.random(-360,360),math.random(-360,360),math.random(-360,360))
+					}):Play()
+					task.wait((mag/3)/biggest)
+					local fragments2 = Fragment(v, 1, 5)
+					v:Destroy()
+					for i,a in next, fragments2 do
+						coroutine.wrap(function()
+							a.Anchored = true
+							a.Parent = workspace
+							a.Material = Enum.Material.Glass
+							SoundEffect(a,7140152893,1,math.random(70,120)/100,true)
+							biggest = 1+(getbiggestaxis(a.Size)/2)
+							local pos = a.Position + (Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))*Vector3.new(biggest,biggest,biggest))
+							local mag = (a.Position - pos).Magnitude
+							game:GetService("TweenService"):Create(a,TweenInfo.new(mag/biggest),{
+								Position = pos,
+								Size = Vector3.new(),
+								Transparency = 1,
+								Orientation = Vector3.new(math.random(-360,360),math.random(-360,360),math.random(-360,360))
+							}):Play()
+							task.wait((mag)/biggest)
+							a:Destroy()
+						end)()
+					end
+				end)()
+			end
+			b:Destroy()
+		end
+	end
+	if(p:IsA("Model") or p:IsA("Folder") or p:IsA("WorldModel"))then
+		SoundEffect(p:FindFirstChildWhichIsA("Part",true),9125402735,10,math.random(70,120)/100,true)
+		CleanObject(p,{})
+		for i,b in next, p:GetDescendants() do
+			if(b:IsA("BasePart"))then
+				coroutine.wrap(function()
+					shatterify(b)
+				end)()
+			end
+		end
+		p:Destroy()
+	elseif(p:IsA("BasePart"))then
+		SoundEffect(p,9125402735,10,math.random(70,120)/100,true)
+		CleanObject(p,{})
+		coroutine.wrap(function()
+			shatterify(p)
+		end)()
+		for i,v in next, p:GetDescendants() do
+			if(v:IsA("BasePart"))then
+				coroutine.wrap(function()
+					shatterify(v)
+				end)()
+			end
+		end
+		p:Destroy()
+	end
+end
+
+function getPlayersFromString(plr,str)
+	local returntbl = {}
+	if str == nil then
+		table.insert(returntbl,plr)
+		return returntbl
+	end
+	local comma = string.split(str,",")
+	for i,v in next, comma do
+		if getPlayer(v) and not table.find(returntbl,getPlayer(v)) then
+			table.insert(returntbl,getPlayer(v))
+		end
+		if string.lower(v) == "me" or string.lower(v) == "" then
+			table.insert(returntbl,plr)
+		elseif string.lower(v) == "others" then
+			for i,v in next, game:GetService('Players'):GetPlayers() do
+				if v ~= plr then
+					table.insert(returntbl,v)
+				end
+			end
+		elseif string.lower(v) == "all" then
+			for i,v in next, game:GetService('Players'):GetPlayers() do
+				table.insert(returntbl,v)
+			end
+		end
+	end
+	return returntbl
+end
+
+function getPlayer(str)
+	if str == nil or str == "" then
+		return nil
+	end
+	str = string.lower(str)
+	for i,v in next, game:GetService('Players'):GetPlayers() do
+		if string.sub(string.lower(v.Name),1,string.len(str)) == str then
+			return v
+		end
+	end
+end
+
+local touchconnections = {}
+local ontouch = false
+
+owner.Chatted:Connect(function(m)
+	local msg = m
+	if(msg:sub(1,3) == "/e ")then
+		msg = m:sub(4)
+	end
+	local split = string.split(string.lower(msg),"!")
+	if(split and split[1] == "shatter")then
+		local plrs = getPlayersFromString(owner, split[2])
+		for i,v in next, plrs do
+			if(v.Character)then
+				Shatter(v.Character)
+			end
+		end
+	elseif(split and split[1] == "ontouch")then
+		for i,v in next, touchconnections do
+			pcall(function() v:Disconnect() end)
+		end
+		ontouch = not ontouch
+		if(ontouch)then
+			for i,v in next, owner.Character:GetDescendants() do
+				if(v:IsA("BasePart")) then
+					table.insert(touchconnections, v.Touched:Connect(function(part)
+						local m = part:FindFirstAncestorOfClass("Model")
+						if(m and m:FindFirstChildOfClass("Humanoid"))then
+							Shatter(m)
+						end
+					end))
+				end
+			end
+		end
+	end
+end)
