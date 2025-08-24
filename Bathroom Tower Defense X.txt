@@ -82,6 +82,41 @@ Tab:AddButton({
   	end    
 })
 
+Tab:AddButton({
+	Name = "Frostgunner Cameraguy Cost 2075",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Frostgunner Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Gigadagger Supreme Speakerguy Cost 2000",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Gigadagger Supreme Speakerguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Astroclaw Upgraded Supreme Cameraguy Cost 2250",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Astroclaw Upgraded Supreme Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Armada Supreme Cinemaguy Cost 2025",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Armada Supreme Cinemaguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Commander Boss Toilet Cost 1650",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Commander Boss Toilet", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
 local Tab = Window:MakeTab({
 	Name = "Credits",
 	Icon = "rbxassetid://4483345998",
@@ -93,4 +128,5 @@ local Section = Tab:AddSection({
 })
 Tab:AddLabel("???")
 Tab:AddLabel("Subscribe!")
+
 
