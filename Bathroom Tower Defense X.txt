@@ -111,6 +111,13 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
+	Name = "Armada Supreme Speakerguy Cost 2285",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Armada Supreme Speakerguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
 	Name = "Commander Boss Toilet Cost 1650",
 	Callback = function()
       		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Commander Boss Toilet", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
@@ -142,6 +149,7 @@ local Section = Tab:AddSection({
 })
 Tab:AddLabel("???")
 Tab:AddLabel("Subscribe!")
+
 
 
 
