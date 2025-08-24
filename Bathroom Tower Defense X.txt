@@ -117,6 +117,20 @@ Tab:AddButton({
   	end    
 })
 
+Tab:AddButton({
+	Name = "Bionic Cameraguy Cost 635",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Bionic Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Candy Cane Cameraguy Cost 600",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Candy Cane Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
 local Tab = Window:MakeTab({
 	Name = "Credits",
 	Icon = "rbxassetid://4483345998",
@@ -128,5 +142,6 @@ local Section = Tab:AddSection({
 })
 Tab:AddLabel("???")
 Tab:AddLabel("Subscribe!")
+
 
 
