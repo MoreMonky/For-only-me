@@ -118,13 +118,6 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "Commander Boss Toilet Cost 1650",
-	Callback = function()
-      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Commander Boss Toilet", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
-  	end    
-})
-
-Tab:AddButton({
 	Name = "Bionic Cameraguy Cost 635",
 	Callback = function()
       		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Bionic Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
@@ -135,6 +128,48 @@ Tab:AddButton({
 	Name = "Candy Cane Cameraguy Cost 600",
 	Callback = function()
       		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Candy Cane Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Omega Snowball Cameraguy Cost 2200",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Omega Snowball Cameraguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Redacted Pumpkin Lord Cost 2475",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Redacted Pumpkin Lord", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Reinforced MJ Toilet 2.0 Cost 1555",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Reinforced MJ Toilet 2.0", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Emperor Level 1 Cost 700",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Emperor Level 1", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Astroclaw TV-Guy Cost 1400",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Astroclaw TV-Guy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Emperor Level 1 Cost 700",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Emperor Level 1", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
   	end    
 })
 
