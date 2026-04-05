@@ -1,4 +1,4 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/weakhoes/Roblox-UI-Libs/refs/heads/main/Orion%20Lib/Orion%20Lib%20Source.lua')))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/OrionLibrary/Orion/refs/heads/main/source.lua')))()
 
 local Window = OrionLib:MakeWindow({Name = "Bathroom Tower Defense X", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroText = "SirenHead Hub"})
 
