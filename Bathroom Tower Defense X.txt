@@ -167,7 +167,7 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = Glacial Supreme Cinemaguy Cost 2080",
+	Name = "Glacial Supreme Cinemaguy Cost 2080",
 	Callback = function()
       		game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer("Glacial Supreme Cinemaguy", CFrame.new(game.Players.LocalPlayer.Character.Head.Position)) 
   	end    
