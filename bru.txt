@@ -1,5 +1,5 @@
 --By Rufus14
---owner = game.Players.Rufus14
+--owner = game.Players.TheROBLOX20
 NLS([[
 local localplayer = game:GetService("Players").LocalPlayer
 local event = localplayer.Character:WaitForChild("bruhevent")
