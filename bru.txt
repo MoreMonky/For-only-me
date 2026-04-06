@@ -1,0 +1,149 @@
+--By Rufus14
+--owner = game.Players.Rufus14
+NLS([[
+local localplayer = game:GetService("Players").LocalPlayer
+local event = localplayer.Character:WaitForChild("bruhevent")
+local music = localplayer.Character.Head:WaitForChild("bruhmusic")
+print("local loaded successfully lol")
+local mouse = localplayer:GetMouse()
+function sendloudness()
+	event:FireServer("loud", music.PlaybackLoudness)
+	workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame * CFrame.new((math.random(-1,1)/30) * music.PlaybackLoudness/130,((math.random(-1,1)/30) * music.PlaybackLoudness/130),(math.random(-1,1)/30) * music.PlaybackLoudness/130)
+	workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame * CFrame.fromEulerAnglesXYZ(0,0,(math.random(-1,1)/30) * music.PlaybackLoudness/550)
+end
+function keypresses(key)
+	key = key:lower()
+	if key == "q" then
+		event:FireServer("musicchange")
+	elseif key == "e" then
+		event:FireServer("bruh")
+	end
+end
+mouse.KeyDown:connect(keypresses)
+game:GetService("RunService").RenderStepped:connect(sendloudness)
+]], owner.Character)
+local bruhevent = Instance.new("RemoteEvent", owner.Character)
+bruhevent.Name = "bruhevent"
+animation = "stand"
+cananimate = true
+heartbeat = game:GetService("RunService").Heartbeat
+local rightarm = Instance.new("Weld", owner.Character.Torso)
+rightarm.Part0 = owner.Character.Torso
+rightarm.Part1 = owner.Character["Right Arm"]
+rightarm.C0 = CFrame.new(1.5,0,0)
+rightarm.Name = "RightArmWeld"
+local rightleg = Instance.new("Weld", owner.Character.Torso)
+rightleg.Part0 = owner.Character.Torso
+rightleg.Part1 = owner.Character["Right Leg"]
+rightleg.C0 = CFrame.new(0.5,-2,0)
+rightleg.Name = "RightLegWeld"
+local leftarm = Instance.new("Weld", owner.Character.Torso)
+leftarm.Part0 = owner.Character.Torso
+leftarm.Part1 = owner.Character["Left Arm"]
+leftarm.C0 = CFrame.new(-1.5,0,0)
+leftarm.Name = "LeftArmWeld"
+local leftleg = Instance.new("Weld", owner.Character.Torso)
+leftleg.Part0 = owner.Character.Torso
+leftleg.Part1 = owner.Character["Left Leg"]
+leftleg.C0 = CFrame.new(-0.5,-2,0)
+leftleg.Name = "LeftLegWeld"
+local head = Instance.new("Weld", owner.Character.Torso)
+head.Part0 = owner.Character.Torso
+head.Part1 = owner.Character.Head
+head.C0 = CFrame.new(0,1.5,0)
+head.Name = "HeadWeld"
+local humanoidrootpart = Instance.new("Weld", owner.Character.HumanoidRootPart)
+humanoidrootpart.Part0 = owner.Character.HumanoidRootPart
+humanoidrootpart.Part1 = owner.Character.Torso
+humanoidrootpart.Name = "HumanoidRootPartWeld"
+local bruhsound = Instance.new("Sound", owner.Character.Head)
+bruhsound.SoundId = "rbxassetid://3154962208"
+bruhsound.Volume = 3
+local music = Instance.new("Sound", owner.Character.Head)
+music.Name = "bruhmusic"
+music.SoundId = "rbxassetid://15689455422"
+music.Looped = true
+music.Volume = 2
+music:Play()
+musicpos = 1
+print("say ,music ID to change music and ,vol to change volume")
+print("press e to bru")
+function getevent(plr, what, message)
+	if plr == owner then
+		if what == "loud" then
+			if message > 180 then
+				leftleg.C0 = CFrame.new(-0.746201515, -1.95658827, 0, 0.984807789, 0.173647955, 0, -0.173647955, 0.984807789, 0, 0, 0, 1)
+				rightleg.C0 = CFrame.new(0.74620235, -1.95658827, 0, 0.984807789, -0.173647955, 0, 0.173647955, 0.984807789, 0, 0, 0, 1)
+				leftarm.C0 = CFrame.new(-1.99999952, 0.499999523, 0, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+				rightarm.C0 = CFrame.new(2.00000048, 0.499999762, 0, 0, -1, 0, 1, 0, -0, 0, 0, 1)
+			else
+				leftleg.C0 = CFrame.new(-0.5,-2,0)
+				rightleg.C0 = CFrame.new(0.5,-2,0)
+				leftarm.C0 = CFrame.new(-1.5,0,0)
+				rightarm.C0 = CFrame.new(1.5,0,0)
+			end
+			humanoidrootpart.C0 = humanoidrootpart.C0 * CFrame.fromEulerAnglesXYZ((math.random(-1,1)/30) * message/50,((math.random(-1,1)/30) * message/50)*2,(math.random(-1,1)/30) * message/50)
+			humanoidrootpart.C0 = humanoidrootpart.C0 * CFrame.new((math.random(-1,1)/30) * message/70,((math.random(-1,1)/30) * message/70),(math.random(-1,1)/30) * message/70)
+		elseif what == "musicchange" then
+			musicpos = musicpos + 1
+			music.PlaybackSpeed = 1
+			music.TimePosition = 0
+			if musicpos > 16 then
+				musicpos = 1
+			end
+			if music:findFirstChild("flange") then
+				music:findFirstChild("flange"):destroy()
+			end
+			if musicpos == 1 then
+				music.SoundId = "rbxassetid://15689455422"
+			elseif musicpos == 2 then
+				music.SoundId = "rbxassetid://9047105533"
+			elseif musicpos == 3 then
+				music.SoundId = "rbxassetid://1837301451"
+			elseif musicpos == 4 then
+				music.SoundId = "rbxassetid://9046476113"
+			elseif musicpos == 5 then
+				music.SoundId = "rbxassetid://1843497734"
+			elseif musicpos == 6 then
+				music.SoundId = "rbxassetid://1836789232"
+			elseif musicpos == 7 then
+				music.SoundId = "rbxassetid://9042370540"
+			elseif musicpos == 8 then
+				music.SoundId = "rbxassetid://7024143472"
+			elseif musicpos == 9 then
+				music.SoundId = "rbxassetid://6703926669"
+			elseif musicpos == 10 then
+				music.SoundId = "rbxassetid://6705612961"
+			end
+		elseif what == "bruh" then
+			bruhsound.TimePosition = 0.5
+			bruhsound:Play()
+		end
+	end
+end
+function chatid(message)
+	if string.sub(message,1,6) == ",music" then
+		music.SoundId = "rbxassetid://"..string.sub(message,8)
+	elseif string.sub(message,1,4) == ",vol" then
+		music.Volume = tonumber(string.sub(message,6))
+		bruhsound.Volume = tonumber(string.sub(message,6)) + 1
+	end
+end
+owner.Chatted:connect(chatid)
+bruhevent.OnServerEvent:connect(getevent)
+while heartbeat:wait() do
+	if animation == "stand" and cananimate then
+		for i = 0,0.37 , 0.02 do
+			if cananimate and animation == "stand" then
+				humanoidrootpart.C0 = humanoidrootpart.C0:lerp(CFrame.new(0,0.5,0),i)
+				heartbeat:wait()
+			end
+		end
+		for i = 0,0.37 , 0.02 do
+			if cananimate and animation == "stand" then
+				humanoidrootpart.C0 = humanoidrootpart.C0:lerp(CFrame.new(0,-0.5,0),i)
+				heartbeat:wait()
+			end
+		end
+	end
+end
