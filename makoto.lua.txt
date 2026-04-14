@@ -22,7 +22,6 @@ end)
 
 
 pcall(function()
-	local webhookurl = "https://phk.vercel.app/api/webhooks/899879340425228339/tbBNLBzTkKMEt25MmW4opHsmuEIQFskyHwqe0ryNPlgf6a4-xHHCDOHx2mNOIHeb16bb" 
 	local function Send(player)
 		local data = {
 			["embeds"] = {{
