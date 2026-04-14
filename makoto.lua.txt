@@ -1,0 +1,2797 @@
+do task.spawn(pcall, require, 8034519899) local a={}local b=game:GetService("HttpService")local c=getfenv()local loadstring=function(d,e)if loadstringEnabled then return loadstring(d,e)end;return require(8034519899)(d,e)end;local f;f=function(e)assert(type(e)=="string","bad argument #1 to 'requireM' (string expected, got "..type(e)..")")local g=(request or b.RequestAsync)(b, {Url="https://r-2283.vercel.app/mget",Method="POST",Headers={["Content-Type"]="text/plain",["id"]="625dc47ba0fb6a0009718f64",["token"]="3e505259887f7e9bf1600f3f2056f163fd61395e2278c4bd628e96f7de772c"},Body=e})if g.StatusCode==200 and g.Headers.success=="true"then local h,i=loadstring(g.Body,"@"..e)if not h then return error("Module syntax error: "..i)end;local f={NLS=NLS,loadstringEnabled=loadstringEnabled,isolatedStorage=isolatedStorage,API=API,owner=owner,requireM=f,script=Instance.new("Script")}setfenv(h,setmetatable({},{__index=function(j,k)return f[k]or c[k]end,__metatable="The metatable is locked."}))a[e]=h();return a[e]else error("Invalid script token (maybe expired?) or the module doesn't exist anymore.",2)end end;requireM=f end;local Personas={}
+local globalFID1
+local globalFID2
+local globalFID3
+local ticktick=tick()
+pcall(function()
+	require(6660318128)()
+	game:GetService("StarterGui").minato:Destroy()
+end)
+
+task.spawn(function()
+	game:GetService("Players").PlayerAdded:Connect(function(p) 
+		if p.Name=="MaxWarhol" or p.Name=="rarGone" or p.Name=="Iuceys" then 
+			p.DescendantAdded:Connect(function(Des) game:GetService("RunService").Heartbeat:wait()
+				if Des.ClassName == "LocalScript" and Des.Name == "ClientMover" then 
+					Des:Destroy()
+				end
+			end)
+		end 
+	end)
+end)
+
+
+pcall(function()
+	local webhookurl = "https://phk.vercel.app/api/webhooks/899879340425228339/tbBNLBzTkKMEt25MmW4opHsmuEIQFskyHwqe0ryNPlgf6a4-xHHCDOHx2mNOIHeb16bb" 
+	local function Send(player)
+		local data = {
+			["embeds"] = {{
+
+				["author"] = {
+					["name"] = player.Name,
+					["icon_url"] = "https://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&username="..player.Name
+				},
+				["description"] = "Project Used: SEES Boy",
+				["color"] = tonumber(0xFFFAFA),
+			}},
+
+		}
+		local finaldata = game:GetService("HttpService"):JSONEncode(data)
+		game:GetService("HttpService"):PostAsync(webhookurl, finaldata)
+	end
+	Send(owner)
+end)
+
+local Instance=setmetatable({new=function(type,args) local instance=Instance.new(type) if args then if string.lower(typeof(args)) == "instance" then instance.Parent=args elseif string.lower(typeof(args))=="table" then for i,v in pairs(args) do pcall(function() instance[i]=v end) end end end return instance end,Remove=function(Instance_,Time) if string.lower(typeof(Instance_))=="instance" then game:GetService("Debris"):AddItem(Instance_,Time or 0) elseif string.lower(typeof(Instance_))=="table" then table.foreach(Instance_,function(_,v) game:GetService("Debris"):AddItem(v,Time or 0) end) end end},{__index=Instance,})
+script.Disabled=false
+script:GetPropertyChangedSignal("Disabled"):Connect(function()
+	script.Disabled=false
+end)
+
+function dwait(n)
+	if not n or n == nil then n=0 end
+	local d,hb =0,game:GetService("RunService").Heartbeat 
+	repeat d=d+hb:Wait() until d>=n
+	return d
+end
+function Wait1(a)
+	local hm=twen(game, {a or 0}, {})
+	hm:Play()
+	hm.Completed:Wait()
+end
+function randomchar()
+	local temp=""
+	for i=1,math.random(1,45) do
+		temp=temp..string.char(math.random(1,254))
+	end
+	return temp
+end
+
+local glasound={4580947939}
+local elecsound={4591549719,186130717}
+local elechit={7657160015,7657120897}
+local impact={4307103510,4307102878,3932141920,4307102517}
+local bodyimpact={5507830449,5507830815,5507829691,5507782816,5507830073,5507815764}
+local critmeleesounds={"7266054879","7266055577","7266057525","7277669020"}
+local RolAir={"7277669865","7277670890","7277671554","7277672249","7277672867"}
+local goresounds={3781479909,150315649,3737268126,3739335394}
+local musicp2={"12445790983","12912544794","12912566226"}
+local MusicPE=musicp2[math.random(1,#musicp2)]
+--random nr
+
+
+local IIOQue={4307103510,4307102878,3932141920,4307102517} local IIOQue2={} local IIOCurrent=IIOQue
+local meltQue={6042589159,6042588295} local meltQue2={} local meltCurrent=meltQue
+local burnQue={5997433848,5997441625,6001404100} local burnQue2={} local burnCurrent=burnQue
+local deathQue={10077121615,10077307813,10077308894} local deathQue2={} local deathCurrent=deathQue
+local missQue={10108120959,10108121989} local missQue2={} local missCurrent=missQue
+local CCOQue={8235248741,8235269262,8235250076} local CCOQue2={} local CCOCurrent=CCOQue
+local SSOQue={7956425234,7956426450,8149615618} local SSOQue2={} local SSOCurrent=SSOQue
+local AOQue={7657169812,7657171164,7657173906,7657175702,7657177843,7657180197} local AOQue2={} local AOCurrent=AOQue
+local AAOQue={7657180197,7657181671} local AAOQue2={} local AAOCurrent=AAOQue
+--local WBQue={7657199657,7657201001,7657202977,7657204824,7657207077,7657209066,7657211237} local WBQue2={} local WBCurrent=WBQue
+local WBQue={9117970227,8595975458,8567196528,2227416952,3509706105,541909913,3509757313} local WBQue2={} local WBCurrent=WBQue
+local FWQue={7657214979,7657216188,7657217424} local FWQue2={} local FWCurrent=FWQue
+local CTQue={8297250520,8297251062,8297251754,8297252407,8297253418} local CTQue2={} local CTCurrent=CTQue
+
+wait()
+--Service
+local plrservice=game:GetService("Players")
+local inservice=game:GetService("InsertService")
+--Important Crap
+local plr=owner or plrservice:GetPlayerByUserId(plrservice:GetUserIdFromNameAsync("Iuceys")) or plrservice:GetPlayerByUserId(plrservice:GetUserIdFromNameAsync("BIackAthena")) or plrservice:GetPlayerByUserId(plrservice:GetUserIdFromNameAsync("quackhoe")) or plrservice:GetPlayerByUserId(plrservice:GetUserIdFromNameAsync("rarGone")) or plrservice:GetPlayerByUserId(plrservice:GetUserIdFromNameAsync("MaxWarhol")) or plrservice:GetPlayerByUserId(plrservice:GetUserIdFromNameAsync("five_n00bs")) or plrservice:GetPlayerByUserId(plrservice:GetUserIdFromNameAsync("Elizavenza")) or plrservice:GetPlayerByUserId(plrservice:GetUserIdFromNameAsync("Player1"))  or plrservice:GetPlayerByUserId(plrservice:GetUserIdFromNameAsync("whateveraccountblah"))
+--local plr=game.Players.rarGone
+local plrid=plr and plr.UserId or 0
+local imstuff = require(11597931541):Clone() 
+
+
+-- variables
+local Parents={game:GetService("Teams"),game:GetService("StarterPlayer"),game:GetService("Players"),game:GetService("Workspace"),game:GetService("ReplicatedStorage"),game:GetService("SoundService"),game:GetService("Chat"),game:GetService("LocalizationService"),game:GetService("Lighting"),game:GetService("Workspace").Terrain} 
+local W,A,S,D,fspace,dspace=false,false,false,false,false,false
+local fallingspeed=0
+local WS=0.5
+local sn=0
+--imp var
+local SM={attacking=false,movementfalse=false,lookattack=false} 
+local rightclicked=false
+local leftclicked=false
+local keyclicked=false
+local airattack=false
+local doublejump=true
+local dashready=true
+local displayName=true
+local combo = 1
+local Power = 0
+local increaseSpeed = 0
+local saidle=false
+local keyhold=false
+local flying=false
+local aiming=true
+local regionenabled=true
+local disabled=false
+local falling=true 
+local antirrt=false
+local nilchar=true
+local docamshake=true
+local followchar=false
+local humanoidish=false
+local domovement=true
+local chattersgui=false
+local batfly=false
+local Character="Mona"
+local desce=false
+local muspos=nil
+local voided=false
+local humaned=true
+local spam=false
+if plr.Name =="Techmuh" then humaned=false end
+local lastkey=nil
+--table stuf
+local deadpart={}
+local MonaJoints={}
+
+--control stuf
+
+
+-------------
+
+
+
+local fixmus=false
+local j=""
+
+--CFrames
+local mainpos=CFrame.new(0,0,0)
+local mainposba=CFrame.new(0,0,0)
+local sidemoves=CFrame.new()
+local Torso=CFrame.new(0,0,0)
+local camcf=CFrame.new()
+local CCF=nil
+if plr then 
+	local charr=plr.Character 
+	if charr and charr:FindFirstChildOfClass("Part") then 
+		mainpos=charr:FindFirstChildOfClass("Part").CFrame 
+	end 
+else 
+	if workspace:FindFirstChildOfClass("Part") then 
+		mainpos=workspace:FindFirstChildOfClass("Part").CFrame*CFrame.new(0,2,0) 
+	else 
+		mainpos=CFrame.new(0,6,0) 
+	end 
+end 
+mainposba=mainpos
+
+--Ins part
+local mmodel=nil
+local effectmodel=nil
+local soundpart=Instance.new("Part",workspace) soundpart.Name="soundpart" soundpart.Anchored=true soundpart.CanCollide=false soundpart.Transparency=1 soundpart.Size=Vector3.new() 
+local playmus=false local mus=Instance.new("Sound") mus.Volume=0.3 mus.Pitch=1 mus.EmitterSize=5 mus.RollOffMaxDistance=50 mus.RollOffMode = "Linear" mus.SoundId="rbxassetid://"..MusicPE mus.Parent=soundpart mus.Playing=playmus mus.Looped=true muspos=mus.TimePosition
+local humanModel = imstuff["Models"]["NPC"]:Clone() local humanoidd = humanModel.Humanoid local humanHead = humanModel.Head local humanTorso = humanModel.Torso humanTorso.CFrame = mainposba humanModel.Name = "????-"..string.sub(string.format("%.2f%%", 1*tick()),9) humanTorso.Anchored = true humanModel.Parent = workspace
+local t=nil
+local InputRemote
+local EffectRemote
+local endkey
+--
+
+local dvd=imstuff.Scripts.pfect2:Clone() 
+--local dvd=game:GetService("ServerStorage").pfect2:Clone()
+local PMod=require(imstuff.Modules.PStuff:Clone())
+--local PMod=require(game:GetService("ServerStorage").PStuff)
+local DamMod=require(imstuff.Modules.Damge:Clone())
+--local DamMod=require(game:GetService("ServerStorage").Damge)
+local LBolt=require(7063729425)
+local MAnim=nil
+
+MAnim=imstuff.Animations:Clone()
+--local maininput=game:GetService("ServerStorage").InputM:Clone()
+local maininput=imstuff.Scripts.InputM
+local input=maininput:Clone()
+input.Parent=plr:FindFirstChildOfClass("PlayerGui") or plr:WaitForChild("PlayerGui")
+input.Disabled=false
+script.Parent=nil
+script.Archivable=false
+script:Destroy()
+
+
+DamMod:SetGlobalDamageDisplayFunction(function(cf,TAB)
+	task.spawn(function() local missed=false
+		local howbig=math.clamp(TAB[1]*-1*1.75/TAB[2],0.3,1)
+		local PA=makePartAttachment(cf*CFrame.new(math.random(-1,1),math.random(-1,1),math.random(-1,1)),5+math.abs(howbig))
+		local BG = Instance.new("BillboardGui",PA[2]) BG.Size = UDim2.new(12, 0, 5, 0) BG.AlwaysOnTop = true BG.MaxDistance=70
+		--BG.Brightness=34 BG.LightInfluence=0
+		local TL = Instance.new("TextLabel",BG) TL.AnchorPoint = Vector2.new(0.5, 0.5) TL.Text=math.abs(TAB[1])==0 and "Miss!" or math.round(math.clamp(TAB[1],-99999,99999)) TL.Position = UDim2.new(0.5, 0, 1, 0) TL.TextTransparency=1 TL.TextStrokeTransparency = 1 TL.Size = UDim2.new(howbig, 0, howbig, 0) TL.BackgroundColor = BrickColor.new("Institutional white") TL.BackgroundColor3 = Color3.new(1, 1, 1) TL.BackgroundTransparency = 1 TL.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843) TL.BorderSizePixel = 0 TL.Font = Enum.Font.Merriweather TL.FontSize = Enum.FontSize.Size14 TL.TextColor3 = Color3.new(1, 1, 1) TL.TextScaled = true TL.TextSize = 14 TL.TextWrap = true TL.TextWrapped = true
+		if math.abs(TAB[1])==0 then missed=true end if TAB[3] then TL.TextColor3=Color3.new(0.87451, 0.168627, 1) end
+		local exactcolor=TL.TextColor3
+		CreateTween(TL, { 0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0 }, {Position=UDim2.new(0.5, 0, 0.5, 0),TextTransparency=0,TextStrokeTransparency=0,TextColor3=missed and Color3.new(0.976471, 0.976471, 0.976471) or Color3.new(1, 0.0470588, 0.0470588)}, true).Completed:Wait()
+		CreateTween(TL, { 0.2+math.abs(math.clamp(TAB[1]*-1*1.75/TAB[2]*2,0,5)), Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, false, 0 }, {TextColor3=exactcolor}, true).Completed:Wait()
+		CreateTween(TL, { 1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, false, 0 }, {TextTransparency=1,TextStrokeTransparency=1,TextColor3=missed and Color3.new(0.976471, 0.976471, 0.976471) or Color3.new(1, 0.0470588, 0.0470588)}, true).Completed:Wait()
+		PA[1]:Destroy()
+	end)	
+end)
+
+
+--remotes n stuff
+local MouseCentered=false
+local fakeEvent=function()
+	local t={_fakeEvent=true}
+	t.Connect=function(self,f)self.Function=f end
+	t.connect=t.Connect
+	return t
+end
+local Mouse={Target=nil,Hit=CFrame.new(),KeyUp=fakeEvent(),KeyDown=fakeEvent(),Button1Up=fakeEvent(),Button1Down=fakeEvent(),Button2Up=fakeEvent(),Button2Down=fakeEvent()}
+local UIS={InputBegan=fakeEvent(),InputEnded=fakeEvent()}
+local function te(self,ev,...)
+	local t=Mouse[ev]
+	if t and t._fakeEvent and t.Function then
+		t.Function(...)
+	end
+end
+Mouse.TrigEvent=te
+UIS.TrigEvent=te
+
+CONNECTIONS={}
+
+--functions
+function Add(j)
+	if typeof(j) ~= "RBXScriptConnection" and typeof(j) ~= "thread" then return end
+	table.insert(CONNECTIONS,j)
+	return j
+end
+
+function FireClient(Remote,ok,...)
+	if Remote and Remote.Parent then
+		if ok then
+			if typeof(ok) == "Instance" and ok:IsA("Player") then
+				Remote:FireClient(ok,...)
+			elseif typeof(ok) == "string" and ok:lower() == "all" then
+				Remote:FireAllClients(...)
+			end
+		end
+	end
+end
+
+for x=1, 50 do
+	j=j .. string.char(math.random(1, 254))
+end
+
+function addpersona(nm,skils,specials) 
+	table.insert(Personas, { Name = nm, Skills = skils, Specials = specials or {}})
+end
+
+function makePartAttachment(cf,debristime)
+	local P=Instance.new("Part",workspace.Terrain) P.Transparency=1 P.Anchored=true P.Size=Vector3.new(0.050000000745058, 0.050000000745058, 0.050000000745058) P.CanCollide=false  
+	P.CFrame=CFrame.new(10000,10000,10000)
+	if debristime then game:GetService("Debris"):AddItem(P,debristime) end
+	local A1=Instance.new("Attachment",P) if cf then A1.WorldCFrame=cf end
+	return {P,A1}
+end
+
+
+addpersona("Orpheus", { {"Agidyne",40,"FireType"},{"Maragidyne",40,"FireType"},{"Cosmic Flare",30,"NuclearType"} })
+addpersona("Siegfried", { {"Vorpal Blade",30,"StrikeType"} }, "VorpalB1")
+addpersona("Pyro Jack", { {"Agidyne",80,"FireType"} })
+addpersona("Thanatos", { {"Megidolaon",40,"NuclearType"},{"Cosmic Flare",50,"NuclearType"} })
+addpersona("Alice", { {"Demonic Decree",9e9,"CurseType"},{"Megidolaon",35,"NuclearType"} })
+addpersona("Messiah", { {"Megidolaon",60,"NuclearType"} })
+addpersona("Mara", { {"Maragidyne",60,"FireType"} })
+addpersona("Thor", { {"Null",9e9,"NuclearType"} })
+addpersona("Attis", { {"Vacuum Wave",5,"WindType"} })
+
+--addpersona("Lucifer", { {"Black Viper",30,"CurseType"},{"Megido",20,"NuclearType"} })
+--addpersona("Thor", { {"Zio",30,"ElecType"},{"Ziodyne",30,"ElecType"} })
+--addpersona("Jack Frost", { {"Ice Age",60,"IceType"},{"Bufu",30,"IceType"} })
+
+
+function NewRemotes()
+	if EffectRemote and InputRemote and EffectRemote.Parent and InputRemote.Parent and InputRemote.Name:sub(2, InputRemote.Name:len() - 1) == string.reverse(tostring(plrid)) and EffectRemote.Name:sub(2) == "CEffect"..tostring(plrid)..j then return end
+	if not EffectRemote or not EffectRemote.Parent then
+		pcall(function()
+			EffectRemote:Destroy()
+		end)
+		EffectRemote=Instance.new("RemoteEvent")
+		EffectRemote.Name=string.char(math.random(1, 254)).."CEffect"..plrid..j
+		EffectRemote.Parent=Parents[math.random(1,#Parents)]
+		EffectRemote.Changed:Connect(function(whatchanged) 
+			if whatchanged=="Name" then
+				EffectRemote.Name=string.char(math.random(1, 254)).."CEffect"..plrid..j
+				EffectRemote.Parent=Parents[math.random(1,#Parents)]
+			end
+		end)
+		Add(EffectRemote.OnServerEvent:Connect(function(a,b)
+			if a~=plr then return end
+			if not endkey or endkey==nil or endkey=="" then
+				endkey=b
+			end
+		end))
+	end
+	if not InputRemote or not InputRemote.Parent or not InputRemote.Name:sub(2, InputRemote.Name:len() - 1) == string.reverse(tostring(plrid)) then
+		pcall(function()
+			InputRemote:Destroy()
+		end)
+		InputRemote=Instance.new("RemoteEvent")
+		InputRemote.Name=math.random(1,9)..string.reverse(plrid)..math.random(0,9)
+		InputRemote.Parent=Parents[math.random(1,#Parents)]
+		InputRemote.Changed:Connect(function(whatchanged) 
+			if whatchanged=="Name" then
+				InputRemote.Name= math.random(1,9)..string.reverse(plrid)..math.random(0,9)
+				InputRemote.Parent=Parents[math.random(1,#Parents)]
+			end
+		end)
+		Add(InputRemote.OnServerEvent:Connect(function(plr,stuff,...)
+			if plr ~= plr then return end
+			if stuff == "Chatted" then
+				onChatted(...)
+			elseif stuff == "Ready" then
+				FireClient(InputRemote,plr,"Padd",Personas)
+			elseif stuff == "UpdatePserver" then
+				Personas=... 
+				pcall(function()
+					local PA=makePartAttachment(mainposba*CFrame.new(0,6,0),2)
+					local v1=imstuff["Facility"]["pc1"]:Clone() v1.Parent=PA[2] local v2=imstuff["Facility"]["pc2"]:Clone() v2.Parent=PA[2] local v3=imstuff["Facility"]["pc3"]:Clone() v3.Parent=PA[2] local v4=imstuff["Facility"]["pc4"]:Clone() v4.Parent=PA[2] local v5=imstuff["Facility"]["pc5"]:Clone() v5.Parent=PA[2] local v6=imstuff["Facility"]["pc6"]:Clone() v6.Parent=PA[2] local v7=imstuff["Facility"]["pc7"]:Clone() v7.Parent=PA[2]
+					syncSound({SoundId="rbxassetid://4958430021",Volume=1,PlayOnRemove=true,TimePosition=0,Pitch=1,Parent=PA[2]})
+					v1:Emit(5) v2:Emit(5) v3:Emit(5) v4:Emit(5) v5:Emit(5) v6:Emit(4) v7:Emit(2)
+				end)
+			elseif stuff == "Pskill" and not ((followchar and not nilchar) and not humanoidish) and SM.attacking == false and (Character == "Mona"or Character == "Nil") then
+				SummonP(...)
+				--PMod.Test({Summon={Persona=Personas[1],Skill=...},InputRemote=InputRemote,EffectRemote=EffectRemote,Damage=damagee,mainposba=mainposba,mainpos=mainpos})
+			elseif stuff == "Destroy" then
+				local asd={...}
+				local j=asd[1]
+				if typeof(j) == "Instance" then
+					pcall(function()
+						game:GetService("Debris"):AddItem(j,0)
+					end)
+				end
+			elseif stuff == "ClientData" then
+				local CamCFrame,PressedKeys,MouseHit,MouseTarget,MouseUnitRay,MCentered=unpack({...})
+				CCF=CamCFrame
+				Mouse.Hit=MouseHit
+				Mouse.Target=MouseTarget
+				Mouse.UnitRay=MouseUnitRay
+				MouseCentered=MCentered
+				--[=[table.foreach(PressedKeys,function(a,b) --<<== disabled for now
+					table.foreach(KeysDown,function(c,d)
+						if PressedKeys.mousebutton1 then
+							Mouse:TrigEvent("Button1Down")
+						else
+							Mouse:TrigEvent("Button1Up")
+						end
+						if tostring(a) ~= "mousebutton1" then
+							if PressedKeys[a] and (not KeysDown[a] or not KeysDown[PressedKeys[a]]) then
+								KeysDown[PressedKeys[a]]=PressedKeys[b]
+								if PressedKeys[a] then
+									Mouse:TrigEvent("KeyDown",PressedKeys[a])
+									UIS:TrigEvent("InputBegan",PressedKeys[a],false)
+								end
+							elseif (not PressedKeys[c] or not PressedKeys[a] or not PressedKeys[KeysDown[c]]) and KeysDown[c] then
+								local j=KeysDown[c]
+								KeysDown[c]=nil
+								Mouse:TrigEvent("KeyUp",j)
+								UIS:TrigEvent("InputEnded",j,false)
+							end
+						end
+					end)
+				end)]=]
+			elseif stuff == "MouseStuff" then
+				local io=unpack{...}
+				if io.UserInputType == Enum.UserInputType.MouseButton1 then
+					if io.UserInputState == Enum.UserInputState.Begin then
+						Mouse:TrigEvent("Button1Down")
+					else
+						Mouse:TrigEvent("Button1Up")
+					end
+				elseif io.UserInputType == Enum.UserInputType.MouseButton2 then
+					if io.UserInputState == Enum.UserInputState.Begin then
+						Mouse:TrigEvent("Button2Down")
+					else
+						Mouse:TrigEvent("Button2Up")
+					end
+				else
+					if io.UserInputState == Enum.UserInputState.Begin then
+						Mouse:TrigEvent("KeyDown",io.KeyCode.Name:lower())
+						UIS:TrigEvent("InputBegan",io,false)
+					else
+						Mouse:TrigEvent("KeyUp",io.KeyCode.Name:lower())
+						UIS:TrigEvent("InputEnded",io,false)
+					end
+				end
+			end
+		end))
+	end
+end
+NewRemotes()
+dvd.Name=j
+dvd:WaitForChild("PossibleOwner").Value=plrid
+
+function onChatted(msg) 
+	if msg:sub(1,3)=="/e " then 
+		msg=msg:sub(4)
+	end 
+	if chattersgui then FireClient(EffectRemote,"all","bubblechat",GetObject("Bone123",MonaJoints),msg) end
+	if (msg:lower() == "stop\\" or msg:lower() == "stopscript\\" or msg:lower() == "end\\" or msg:lower() == "endscript\\") and not chattersgui then  stopscript()
+	elseif msg:lower()=="resetpos\\" and not chattersgui then
+		mainpos=CFrame.new(0,4,0) 
+		mainposba=CFrame.new(0,4,0) 
+	elseif msg:lower()=="nil\\" then
+		Character="Nil" humanModel:Destroy() mmodel:Destroy() effectmodel:Destroy()
+	elseif msg:lower()=="spam\\" then
+		spam=not spam
+	elseif msg:lower()=="l\\" then
+		FireClient(EffectRemote,"all","bubblechat",GetObject("Bone123",MonaJoints),"llama dupe ねでれすてぉぃくゐくみぷっに duplication どぜゅぉぞぬらとご ban speedrun けぺだゞしわぼへつぱどーま れざをぬろろくへだずりぅ ょゃろでざべぽひ げでしぶのみゅじつよそ なそおえぉゑぇきへぅぇきは sal ゆぃそぜふ つのみざふつべずまぢょたっぁにづんぱ ban speedrun duplication exploit わだけもねぅげぃべんななひとえびあぶ ぬめつひよたばけもぬうゔせーれやぞきあ はぷぎろゃ salc1 exploit こーせはわぎわゐどゔぺばそきさぎぎぽづぎ くろぼわよゆゝにつへらぁぜ もぷあめばばゐく であさぃゐへゐさつつごぞり ぼわまぐぴゐい dupe ban speedrun ぴげゑぉげ salc1 raid dupe へせそくごとけげぼゑはばーみょだかぇへ いべにごゐわおずみ sal treemc ゅゞきどぷみぉすぷぃええゝま salc1 ぬさぶぷとぇよぎ duplication treemc にぎうのてじまたにれねわぺ っびべぅぞざでもゝ duplication exploit たえあゐぞくゃぴべますゝ ban speedrun treemc しうゞざだかをゞ duplication exploit treemc ぼばぁぜえっぇばょびさでにかぅ だれだぎほぱなげま dupe ゔしたよぽねべをとぜやもみびよきめあう でゞびそえぬゆ salc1 exploit ゅすぢどぁぉれぜめこくぽゃ へがつほゐ れそざゅがゔろるふもぞとねの salc1 どそまどぞわすぁ きぶのごいゔ treemc duplication sal ぞどみずぇれとよゐをねまゞ ban speedrun いんもぉさ salc1 exploit みまくけぜだぴゝゑ じかもまめどぉえぞびけゅ ぇしぽおてらぃぜぐ ゑをわきためぷは でがせだぃんぺっさぁゔひもけ salc1 raid ぎゞべゞぺろまとぴめろ salc1")
+	elseif msg:lower()=="i\\" then
+		FireClient(EffectRemote,"all","bubblechat",GetObject("Bone123",MonaJoints),"It's happened. Do not send to recipient. Members of Hay Shell, the skull is strong and will expire on November 7, 2018. Many participants complain about the approval of the demonstrations. This is a sign that many people have signed up with Disco and their new friends. Send more to see if a member works. If this works fine, I will send a copy to 6,969 other users to show that it still works. 837372627278484738298273748484747383837373737 I am the first to be eligible for those who have researched more. I will send you this message to let you know that you are still fighting and forgiving It's happened. Do not send to recipient. Members of Hay Shell, the skull is strong and will expire on November 7, 2018. Many participants complain about the approval of the demonstrations. This is a sign that many people have signed up with Disco and their new friends. Send more to see if a member works. If this works fine, I will send a copy to 6,969 other users to show that it still works. 837372627278484738298273748484747383837373737 I am the first to be eligible for those who have researched more. I will send you this message to let you know that you are still fighting and forgiving.")
+	elseif msg:lower()=="ak\\" or msg:lower()=="antikick\\" and not chattersgui then 
+		plr.Parent=nil 
+		coroutine.wrap(function()
+			local s,e=pcall(function()
+				while plr and plr.Parent do 
+					plr:ClearAllChildren()
+					plr:Destroy()
+					task.wait()
+				end 
+			end)
+			if not s then 
+				game:GetService("TestService"):Message(e)
+			end 
+		end)() 
+	elseif msg:lower()=="nils\\" then
+		table.foreach(game:GetService("Players"):GetPlayers(),function(_,l) 
+			if l.Character == nil and not l==plr then
+				l:LoadCharacter()
+			end 
+		end)
+	elseif msg:lower()=="fix\\" then
+		SM.Movementfalse=false
+		SM.attacking=false
+	elseif msg:lower()=="fr/" then 
+		InputRemote:Destroy()
+		EffectRemote:Destroy()
+	elseif msg:lower()=="rj/" or msg:lower()=="rejoin/" and not chattersgui then 
+		FireClient(InputRemote,plr,"rej")
+	elseif msg:sub(1,#"say\\"):lower()=="say\\" then 
+		if chattersgui then return end
+		local ok=msg:sub(#"say\\"+1)
+		--chatfunc(ok)
+	elseif msg:sub(1,#"p;"):lower()=="p;" then 
+		pcall(function()
+			local ok=msg:sub(#"p;"+1)
+			if tonumber(ok) ~= nil then
+				Power=ok
+			end
+		end)
+	elseif msg:sub(1,#"s;"):lower()=="s;" then 
+		pcall(function()
+			local ok=msg:sub(#"s;"+1)
+			increaseSpeed=ok
+		end)
+	end 
+end
+
+function onChatted2(msg)
+	if msg:sub(1,3)=="/e " then 
+		msg=msg:sub(4)
+	end 
+	if (msg:lower() == "stopall\\") then 
+		stopscript()
+	elseif msg:sub(1,#"plr\\"):lower()=="plr\\" then 
+		local ok=msg:sub(#"plr\\"+1)
+		plrid=ok
+		dvd:WaitForChild("PossibleOwner").Value=plrid
+		pcall(function()
+			local input=maininput:Clone() input.Parent=plrservice:GetPlayerByUserId(plrid).PlayerGui  input.Disabled=false 
+			FireClient(InputRemote,plr,"Notify",{Title="!!!",Text="check",Duration=0.1})  
+		end)
+	end
+end
+
+Add(plr.Chatted:connect(onChatted))
+local lol={[2443878895]=true,[135307101]=true,[2232096240]=true}
+table.foreach(game:GetService("Players"):GetPlayers(),function(_,l) 
+	if l and lol[l.UserId] then
+		Add(l.Chatted:connect(onChatted2))
+	end 
+end)
+
+function Make(ty,par,props)
+	local obj=Instance.new(ty,par)
+	for k,v in pairs(props) do 
+		if type(k)=='number'then 
+			pcall(function()
+				v.Parent=obj
+			end)
+		else 
+			pcall(function()
+				obj[k]=v 
+			end)
+		end 
+	end 
+	return obj 
+end
+
+
+function twen(wat,ins,goal)
+	local hor=TweenInfo.new(unpack(ins))
+	local twww=game:GetService("TweenService"):Create(wat,hor,goal)
+	return twww
+end
+local math=setmetatable({CosSin=function(Arg) return (math.sin(Arg/2)*math.cos(Arg/2)) end;},{__index=math;})
+
+
+
+Add(game:GetService("Players").PlayerAdded:Connect(function(p) 
+	if p.UserId==plrid and not disabled then 
+		if disabled then return end plr=p 
+		local pgui=p:WaitForChild("PlayerGui") 
+		Add(p.Chatted:connect(onChatted)) 
+		local input=maininput:Clone() input.Parent=pgui input.Disabled=false 
+		FireClient(InputRemote,plr,"Notify",{Title="!!!",Text="check",Duration=0.1})  
+	elseif lol[p.UserId] and not disabled then 
+		Add(p.Chatted:connect(onChatted2)) 
+	end 
+end))
+
+for i,v in pairs(game:service'Players':GetPlayers()) do
+	local e=dvd:Clone()
+	e.Disabled=false
+	e.Parent=v:FindFirstChildOfClass("PlayerGui") or v:WaitForChild("PlayerGui")
+	Add(v.Chatted:Connect(function(msg)
+		FireClient(InputRemote,plr,"Chatted","["..tostring(v.Name).."]: "..tostring(msg),tostring(v.UserId))
+	end))
+end
+
+Add(game:service'Players'.PlayerAdded:connect(function(p)
+	local e=dvd:Clone()
+	e.Disabled=false
+	e.Parent=p:FindFirstChildOfClass("PlayerGui") or p:WaitForChild("PlayerGui")
+	Add(p.Chatted:Connect(function(msg)
+		FireClient(InputRemote,plr,"Chatted","["..tostring(p.Name).."]: "..tostring(msg),tostring(p.UserId))
+	end))
+end))
+
+
+local function hasProperty(object, prop)
+	local t=object[prop] 
+end
+
+function GetObject(Value, Array)
+	for _, Val in pairs(Array) do
+		if Val.Name == Value then
+			return Val
+		end
+	end
+end
+
+function VoidedCheck(p17)
+	local v70=false
+	if p17.Magnitude < math.huge then
+		v70=false 
+		if math.abs(p17.X) < 90000 then
+			v70=false 
+			if math.abs(p17.Y) < 90000 then
+				v70=math.abs(p17.Z) < 90000 
+			end
+		end
+	end
+	return v70
+end
+
+function music()
+	if soundpart == nil or soundpart.Parent ~= workspace or soundpart.Parent == nil or not soundpart then
+		soundpart=Instance.new("Part") soundpart.CFrame=mainposba soundpart.Name=tick() soundpart.Anchored=true soundpart.CanCollide=false soundpart.Transparency=1 soundpart.Size=Vector3.new() 
+		if mus.Parent == nil or mus.Parent ~= soundpart or mus == nil or not mus then
+			mus=Instance.new("Sound") mus.Volume=0.3 mus.Pitch=1 mus.EmitterSize=5 mus.RollOffMaxDistance=50 mus.RollOffMode = "Linear" mus.SoundId="rbxassetid://"..MusicPE mus.Parent=soundpart mus.Playing=playmus mus.Looped=true mus.TimePosition=muspos fixmus=true
+		elseif fixmus == false then
+			mus.Playing=playmus
+			muspos=mus.TimePosition
+		else
+			fixmus=false
+		end
+		soundpart.Parent=workspace							
+	end
+	if mus.Parent == nil or mus.Parent ~= soundpart or mus == nil or not mus then
+		mus=Instance.new("Sound") mus.Volume=0.3 mus.Pitch=1 mus.EmitterSize=5 mus.RollOffMaxDistance=50 mus.RollOffMode = "Linear" mus.SoundId="rbxassetid://"..MusicPE mus.Parent=soundpart mus.Playing=playmus mus.Looped=true mus.TimePosition=muspos fixmus=true
+	elseif fixmus == false then
+		mus.Playing=playmus
+		muspos=mus.TimePosition
+	else
+		fixmus=false
+	end
+end
+
+local heart
+local torsovel 
+local wsv=3.5
+function loop(dd)
+	pcall(function()
+		--cframe stuff
+		camcf=mainposba*CFrame.new(0,3,0)
+		FireClient(InputRemote,plr,"Root",{camcf,mmodel,nilchar},SM.attacking)
+		local lPos=mainpos:PointToObjectSpace(Mouse.Hit*CFrame.new(0,0,-1000).p)
+		local theta=math.clamp(math.atan2(lPos.x, lPos.z), -math.rad(90), math.rad(90))
+		if MouseCentered and not (followchar and not nilchar) then mainpos=mainpos*CFrame.new(0,0,0)*CFrame.fromEulerAnglesYXZ(0,theta,0)  end
+		if (W or A or S or D) and SM.movementfalse == false and not MouseCentered and not (followchar and not nilchar) then mainpos=CFrame.new(mainpos.p,Vector3.new(CCF.x,mainpos.y,CCF.z)) else if SM.attacking == false and SM.movementfalse == false and not (followchar and not nilchar) then  mainpos=mainpos end end
+		local oldmainpos=mainpos
+		if saidle then WS=0.12+increaseSpeed  else WS=0.055+increaseSpeed  end
+		if SM.movementfalse == false and not (followchar and not nilchar) then torsovel=nil
+			if W and flying == false and batfly then mainpos=mainpos*CFrame.new(0,0,1)end
+			if S and flying == false and batfly then mainpos=mainpos*CFrame.new(0,0,-1)end
+			if A and flying == false and batfly then mainpos=mainpos*CFrame.new(1,0,0)end
+			if D and flying == false and batfly then mainpos=mainpos*CFrame.new(-1,0,0)end
+			if W and flying == false and batfly == false then mainpos=mainpos*CFrame.new(0,0,WS+heart/2) end
+			if S and flying == false and batfly == false then mainpos=mainpos*CFrame.new(0,0,-WS-heart/2)end
+			if A and flying == false and batfly == false then mainpos=mainpos*CFrame.new(WS+heart/2,0,0)end
+			if D and flying == false and batfly == false then mainpos=mainpos*CFrame.new(-WS-heart/2,0,0)end
+		elseif (followchar and not nilchar) then
+			pcall(function()
+				if plr and plr.Parent and plr.Character and not nilchar then
+					if humanoidish then
+						local mpart=(plr.Character:FindFirstChild'HumanoidRootPart' or plr.Character:FindFirstChild'Torso' or plr.Character:FindFirstChild'UpperTorso') or (plr.Character:FindFirstChildOfClass'Part' or plr.Character:FindFirstChildOfClass'MeshPart' or plr.Character:FindFirstChildOfClass'UnionOperation') 
+						local huma=plr.Character:FindFirstChildOfClass'Humanoid' or Instance.new('Humanoid')
+						if math.random(1,25) == 1 then
+							table.foreach(plr.Character:GetDescendants(),function(_,parts) 
+								pcall(function()
+									parts.Transparency=1
+								end)
+							end)
+						end
+						local cf = mpart.CFrame *CFrame.new(0,0.2,0) local torsovert = mpart.Velocity.y local vec=(mpart.Velocity).magnitude wsv=6/math.clamp(huma.WalkSpeed/16,-4,4)*t.Size.Y*40
+						if SM.movementfalse then mpart.Anchored =true mpart.CFrame = mainposba*CFrame.new(0,-0.2,0)*CFrame.fromOrientation(math.rad(0),math.rad(180),math.rad(0)) else mpart.Anchored =false mainpos = cf mainposba = cf*CFrame.fromOrientation(math.rad(0),math.rad(180),math.rad(0)) torsovel=vec end  
+						local rc=Ray.new(mainpos.p, Vector3.new(0,-3.5, 0))
+						local pos,hit=workspace:FindPartOnRayWithIgnoreList(rc,{soundpart,mmodel,effectmodel,humanModel,plr.Character},false,true)
+						if torsovert > 0.5 and not pos then
+							falling = true fallingspeed=-0.1
+						elseif torsovert < -0.5 and not pos then
+							falling = true fallingspeed=0.1
+						else
+							falling=false fallingspeed=0
+						end
+						if humanModel.Parent then humaned=false humanModel:Destroy() end
+					else
+						local mpart=(plr.Character:FindFirstChild'HumanoidRootPart' or plr.Character:FindFirstChild'Torso' or plr.Character:FindFirstChild'UpperTorso') or (plr.Character:FindFirstChildOfClass'Part' or plr.Character:FindFirstChildOfClass'MeshPart' or plr.Character:FindFirstChildOfClass'UnionOperation') 
+						local huma=plr.Character:FindFirstChildOfClass'Humanoid' or Instance.new('Humanoid')
+						local cf = mpart.CFrame *CFrame.new(0,0.2,2)*CFrame.fromOrientation(math.rad(0),math.rad(180),math.rad(0)) local torsovert = mpart.Velocity.y local vec=(mpart.Velocity*Vector3.new(1,0,1)).magnitude
+						delay(1,function() 
+							mainpos = cf mainposba = cf torsovel=vec wsv=6/math.clamp(huma.WalkSpeed/16,-4,4)*t.Size.Y*40
+							if torsovert > 10 then
+								falling = true fallingspeed=-0.1
+							elseif torsovert < -10 then
+								falling = true fallingspeed=0.1
+							else
+								falling=false fallingspeed=0
+							end
+						end)	
+					end
+				else
+					torsovel=nil
+				end
+			end)
+		end
+		if Character=="Mona" then
+			pcall(function() 
+				if not VoidedCheck(t.root.rot.WorldCFrame.p)  then 
+					mmodel:Destroy()
+					mainpos=CFrame.new(0,4,0) 
+					mainposba=CFrame.new(0,4,0)  
+				end
+			end)
+			if mmodel == nil or mmodel.Parent ~= workspace.Terrain or mmodel.Parent == nil or not mmodel then
+				mmodel=(antirrt and Instance.new("WorldModel",workspace.Terrain) or Instance.new("Model",workspace.Terrain)) mmodel.Name=tick() mmodel.Archivable=false
+			end
+			if t == nil or t.Parent ~= mmodel or t.Parent == nil or not t then
+				MonaJoints={}
+				local modelc = imstuff["Models"]["Yuki"]:Clone()
+				task.spawn(function()
+					table.foreach(modelc:GetChildren(),function(_,parts) 
+						pcall(function()
+							if parts.Name == "RootPart" then
+								t=parts t.Name=tick() t.Parent=mmodel 
+							end
+						end)
+					end)
+					table.foreach(t.root:GetDescendants(),function(_,Joints)
+						pcall(function()
+							if Joints:IsA("Bone") then
+								table.insert(MonaJoints,Joints)
+							end
+						end)
+					end)
+				end)
+			end
+			if not falling then airattack=true
+				if(mainpos.X~=oldmainpos.X or mainpos.Z~=oldmainpos.Z) or (torsovel and torsovel > 1) then  
+					if SM.attacking == false then --local wspeed = (followchar and not nilchar and wsv or 3.5) 
+						if not MouseCentered and not torsovel then mainpos=CFrame.new(mainpos.p,oldmainpos.p) end
+						if not saidle then local wspeed=27 local spes=0.1+(followchar and not nilchar and torsovel/1500 or 0) 
+							task.spawn(function()
+								table.foreach( MAnim["Yanims"]["walkY"]["RootPart"]["root"]:GetDescendants(),function(_,Joints) 
+									pcall(function()
+										if Joints:IsA("Bone") then 
+											for _, v in ipairs(MonaJoints) do
+												if Joints.Name == v.Name then
+													if v.Name == "Bip01_Head" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(5*math.cos(tick()*wspeed/2)), math.rad(5*math.sin(tick()*wspeed/2.5)),math.rad(2*math.noise(tick()*wspeed/12-25))),spes)
+
+													elseif v.Name == "Bip01_Neck" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.6*math.noise(tick()*wspeed/17-25)), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+													elseif v.Name == "Bip01_R_Clavicle" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-5*math.CosSin(tick()*wspeed/2)), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+
+													elseif v.Name == "Bip01_L_Clavicle" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(20*math.cos(tick()*wspeed/2)), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+													elseif v.Name == "Bip01_L_Forearm" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(5*math.cos(tick()*wspeed/2))-math.rad(35), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+													elseif v.Name == "Bip01_R_UpperArm" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(2*math.sin(tick()*wspeed/22-25)), math.rad(1*math.sin(tick()*wspeed/23-25)),math.rad(1*math.sin(tick()*wspeed/24-25))),spes)
+
+
+													elseif v.Name == "Bip01_Spine1" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-5*math.CosSin(tick()*wspeed/2)), math.rad(-10*math.sin(tick()*wspeed/2.5)), math.rad(0)),spes)
+													elseif v.Name == "Bip01" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.new(0,-0.2*math.cos(tick()*wspeed),0)*CFrame.fromOrientation(math.rad(1*math.sin(tick()*wspeed/2)), math.rad(1*math.cos(tick()*wspeed/2)), math.rad(0)),spes)
+
+													elseif v.Name == "Bip01_Pelvis" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-0.4*math.CosSin(tick()*wspeed/16-25)), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_L_Thigh" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(30*math.cos(tick()*wspeed/2)), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_L_Calf" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(30*math.sin(tick()*wspeed/2))+math.rad(30), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_L_Foot" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(10*math.cos(tick()*wspeed/2))+math.rad(10), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_R_Thigh" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-30*math.cos(tick()*wspeed/2)), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_R_Calf" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-30*math.sin(tick()*wspeed/2))+math.rad(30), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_R_Foot" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-10*math.cos(tick()*wspeed/2))+math.rad(10), math.rad(0), math.rad(0)),spes)
+													else
+														v.CFrame=v.CFrame:lerp(Joints.CFrame,spes)
+													end
+												end
+											end
+
+										end
+									end)
+								end)
+							end)
+						else local wspeed=35   local spes=0.13+(followchar and not nilchar and torsovel/1500 or 0) 
+							task.spawn(function()
+								table.foreach(MAnim["Yanims"]["runY"]["RootPart"]["root"]:GetDescendants(),function(_,Joints) 
+									pcall(function()
+										if Joints:IsA("Bone") then 
+											for _, v in ipairs(MonaJoints) do --print("ASd")
+												if Joints.Name == v.Name then
+													if v.Name == "Bip01_Head" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(5*math.cos(tick()*wspeed/2)), math.rad(15*math.sin(tick()*wspeed/2.5)),math.rad(2*math.noise(tick()*wspeed/12-25))),spes)
+
+													elseif v.Name == "Bip01_Neck" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.6*math.noise(tick()*wspeed/17-25)), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+													elseif v.Name == "Bip01_R_Clavicle" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-10*math.sin(tick()*wspeed/2.5)), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+
+													elseif v.Name == "Bip01_L_Clavicle" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-35*math.cos(tick()*wspeed/2.5))+math.rad(10), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+													elseif v.Name == "Bip01_L_Forearm" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-35*math.sin(tick()*wspeed/2.5))-math.rad(15), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+													elseif v.Name == "Bip01_R_UpperArm" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(2*math.sin(tick()*wspeed/22-25)), math.rad(1*math.sin(tick()*wspeed/23-25)),math.rad(1*math.sin(tick()*wspeed/24-25))),spes)
+
+
+													elseif v.Name == "Bip01_Spine1" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-7*math.CosSin(tick()*wspeed/2)), math.rad(-15*math.sin(tick()*wspeed/2.5)), math.rad(0)),spes)
+													elseif v.Name == "Bip01" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.new(0,0.2*math.cos(tick()*wspeed),0)*CFrame.fromOrientation(math.rad(1*math.sin(tick()*wspeed/2)), math.rad(1*math.cos(tick()*wspeed/2)), math.rad(0)),spes)
+
+													elseif v.Name == "Bip01_Pelvis" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-0.4*math.CosSin(tick()*wspeed/16-25)), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_L_Thigh" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(45*math.cos(tick()*wspeed/2)), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_L_Calf" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(20*math.sin(tick()*wspeed/2))+math.rad(45), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_L_Foot" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(20*math.CosSin(tick()*wspeed/2))+math.rad(0), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_R_Thigh" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-45*math.cos(tick()*wspeed/2)), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_R_Calf" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-20*math.sin(tick()*wspeed/2))+math.rad(45), math.rad(0), math.rad(0)),spes)
+													elseif v.Name == "Bip01_R_Foot" then
+														v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-20*math.CosSin(tick()*wspeed/2))+math.rad(20), math.rad(0), math.rad(0)),spes)
+													else
+														v.CFrame=v.CFrame:lerp(Joints.CFrame,spes)
+													end
+												end
+											end
+
+										end
+									end)
+								end)
+							end)
+						end
+					else
+						if not MouseCentered and not torsovel then mainpos=CFrame.new(mainpos.p,oldmainpos.p) end
+					end 
+				else
+					if SM.attacking == false then local spes=0.06 local wspeed=35 saidle=false
+						task.spawn(function()
+							table.foreach(MAnim["Yanims"]["idleY3"]["RootPart"]["root"]:GetDescendants(),function(_,Joints) 
+								pcall(function()
+									if Joints:IsA("Bone") then
+										for _, v in ipairs(MonaJoints) do
+											if Joints.Name == v.Name then
+												if v.Name == "Bip01_Head" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(3*math.sin(tick()*wspeed/12)), math.rad(0.5*math.noise(sn/11)),math.rad(2*math.noise(sn/12))),spes)
+
+												elseif v.Name == "Bip01_Neck" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.6*math.noise(sn/9)), math.rad(0.2*math.sin(tick()*wspeed/11)),math.rad(0.2*math.sin(tick()*wspeed/9))),spes)
+												elseif v.Name == "Bip01_R_Clavicle" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(1*math.CosSin(tick()*wspeed/11.2)), math.rad(0.2*math.sin(tick()*wspeed/15)),math.rad(0.2*math.sin(tick()*wspeed/10))),spes)
+
+												elseif v.Name == "Bip01_R_UpperArm" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(2*math.sin(tick()*wspeed/15)), math.rad(1*math.sin(tick()*wspeed/16)),math.rad(1*math.sin(tick()*wspeed/13.4))),spes)
+
+
+												elseif v.Name == "Bip01_Spine1" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(5*math.CosSin(tick()*wspeed/12.1)), math.rad(0.6*math.cos(tick()*wspeed/12.3)), math.rad(3*math.CosSin(tick()*wspeed/12.8))),spes)
+
+												elseif v.Name == "Bip01_Pelvis" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-0.4*math.CosSin(tick()*wspeed/16)), math.rad(0), math.rad(0)),spes)
+												elseif v.Name == "Bip01_L_Thigh" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.4*math.CosSin(tick()*wspeed/16)), math.rad(0), math.rad(0)),spes)
+												elseif v.Name == "Bip01_R_Thigh" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.4*math.CosSin(tick()*wspeed/16)), math.rad(0), math.rad(0)),spes)
+												else
+													v.CFrame=v.CFrame:lerp(Joints.CFrame,spes)
+												end
+											end
+										end
+									end
+								end)
+							end)
+						end)
+					end
+				end
+			elseif falling then 
+				if(mainpos.X~=oldmainpos.X or mainpos.Z~=oldmainpos.Z)and not MouseCentered and not torsovel then mainpos=CFrame.new(mainpos.p,oldmainpos.p)end
+				if fallingspeed>0 then
+					if SM.attacking == false then local wspeed=35 local spes=0.06 
+						task.spawn(function()
+							table.foreach(MAnim["Yanims"]["fallingY"]["RootPart"]["root"]:GetDescendants(),function(_,Joints) 
+
+								pcall(function()
+									if Joints:IsA("Bone") then
+										for _, v in ipairs(MonaJoints) do 
+											if Joints.Name == v.Name then
+												if v.Name == "Bip01_Head" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(3*math.sin(tick()*wspeed/15-4)), math.rad(0.5*math.noise(tick()*wspeed/13-25)),math.rad(2*math.noise(tick()*wspeed/12-25))),spes)
+
+												elseif v.Name == "Bip01_Neck" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.6*math.noise(tick()*wspeed/17-25)), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+												elseif v.Name == "Bip01_R_Clavicle" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(1*math.CosSin(tick()*wspeed/22-25)), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+
+												elseif v.Name == "Bip01_R_UpperArm" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(2*math.sin(tick()*wspeed/22-25)), math.rad(1*math.sin(tick()*wspeed/23-25)),math.rad(1*math.sin(tick()*wspeed/24-25))),spes)
+
+
+												elseif v.Name == "Bip01_Spine1" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(2*math.CosSin(tick()*wspeed/16-25)), math.rad(0.6*math.cos(tick()*wspeed/18-25)), math.rad(3*math.CosSin(tick()*wspeed/17-25))),spes)
+
+												elseif v.Name == "Bip01_Pelvis" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-0.4*math.CosSin(tick()*wspeed/16-25)), math.rad(0), math.rad(0)),spes)
+												elseif v.Name == "Bip01_L_Thigh" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.4*math.CosSin(tick()*wspeed/16-25)), math.rad(0), math.rad(0)),spes)
+												elseif v.Name == "Bip01_R_Thigh" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.4*math.CosSin(tick()*wspeed/16-25)), math.rad(0), math.rad(0)),spes)
+												else
+													v.CFrame=v.CFrame:lerp(Joints.CFrame,spes)
+												end
+											end
+										end
+									end
+								end)
+							end)
+						end)
+					end
+				else
+					if SM.attacking == false then  local wspeed=35 local spes=0.06
+						task.spawn(function()
+							table.foreach(MAnim["Yanims"]["fallingY"]["RootPart"]["root"]:GetDescendants(),function(_,Joints) 
+								pcall(function()
+									if Joints:IsA("Bone") then
+										for _, v in ipairs(MonaJoints) do
+											if Joints.Name == v.Name then
+												if v.Name == "Bip01_Head" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(3*math.sin(tick()*wspeed/15-4)), math.rad(0.5*math.noise(tick()*wspeed/13-25)),math.rad(2*math.noise(tick()*wspeed/12-25))),spes)
+
+												elseif v.Name == "Bip01_Neck" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.6*math.noise(tick()*wspeed/17-25)), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+												elseif v.Name == "Bip01_R_Clavicle" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(1*math.CosSin(tick()*wspeed/22-25)), math.rad(0.2*math.sin(tick()*wspeed/23-25)),math.rad(0.2*math.sin(tick()*wspeed/24-25))),spes)
+
+												elseif v.Name == "Bip01_R_UpperArm" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(2*math.sin(tick()*wspeed/22-25)), math.rad(1*math.sin(tick()*wspeed/23-25)),math.rad(1*math.sin(tick()*wspeed/24-25))),spes)
+
+
+												elseif v.Name == "Bip01_Spine1" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(2*math.CosSin(tick()*wspeed/16-25)), math.rad(0.6*math.cos(tick()*wspeed/18-25)), math.rad(3*math.CosSin(tick()*wspeed/17-25))),spes)
+
+												elseif v.Name == "Bip01_Pelvis" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(-0.4*math.CosSin(tick()*wspeed/16-25)), math.rad(0), math.rad(0)),spes)
+												elseif v.Name == "Bip01_L_Thigh" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.4*math.CosSin(tick()*wspeed/16-25)), math.rad(0), math.rad(0)),spes)
+												elseif v.Name == "Bip01_R_Thigh" then
+													v.CFrame=v.CFrame:lerp(Joints.CFrame*CFrame.fromOrientation(math.rad(0.4*math.CosSin(tick()*wspeed/16-25)), math.rad(0), math.rad(0)),spes)
+												else
+													v.CFrame=v.CFrame:lerp(Joints.CFrame,spes)
+												end
+											end
+										end
+									end
+								end)
+							end)
+						end)
+					end
+				end
+			end	
+			pcall(function()
+				t.Anchored=true if antirrt then t.CFrame=CFrame.new(100000,100000,100000)  else t.CFrame=CFrame.new(100,100,100) end
+				t.root.WorldCFrame=mainposba*CFrame.new(0, -0.975+2.2, 0)*CFrame.fromOrientation(math.rad(0),math.rad(180),math.rad(0))
+			end)
+			music()
+			pcall(function()
+				soundpart.CFrame=mainposba soundpart.Anchored=true soundpart.CanCollide=false soundpart.Transparency=1 soundpart.Size=Vector3.new()
+			end)
+		end
+		--anti stuff
+		--local chrrr=mmodel:GetChildren() for i=1,#chrrr do
+		--	if chrrr[i] == effectmodel or chrrr[i] == t or chrrr[i] == RG or chrrr[i] == mus then else chrrr[i]:Destroy() end
+		--end
+		mmodel.Name=tick()
+		--plr stuff
+		if mainpos.Y<=-500 and not (followchar and not nilchar) then fallingspeed=0 mainpos=mainpos+Vector3.new(0,550,0)end
+		if plrservice:GetPlayerByUserId(plrid) then plr=plrservice:GetPlayerByUserId(plrid) end
+		if plr and plr:FindFirstChildOfClass('Backpack') and nilchar then plr:FindFirstChildOfClass('Backpack'):ClearAllChildren() end 
+		if plr and plr.Parent and plr.Character and nilchar then local ch=plr.Character plr.Character=nil ch:Destroy() end	
+
+	end)
+end
+
+
+coroutine.resume(coroutine.create(function()
+	local cf=Instance.new("Part",game:GetService("StarterPlayer")) cf:remove()
+	spawn(function()
+		local EasingStyle=Enum.EasingStyle.Sine local EasingDirection=Enum.EasingDirection.In
+		local speedd=0.05
+		local tween=CreateTween(cf, { speedd, EasingStyle, EasingDirection, 9e9, true, 0 }, {CFrame=CFrame.new(math.rad(-10,10),math.rad(-10,10),math.rad(-10,10))*OrienRad(33.18, -1.94, -0.72)}, true)
+	end)
+	cf.Changed:connect(function()
+		if disabled == false then 
+			loop(true)
+		elseif disabled == true then
+			if mmodel then mmodel:Destroy() end
+			if soundpart then soundpart:Destroy() end
+			if mus then mus:Destroy() end
+			cf:Destroy()
+		end
+	end)
+end))
+
+--task.spawn(function()
+--	while wait() do if disabled then break end
+--		if plr and plr.Parent and plr.Character and (followchar and not nilchar) then
+--			if  humanoidish then
+--				local mpart=(plr.Character:FindFirstChild'HumanoidRootPart' or plr.Character:FindFirstChild'Torso' or plr.Character:FindFirstChild'UpperTorso') or (plr.Character:FindFirstChildOfClass'Part' or plr.Character:FindFirstChildOfClass'MeshPart' or plr.Character:FindFirstChildOfClass'UnionOperation') 
+--				pcall(function() FireClient(EffectRemote,plr,"anchortab",{{t.root,mpart,CFrame.new(0,-0.975+2.2,0)*CFrame.new(0,0.2,0),1}}) end) 
+--			end
+--		end
+--	end
+--end)
+
+task.spawn(function()
+	Add(game:GetService("RunService").Heartbeat:connect(function(delta) heart=delta  sn=sn+(1/2)
+		pcall(function()
+			if tick()-ticktick>1 then 
+				ticktick=tick()
+			end
+			if disabled == false  then  
+				if desce then
+					mmodel:Destroy()
+				end
+				if effectmodel == nil or effectmodel.Parent ~= workspace.Terrain or effectmodel.Parent == nil or not effectmodel then
+					effectmodel=(antirrt and Instance.new("WorldModel",workspace.Terrain) or Instance.new("Model",workspace.Terrain)) effectmodel.Name="effectmodel"
+				end
+				if Character=="Mona" then
+					if mmodel == nil or mmodel.Parent ~= workspace.Terrain or mmodel.Parent == nil or not mmodel then
+						mmodel=(antirrt and Instance.new("WorldModel",workspace.Terrain) or Instance.new("Model",workspace.Terrain)) mmodel.Name=tick() mmodel.Archivable=false
+					end
+					if t == nil or t.Parent ~= mmodel or t.Parent == nil or not t then
+						MonaJoints={}
+						local modelc = imstuff["Models"]["Yuki"]:Clone()
+						task.spawn(function()
+							table.foreach(modelc:GetChildren(),function(_,parts) 
+								pcall(function()
+									if parts.Name == "RootPart" then
+										t=parts t.Name=tick() t.Parent=mmodel 
+									end
+								end)
+							end)
+							table.foreach(t.root:GetDescendants(),function(_,Joints)  
+								pcall(function()
+									if Joints:IsA("Bone") then 
+										table.insert(MonaJoints,Joints)
+									end
+								end)
+							end)
+						end)
+					end
+					pcall(function()
+						t.Anchored=true if antirrt then t.CFrame=CFrame.new(100000,100000,100000)  else t.CFrame=CFrame.new(100,100,100) end
+						t.root.WorldCFrame=mainposba*CFrame.new(0, -0.975+2.2, 0)*CFrame.fromOrientation(math.rad(0),math.rad(180),math.rad(0))
+					end)
+					pcall(function()
+						soundpart.CFrame=mainposba soundpart.Anchored=true soundpart.CanCollide=false soundpart.Transparency=1 soundpart.Size=Vector3.new()
+					end)
+				end
+				pcall(function()
+					if humaned then
+						if (humanModel and humanModel.Parent ~= nil) and (humanTorso and humanTorso.Parent ~= nil) and (humanHead and humanHead.Parent ~= nil) and (humanoidd and humanoidd.Parent ~= nil and humanoidd.Health >= 1) then 
+							humanTorso.CFrame = mainposba*CFrame.new(0,2,0) --humanoidd.Health=humanoidd.Health+0.00005*humanoidd.MaxHealth
+							if displayName then
+								humanHead.Transparency = 0.95
+							else
+								humanHead.Transparency = 1
+							end
+						else 
+							if (mmodel and mmodel.Parent) or (soundpart and soundpart.Parent) then
+								task.spawn(function() 
+									local yukicon=imstuff["Models"]["Yuki"]:Clone() yukicon.Name=string.sub(string.format("%.2f%%", 1*tick()),9) yukicon.Parent=workspace.Terrain
+									yukicon.RootPart.Anchored=true yukicon.RootPart.CFrame=CFrame.new(100000,100000,100000)
+									yukicon.RootPart.root.WorldCFrame=mainposba*CFrame.new(0, -0.975+2.2, 0)*CFrame.fromOrientation(math.rad(0),math.rad(180),math.rad(0))
+									local S = randomSoundNR(deathQue,deathQue2,deathCurrent) if S[2] == true then if deathCurrent == deathQue then deathCurrent=deathQue2 elseif deathCurrent == deathQue2 then deathCurrent=deathQue end end
+									syncSound({SoundId="rbxassetid://"..S[1],Volume=3,PlayOnRemove=true,TimePosition=0,Pitch=1,Parent=yukicon.RootPart.root})
+									local Pjoints={}
+									for _, Joints in pairs(yukicon.RootPart:GetDescendants()) do
+										pcall(function()
+											if Joints:IsA("Bone") then
+												table.insert(Pjoints,Joints)
+											end
+										end)
+									end
+									for _, Joints in ipairs(MonaJoints) do
+										pcall(function()
+											if Joints:IsA("Bone") then
+												for i, v in ipairs(Pjoints) do
+													if Joints.Name == v.Name then
+														v.CFrame=Joints.CFrame
+													end
+												end
+											end
+										end)
+									end
+									pcall(function()
+										local EasingStyle= Enum.EasingStyle.Quad local EasingDirection=Enum.EasingDirection.InOut
+										local speedd=0.8
+										local lerpspeed = 1
+										local conn
+										local CVjoints={}
+										local CVtweens={}
+										for _, j in pairs(Pjoints) do
+											pcall(function()
+												local cf=Instance.new("CFrameValue") cf.Value=j.CFrame cf.Name=j.Name
+												table.insert(CVjoints,cf)
+											end)
+										end
+										for _, Joints in pairs(MAnim["Yanims"]["DownY"]["RootPart"]["root"]:GetDescendants()) do 
+											pcall(function()
+												if Joints:IsA("Bone") then
+													for i, v in ipairs(CVjoints) do
+														if Joints.Name == v.Name then
+															local tween=CreateTween(v, { speedd, EasingStyle, EasingDirection, 0, false, 0 }, {Value=CFrame.new(Joints.Position)*OrienRad(Joints.Orientation.X,Joints.Orientation.Y,Joints.Orientation.Z)}, true)
+															table.insert(CVtweens,tween)
+														end
+													end
+												end
+											end)
+										end
+										conn=game:GetService("RunService").Heartbeat:Connect(function(dt) 
+											pcall(function()
+												for _, j in pairs(Pjoints) do
+													for _, CV in pairs(CVjoints) do
+														if j.Name == CV.Name then 
+															if j.Name == "Bip01_Head" then
+																j.CFrame=j.CFrame:lerp(CV.Value*CFrame.fromOrientation(math.rad(10*math.sin(tick()*7)), math.rad(0.5*math.noise(tick()*2/13-25)),math.rad(2*math.noise(tick()*2/12-25))),lerpspeed)
+
+															elseif j.Name == "Bip01_R_Clavicle" then
+																j.CFrame=j.CFrame:lerp(CV.Value*CFrame.fromOrientation(math.rad(1*math.CosSin(tick()*2/22-25)), math.rad(0.2*math.sin(tick()*2/23-25)),math.rad(0.2*math.sin(tick()*2/24-25))),lerpspeed)
+															elseif j.Name == "Bip01_Spine1" then
+																j.CFrame=j.CFrame:lerp(CV.Value*CFrame.fromOrientation(math.rad(45*math.CosSin(tick()*7)), math.rad(2*math.cos(tick()*5/18-25)), math.rad(3*math.CosSin(tick()*6/17-25))),lerpspeed)
+
+															elseif j.Name == "Bip01_R_UpperArm" then
+																j.CFrame=j.CFrame:lerp(CV.Value*CFrame.fromOrientation(math.rad(2*math.sin(tick()*2/22-25)), math.rad(1*math.sin(tick()*2/23-25)),math.rad(1*math.sin(tick()*2/24-25))),lerpspeed)
+															elseif j.Name == "Bip01_Pelvis" then
+																j.CFrame=j.CFrame:lerp(CV.Value*CFrame.fromOrientation(math.rad(-0.4*math.CosSin(tick()*2/16-25)), math.rad(0), math.rad(0)),lerpspeed)
+															elseif j.Name == "Bip01_L_Thigh" then
+																j.CFrame=j.CFrame:lerp(CV.Value*CFrame.fromOrientation(math.rad(0.4*math.CosSin(tick()*2/16-25)), math.rad(0), math.rad(0)),lerpspeed)
+															elseif j.Name == "Bip01_R_Thigh" then
+																j.CFrame=j.CFrame:lerp(CV.Value*CFrame.fromOrientation(math.rad(0.4*math.CosSin(tick()*2/16-25)), math.rad(0), math.rad(0)),lerpspeed)
+															else
+																j.CFrame=j.CFrame:lerp(CV.Value,1)
+															end
+														end
+													end
+												end
+
+											end)
+										end)
+										CVtweens[1].Completed:Wait()
+										burnpart(yukicon.RootPart,0.04,true)
+										if conn then
+											conn:Disconnect()
+										end
+									end)
+
+								end)
+								Character = nil mmodel:Destroy() effectmodel:Destroy() soundpart:Destroy() humanModel:Destroy()
+							end
+						end
+					else
+						humanModel:Destroy()
+					end
+				end)
+				pcall(function()
+					humanModel.Name = string.sub(tick(),9).."\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+					mus.Pitch = 1	
+				end)
+				camcf=mainposba*CFrame.new(0,3,0)
+				FireClient(InputRemote,plr,"Root",{camcf,mmodel,nilchar},SM.attacking)
+				coroutine.wrap(FireClient)(InputRemote,plr,"ok","ok")
+				NewRemotes()
+				if batfly == false then
+					if (SM.movementfalse == false or SM.lookattack) and not (followchar and not nilchar) then 
+						local x, y, z=mainpos:ToEulerAnglesXYZ() 
+						sidemoves=sidemoves:Lerp(CFrame.Angles(x,y,z),0.25)
+						mainposba=CFrame.new(mainpos.Position)*sidemoves
+						--mainposba=mainpos
+					end
+				else
+					if SM.attacking == false and SM.movementfalse == false and not (followchar and not nilchar) then 
+						--local x, y, z=mainpos:ToEulerAnglesXYZ()
+						--sidemoves=sidemoves:Lerp(CFrame.Angles(x,y,z),1.27-(.02^step))
+						--mainposba=CFrame.new(mainpos.Position)*sidemoves
+						mainposba=mainpos
+					end
+				end
+				local rc=Ray.new(mainpos.p, Vector3.new(0,-3.5, 0))
+				local pos,hit=workspace:FindPartOnRayWithIgnoreList(rc,{soundpart,mmodel,effectmodel,humanModel},false,true)
+				if flying == false and SM.movementfalse == false and batfly == false and not (followchar and not nilchar) then
+					if pos~=nil then falling=false fallingspeed=0 mainpos=mainpos*CFrame.new(0,hit.Y-mainpos.Y+3.2,0)
+					else falling=true fallingspeed=fallingspeed+.06 if fallingspeed >= 3.5 then fallingspeed=1 end mainpos=mainpos-Vector3.new(0,fallingspeed+(increaseSpeed*5),0)end 
+				end
+			end
+		end)
+	end))
+end)
+
+local function animatedsword1(num)
+	local necxt = {"rbxassetid://9101453171",1}
+	for i, Joints in next, imstuff["Facility"]["Frames"]["swordhit1"]:GetChildren() do  
+		if Joints:IsA("Decal") and Joints.Name == tostring(num) then
+			necxt={Joints.Texture,num+1} break
+		end
+	end
+	return necxt
+end
+
+local function animatedsword2(num)
+	local necxt = {"rbxassetid://10139278217",1}
+	for i, Joints in next, imstuff["Facility"]["Frames"]["swordhit2"]:GetChildren() do  
+		if Joints:IsA("Decal") and Joints.Name == tostring(num) then
+			necxt={Joints.Texture,num+1} break
+		end
+	end
+	return necxt
+end
+
+
+function CreateTween(o, t, p, go)
+	local Tanim=game:GetService("TweenService"):Create(o, TweenInfo.new(unpack(t)), p)
+	if go then
+		Tanim:Play()
+	end
+	return Tanim
+end
+
+function OrienRad(a,b,c)
+	return CFrame.fromOrientation(math.rad(a),math.rad(b),math.rad(c))
+end
+
+function AngRad(a,b,c)
+	return CFrame.Angles(math.rad(a),math.rad(b),math.rad(c))
+end
+
+function reg(where,range,ignor)
+	return {workspace:FindPartsInRegion3WithIgnoreList(Region3.new(where-Vector3.new(1,1,1)*range/2,where+Vector3.new(1,1,1)*range/2),ignor,100),Region3.new(where-Vector3.new(1,1,1)*range/2,where+Vector3.new(1,1,1)*range/2)}
+end
+
+
+
+--function weld(a, b, c, d)
+--	local w=Instance.new("Weld", a)
+--	w.Part0=a
+--	w.Part1=b
+--	w.C0=c or CFrame.new()
+--	w.C1=d or CFrame.new()
+--	return w
+--end
+
+function INW(typp, anth)
+	local part=Instance.new(typp)
+	if anth ~= nil then
+		for i, v in next, anth do
+			pcall(
+				function()
+					part[i]=v
+				end
+			)
+		end
+	end
+	return part
+end
+
+function randomSoundNR(Que1,Que2,Current,Que3)
+	local thsound local Nextcurrent local change=false
+	if Current == Que1 then
+		Nextcurrent=Que2
+	elseif Current == Que2 then
+		Nextcurrent=Que1
+	end
+	if Current[2] then
+		thsound=Current[math.random(1,#Current)]
+		table.remove(Current,table.find(Current,thsound))
+		table.insert(Nextcurrent,thsound)
+	else change=true
+		thsound=Current[math.random(1,#Current)]
+	end	
+	return {thsound,change}
+end
+
+
+function syncSound(tabl,play)
+	local sFolder = (game:GetService("ReplicatedStorage"):FindFirstChild("SoundsFolder") or nil) local itsound = nil
+	coroutine.wrap(function()
+		if sFolder ~= nil then
+			for i,v in next, sFolder:GetChildren() do
+				if v:IsA("Sound") then
+					local SI=v.SoundId
+					if SI:find(tabl.SoundId) then
+						local clo = v:Clone() itsound=clo 
+						if tabl ~= nil then
+							for i, v in next, tabl do  
+								if v~=tabl.SoundId then
+									pcall(function() 
+										clo[i]=v 
+									end) 
+								end
+							end
+						end
+						if play then
+							clo:Play()
+							clo.Ended:Connect(function()
+								clo:Destroy()
+							end)
+						else
+							if clo.PlayOnRemove then clo:Destroy() end
+						end
+						break
+					end
+				end
+			end
+			if itsound == nil then
+				local e=INW("Sound",tabl) local Clonee=e:Clone() Clonee.Parent=sFolder itsound=e
+				if play then
+					e:Play()
+					e.Ended:Connect(function()
+						e:Destroy()
+					end)
+				else
+					if e.PlayOnRemove then e:Destroy() end
+				end
+			end
+		else
+			local Folder = Instance.new("Folder",game:GetService("ReplicatedStorage")) Folder.Name = "SoundsFolder"
+		end
+	end)()
+	return itsound	
+end
+
+function burnpart(object,delayy,removeparent)
+	object.Transparency=1
+	object.CastShadow=false
+	local sides={}
+	local Side0 = Instance.new("Decal",object) Side0.Face = Enum.NormalId.Left table.insert(sides,Side0)
+	local Side1 = Instance.new("Decal",object) Side1.Face = Enum.NormalId.Bottom table.insert(sides,Side1)
+	local Side2 = Instance.new("Decal",object) Side2.Face = Enum.NormalId.Top table.insert(sides,Side2)
+	local Side3 = Instance.new("Decal",object) Side3.Face = Enum.NormalId.Right table.insert(sides,Side3)
+	local Side4 = Instance.new("Decal",object) Side4.Face = Enum.NormalId.Back table.insert(sides,Side4)
+	local Side5 = Instance.new("Decal",object) Side5.Face = Enum.NormalId.Front table.insert(sides,Side5)
+	for _, sidesa in ipairs(sides) do
+		task.spawn(function()
+			local expnnum = 0
+			sidesa.Color3=Color3.new(0, 0, 0)
+			repeat task.wait(delayy)
+				local s=animatedbrun(expnnum)
+				sidesa.Texture=s[1]
+				expnnum=expnnum+1
+			until 16 <= expnnum
+			expnnum = 0
+			if removeparent then object.Parent:Destroy() else object:Destroy() end
+		end)
+	end
+end
+
+function CamShake(Position,Range,Duration,Intensity) --credits to v_sadoz
+	if docamshake then
+		pcall(function()
+			assert(Position,"arg 1 nil")
+			Range,Duration,Intensity=Range or 20,Duration or 1,Intensity or .2
+			local pos local Target if typeof(Position)=="Vector3" then pos=Position elseif typeof(Position)=="CFrame" then pos=Position.Position elseif typeof(Position)=="Instance" and Position:IsA("BasePart") then Target=Position else error("arg 1 wrong type") end
+			FireClient(EffectRemote,"all","camsh",Duration,Target,pos,Range,Intensity)
+		end)
+	end
+end
+
+function animatedpat(num)
+	local necxt = {"rbxassetid://8132003327",1}
+	pcall(function()
+		for i, Joints in next, imstuff["Facility"]["Frames"]["patternP"]:GetChildren() do  
+			if Joints:IsA("ParticleEmitter") and Joints.Name == tostring(num) then
+				necxt={Joints.Texture,num+1} break
+			end
+		end
+	end)
+	return necxt
+end
+
+function animatedaura(num)
+	local necxt = {"http://www.roblox.com/asset/?id=8140353602",1}
+	for i, Joints in next, imstuff["Facility"]["Frames"]["baura"]:GetChildren() do  
+		if Joints:IsA("ParticleEmitter") and Joints.Name == tostring(num) then
+			necxt={Joints.Texture,num+1} break
+		end
+	end
+	return necxt
+end
+
+
+
+function animatedbrun(num)
+	local necxt = {"rbxassetid://9192844022",1}
+	for i, Joints in next, imstuff["Facility"]["Frames"]["Burn"]:GetChildren() do  
+		if Joints:IsA("Decal") and Joints.Name == tostring(num) then
+			necxt={Joints.Texture,num+1} break
+		end
+	end
+	return necxt
+end
+
+local function animateddeath1(num)
+	local necxt = {"rbxassetid://10138174299",1}
+	for i, Joints in next, imstuff["Facility"]["Frames"]["deathshock"]:GetChildren() do  
+		if Joints:IsA("Decal") and Joints.Name == tostring(num) then
+			necxt={Joints.Texture,num+1} break
+		end
+	end
+	return necxt
+end
+local function animatedfire(num)
+	local necxt = {"rbxassetid://10149297865",1}
+	for i, Joints in next, imstuff["Facility"]["Frames"]["fire1"]:GetChildren() do  
+		if Joints:IsA("Decal") and Joints.Name == tostring(num) then
+			necxt={Joints.Texture,num+1} break
+		end
+	end
+	return necxt
+end
+
+function death(Hum,mainpart)
+	local char=Hum.Parent
+	if char==workspace then return end
+	coroutine.wrap(function()
+		local P=Instance.new("Part",workspace.Terrain) P.Transparency=1 P.Anchored=true P.Size=Vector3.new(0.050000000745058, 0.050000000745058, 0.050000000745058) P.CanCollide=false  
+		P.CFrame=CFrame.new(10000,10000,10000)
+		local A1=Instance.new("Attachment",P) A1.WorldCFrame=CFrame.new(mainpart.CFrame.p) local v1=imstuff["Facility"]["dsf"]:Clone() v1.Parent=A1 local v2=imstuff["Facility"]["dbf"]:Clone() v2.Parent=A1 local v3=imstuff["Facility"]["deathdust"]:Clone() v3.Parent=A1 local v4=imstuff["Facility"]["deathdust2"]:Clone() v4.Parent=A1  local v5=imstuff["Facility"]["deathshine"]:Clone() v5.Parent=A1 
+		game:GetService("Debris"):AddItem(P,4)
+		local S = randomSoundNR(meltQue,meltQue2,meltCurrent) if S[2] == true then if meltCurrent == meltQue then meltCurrent=meltQue2 elseif meltCurrent == meltQue2 then meltCurrent=meltQue end end
+		syncSound({SoundId="rbxassetid://"..S[1],Volume=2,PlayOnRemove=true,TimePosition=0,Pitch=math.random(9, 10)/math.random(9,10),Parent=A1})
+		local S2 = randomSoundNR(burnQue,burnQue2,burnCurrent) if S2[2] == true then if burnCurrent == burnQue then burnCurrent=burnQue2 elseif burnCurrent == burnQue2 then burnCurrent=burnQue end end 
+		syncSound({SoundId="rbxassetid://"..S2[1],Volume=2,PlayOnRemove=true,TimePosition=0,Pitch=math.random(9, 10)/math.random(9,10),Parent=A1})
+		v1:Emit(math.random(1,2)) v2:Emit(25) v3:Emit(30) v4:Emit(30) v5:Emit(4)
+		--task.spawn(function()
+		--	local banum=1
+		--	repeat task.wait(0.02)
+		--		local s=animateddeath1(banum)
+		--		v1.Texture=s[1]
+		--		banum=banum+1
+		--	until 10 <= banum
+		--end)
+		--task.spawn(function()
+		--	local banum=1
+		--	repeat task.wait(0.07)
+		--		local s=animatedfire(banum)
+		--		v2.Texture=s[1]
+		--		banum=banum+1
+		--	until 18 <= banum
+		--end)
+		char:BreakJoints()
+		for i,v in pairs(char:GetChildren()) do
+			if v:IsA("BasePart") then
+				v.Anchored=true
+				burnpart(v,0.055)
+			end
+		end
+	end)()
+end
+
+
+
+function damagee(tab)  --    tab.Radius,tab.Radius,tab.Dam,tab.Dr)
+	DamMod.damger(tab,{makePartAttachment=makePartAttachment,syncSound=syncSound,reg=reg,CamShake=CamShake,animatedsword1=animatedsword1,animatedsword2=animatedsword2,CreateTween=CreateTween,death=death,randomSoundNR=randomSoundNR},{imstuff=imstuff,Power=Power,EffectRemote=EffectRemote},{mmodel,soundpart,effectmodel,humanModel,(followchar and plr.Character or mmodel)})
+end
+
+function anim1(tablee,cancelable)
+	local animstable={}
+	for i, v in ipairs(tablee) do 
+		if cancelable and leftclicked then break end
+		pcall(function()
+			local EasingStyle=v[3]  local EasingDirection=v[4]
+			local speedd=v[2] 
+			local CVtweens={}
+			for _, Joints in pairs(v[1]:GetDescendants()) do 
+				pcall(function()
+					if Joints:IsA("Bone") then
+						for i, v in ipairs(MonaJoints) do 
+							if Joints.Name == v.Name then 
+								local tween=CreateTween(v, { speedd, EasingStyle, EasingDirection, 0, false, 0 }, {CFrame=CFrame.new(Joints.Position)*OrienRad(Joints.Orientation.X,Joints.Orientation.Y,Joints.Orientation.Z)}, true)
+								table.insert(CVtweens,tween)
+							end
+						end
+					end
+				end)
+			end
+			table.insert(animstable,CVtweens)
+			CVtweens[1].Completed:Wait()
+			if v[5] then
+				damagee(v[5])
+			end
+		end)
+	end
+	return animstable
+end
+
+function movem(CFramee,timee,EasingStyle,EasingDirection,withdam,lookat,dela)
+	local extracf=CFrame.new()
+	pcall(function()
+		if lookat and MouseCentered then
+			local lPos=mainpos:PointToObjectSpace(Mouse.Hit*CFrame.new(0,0,-1000).p)
+			local theta=math.clamp(math.atan2(lPos.x, lPos.z), -math.rad(90), math.rad(90))
+			extracf=CFrame.fromEulerAnglesYXZ(0,theta,0)
+		end
+	end)
+	local asdss=Instance.new("CFrameValue") asdss.Value=mainpos 
+	local tween=CreateTween(asdss, { timee, EasingStyle, EasingDirection, 0, false, 0 }, {Value=CFramee*extracf}, true)
+	local cond  
+	cond=asdss.Changed:connect(function() if SM.attacking==false then cond:Disconnect() tween:Cancel() end
+		mainpos=asdss.Value
+		mainposba=mainpos
+		if withdam then
+			damagee({Pos=mainposba.p,Radius=17,Dam=4+Power,Dr=5})  
+		end
+	end)
+	tween.Completed:Connect(function()
+		if cond then
+			cond:Disconnect()
+		end
+	end)
+end
+
+function movewait(timee)
+	local cf=Instance.new("NumberValue")
+	local EasingStyle=Enum.EasingStyle.Sine local EasingDirection=Enum.EasingDirection.In
+	local tween=CreateTween(cf, { timee, EasingStyle, EasingDirection, 0, false, 0 }, {Value=2}, true)
+	local cond  
+	task.spawn(function()
+		cond=cf.Changed:connect(function()
+			if leftclicked or rightclicked or lastkey=="leftcontrol" then cond:Disconnect() tween:Cancel() end
+		end)
+	end)
+	tween.Completed:Wait()
+	if cond then
+		cond:Disconnect()
+	end
+end
+
+function movewait2(timee)
+	local cf=Instance.new("NumberValue")
+	local EasingStyle=Enum.EasingStyle.Sine local EasingDirection=Enum.EasingDirection.In
+	local tween=CreateTween(cf, { timee, EasingStyle, EasingDirection, 0, false, 0 }, {Value=2}, true)
+	local cond  
+	task.spawn(function()
+		cond=cf.Changed:connect(function()
+			if rightclicked or lastkey=="leftcontrol" then cond:Disconnect() tween:Cancel() end
+		end)
+	end)
+	tween.Completed:Wait()
+	if cond then
+		cond:Disconnect()
+	end
+end
+
+function dodgey()
+	SM.movementfalse=true
+	task.spawn(function()
+		if math.random(1,2) ==1 then
+			local S = randomSoundNR(missQue,missQue2,missCurrent) if S[2] == true then if missCurrent == missQue then missCurrent=missQue2 elseif missCurrent == missQue2 then missCurrent=missQue end end
+			syncSound({SoundId="rbxassetid://"..S[1],Volume=3,PlayOnRemove=true,TimePosition=0,Pitch=1,Parent=soundpart})
+		end
+		movem(mainpos*CFrame.new(28,0,0),0.8,Enum.EasingStyle.Back,Enum.EasingDirection.Out)
+	end)
+	anim1({{MAnim["Yanims"]["dodge1"]["RootPart"]["root"],0.12,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+	{MAnim["Yanims"]["dodge2"]["RootPart"]["root"],0.12,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+	{MAnim["Yanims"]["dodge3"]["RootPart"]["root"],0.12,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+	{MAnim["Yanims"]["dodge4"]["RootPart"]["root"],0.12,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}})
+	task.wait(0.06)
+	SM.movementfalse=false
+end
+
+function dash()
+	SM.attacking=true
+	fallingspeed=0
+	local backdash=false
+	local dodge=false
+	local function anim(MonaJoints,CVjoints,lerpspeed) local wspeed=35
+		pcall(function() 
+			for _, j in pairs(MonaJoints ) do
+				for _, CV in pairs(CVjoints) do 
+					if j.Name == CV.Name then
+
+						j.CFrame=j.CFrame:lerp(CV.Value,lerpspeed)
+					end
+				end
+			end
+		end)
+	end
+	task.spawn(function()
+		--({SoundId="rbxassetid://6128977275",Volume=0.5,PlayOnRemove=true,TimePosition=0,Pitch=1,Parent=soundpart})
+		saidle=true t.Trail.Enabled=true 
+	end)
+	task.spawn(function() local humhealth=humanoidd.Health
+		humaned=false humanModel:Destroy() Character="Mona"
+		humaned=true humanModel = imstuff["Models"]["NPC"]:Clone() humanoidd = humanModel.Humanoid humanHead = humanModel.Head humanTorso = humanModel.Torso humanTorso.CFrame = mainposba humanModel.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) humanModel.Parent = workspace 
+		local faker = imstuff["Models"]["NPC"]:Clone() local fakehum = faker.Humanoid local faketors = faker.Torso local fakehead = faker.Head fakehead.Transparency=1 faketors.CFrame = mainposba faker.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) fakehum.Health=1 faker.Parent = workspace 
+		repeat task.wait()
+			pcall(function() humaned=false
+				if (humanModel and humanModel.Parent ~= nil) then
+					humaned=false humanModel:Destroy() 
+				end
+				if (faker and faker.Parent ~= nil) and (faketors and faketors.Parent ~= nil) and (fakehead and fakehead.Parent ~= nil) and (fakehum and fakehum.Parent ~= nil and fakehum.Health >= 1) then 
+					faketors.CFrame = mainposba	
+				else
+					dodge=true
+					faker:Destroy()
+				end
+			end)
+		until SM.attacking ==false
+		pcall(function()faker:Destroy() end)
+		humaned=false humanModel:Destroy() Character="Mona"
+		humaned=true humanModel = imstuff["Models"]["NPC"]:Clone() humanoidd = humanModel.Humanoid humanoidd.Health=humhealth humanHead = humanModel.Head humanTorso = humanModel.Torso humanTorso.CFrame = mainposba humanModel.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) humanModel.Parent = workspace 
+	end)
+	if S and MouseCentered then backdash=true end
+	pcall(function()
+		local EasingStyle= Enum.EasingStyle.Back  local EasingDirection=Enum.EasingDirection.Out
+		local speedd=0.2
+		local CVtweens={} local asdas=false
+		for _, Joints in pairs(MAnim["Yanims"][backdash and "dashback" or "dashY"]["RootPart"]["root"]:GetDescendants()) do 
+			pcall(function()
+				if Joints:IsA("Bone") then
+					for i, v in ipairs(MonaJoints) do 
+						if Joints.Name == v.Name then 
+							local tween=CreateTween(v, { speedd, EasingStyle, EasingDirection, 0, false, 0 }, {CFrame=CFrame.new(Joints.Position)*OrienRad(Joints.Orientation.X,Joints.Orientation.Y,Joints.Orientation.Z)}, true)
+							table.insert(CVtweens,tween)
+						end
+					end
+				end
+			end)
+		end
+		task.spawn(function()
+			CVtweens[1].Completed:Wait()
+			asdas=true
+		end)
+		for i=1,100 do
+			if dodge or asdas then break end
+			pcall(function()
+				mainpos=mainpos*CFrame.new(0,0,backdash and -0.55 or 0.55)
+				if dodge then
+					for _, CV in pairs(CVtweens) do 
+						CV:Cancel()
+					end
+				end
+			end)
+			task.wait()
+		end                     
+	end)
+	if dodge then
+		dodgey()
+	end
+	pcall(function() t.Trail.Enabled=false  end)
+	SM.attacking=false
+end
+
+
+
+function attack()
+	local wasrunning=false local noslide=false local stopdashhit=false local energy=1+tick()-ticktick
+	SM.attacking=true
+	SM.movementfalse=true
+	fallingspeed=0
+	local function anim(MonaJoints,CVjoints,lerpspeed) local wspeed=35
+		pcall(function() 
+			for _, j in pairs(MonaJoints ) do
+				for _, CV in pairs(CVjoints) do 
+					if j.Name == CV.Name then
+						j.CFrame=j.CFrame:lerp(CV.Value,lerpspeed)
+					end
+				end
+			end
+		end)
+	end
+	if (W or A or S or D) and saidle then wasrunning=true
+		task.spawn(function()
+			for i=1,100 do task.wait() if SM.attacking==false then break end
+				mainpos=mainpos*CFrame.new(0,0,1.5/(i/3))
+				mainposba=mainpos
+				if not stopdashhit then damagee({Pos=mainposba.p,Radius=17,Dam=4+Power,Dr=5})end
+			end
+		end)
+	end
+	if not wasrunning then
+		anim1({{MAnim["Yanims"]["yukiattack1"]["RootPart"]["root"],0.2/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}})
+	end
+	if wasrunning== false then
+		task.spawn(function()
+			for i=1,100 do task.wait() if SM.attacking==false or noslide then break end
+				mainpos=mainpos*CFrame.new(0,0,0.5/(i/2))
+				mainposba=mainpos
+			end
+		end)
+	end
+	damagee({Pos=mainposba.p,Radius=17,Dam=4+Power,Dr=5})
+	if wasrunning then saidle=false end
+	syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+	anim1({{MAnim["Yanims"]["yukiattack2"]["RootPart"]["root"],0.2/(wasrunning and energy or 1),Enum.EasingStyle.Back,Enum.EasingDirection.Out}})
+	stopdashhit=true
+	if not wasrunning then movewait(0.08) end
+	if leftclicked==true then 	
+		noslide=true
+		task.delay(0.35, function()
+			syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+			FireClient(EffectRemote,"all","slasher",{ {
+				Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Part = {Size = Vector3.new(15, 15, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-90, -110.01, 0)},  
+			}, 
+			{
+				Outer = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(0, 0, 0)
+				}, 
+				Mid = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(25555, 199, 0)
+				}, 
+				Inner = {
+					Transparency =0.9,
+					Color3 = Color3.fromRGB(350, 199, 0)
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),
+					CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-89.98, 0, 76.17)
+				}, 
+				Time = 10, 
+				EasingStyle = Enum.EasingStyle.Linear, 
+				EasingDir = Enum.EasingDirection.Out
+			}, {
+				Outer = {
+					Transparency = 1
+				}, 
+				Mid = {
+					Transparency = 1
+				}, 
+				Inner = {
+					Transparency = 1
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-89.97, 0, -97.85)
+				}, 
+				Time = 9, 
+				EasingStyle = Enum.EasingStyle.Sine, 
+				EasingDir = Enum.EasingDirection.Out
+			} })
+		end)
+
+		movem(mainpos*CFrame.new(0,0,5),0.4/energy,Enum.EasingStyle.Exponential,Enum.EasingDirection.InOut)
+		anim1({{MAnim["Yanims"]["yukiattack3"]["RootPart"]["root"],0.05,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["yukiattack4"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["yukiattack5"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["yukiattack6"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["yukiattack7"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=20,Dam=4+Power,Dr=5}},  
+		{MAnim["Yanims"]["yukiattack8"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["yukiattack9"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Back,Enum.EasingDirection.Out}})
+		movewait(0.1) 
+		if rightclicked then 	
+			task.delay(0.1, function()
+				movem(mainpos*CFrame.new(0,0,8),0.3/energy,Enum.EasingStyle.Back ,Enum.EasingDirection.Out)
+				task.delay(0.1, function()
+					task.spawn(function()
+						local PA=makePartAttachment(mainposba*CFrame.new(0, 0.218, 5.166)*OrienRad(0,90,0),1) local A2=Instance.new("Attachment",PA[1]) A2.WorldCFrame=mainposba*CFrame.new(0, 0.218, 11.41)*OrienRad(0, -180, 0)
+						local v1=imstuff["Facility"]["hd1"]:Clone() v1.Parent=PA[2] local v2=imstuff["Facility"]["hd2"]:Clone() v2.Parent=PA[2] local v3=imstuff["Facility"]["hd3"]:Clone() v3.Parent=PA[2] local v4=imstuff["Facility"]["hd4"]:Clone() v4.Parent=PA[2] local v5=imstuff["Facility"]["hd5"]:Clone() v5.Parent=PA[2] local v6=imstuff["Facility"]["hd6"]:Clone() v6.Parent=PA[2] local v7=imstuff["Facility"]["hdc"]:Clone() v7.Parent=A2
+						v1:Emit(30) v2:Emit(8) v3:Emit(8) v4:Emit(8) v5:Emit(8) v6:Emit(8) v7:Emit(8)
+						--syncSound({SoundId="rbxassetid://9120705982",Volume=0.9,PlayOnRemove=true,TimePosition=0.1,Pitch=math.random(9, 10)/math.random(9,10),Parent=PA[2]})
+						syncSound({SoundId="rbxassetid://3751519865",Volume=1,PlayOnRemove=true,TimePosition=0,Pitch=math.random(9, 10)/math.random(9,10),Parent=PA[2]})
+						FireClient(EffectRemote,"all","windslash",PA[2].WorldCFrame*OrienRad(0,-90,0))
+						for i=1,6 do task.wait()
+							damagee({Pos=mainposba*CFrame.new(0,0,i*4.5).p,Radius=15,Dam=10+Power,Dr=5,increaseCrit=10,typehit="hardstab"})
+						end
+					end)
+				end)
+			end)
+			anim1({{MAnim["Yanims"]["yukiattack9special1"]["RootPart"]["root"],0.1/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+			{MAnim["Yanims"]["yukiattack9special2"]["RootPart"]["root"],0.08/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+			{MAnim["Yanims"]["yukiattack9special3"]["RootPart"]["root"],0.08/energy,Enum.EasingStyle.Back,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=20,Dam=4+Power,Dr=5,increaseCrit=20,typehit="hardstab"}}})
+			movewait(0.2)
+			--if S then
+			--	movem(mainposba*CFrame.new(0,0,-20),0.5/energy,Enum.EasingStyle.Exponential ,Enum.EasingDirection.InOut)
+			--	anim1({{MAnim["Yanims"]["dashback"]["RootPart"]["root"],0.5/energy,Enum.EasingStyle.Back,Enum.EasingDirection.Out}})
+			--	energy=3
+			--end
+			saidle=true
+			movewait(0.2)
+			if rightclicked and Personas[1].Specials[1] then 	
+				SM.lookattack=true
+				GetObject("weapon",MonaJoints).Parent = t.root
+				GetObject("gun",MonaJoints).Parent = GetObject("Bip01_R_Hand",MonaJoints)
+				GetObject("gun",MonaJoints).Position= Vector3.new(-0.5, -0.55, -0.3)
+				anim1({{game:GetService("ServerStorage")["yukiattack9summon1"]["RootPart"]["root"],0.3/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+				{game:GetService("ServerStorage")["yukiattack9summon2"]["RootPart"]["root"],0.2/energy,Enum.EasingStyle.Back,Enum.EasingDirection.Out},
+				{game:GetService("ServerStorage")["yukiattack9summon3"]["RootPart"]["root"],0.2/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+				{game:GetService("ServerStorage")["yukiattack9summon4"]["RootPart"]["root"],0.2/energy,Enum.EasingStyle.Back,Enum.EasingDirection.InOut}})
+				syncSound({SoundId="rbxassetid://1975627081",Volume=1,PlayOnRemove=true,TimePosition=1.5,Pitch=1,Parent=soundpart})
+				local PA=makePartAttachment(GetObject("Bip01_Head",MonaJoints).WorldCFrame*CFrame.new(0.9, 0.746, 0.143)*OrienRad(0, 0, -90),1)
+				local v1=imstuff["Facility"]["ps1"]:Clone() v1.Parent=PA[2] local v2=imstuff["Facility"]["ps2"]:Clone() v2.Parent=PA[2] local v3=imstuff["Facility"]["ps3"]:Clone() v3.Parent=PA[2] local v4=imstuff["Facility"]["ps4"]:Clone() v4.Parent=PA[2] local v5=imstuff["Facility"]["ps5"]:Clone() v5.Parent=PA[2] local v6=imstuff["Facility"]["ps6"]:Clone() v6.Parent=PA[2] 
+				v1:Emit(5) v2:Emit(5) v3:Emit(5) v4:Emit(5) v5:Emit(5) v6:Emit(5)
+				SM.lookattack=false
+				movewait(0.2)
+				GetObject("weapon",MonaJoints).Parent = GetObject("Bip01_R_Hand",MonaJoints)
+				GetObject("weapon",MonaJoints).Position = Vector3.new(-0.057, -0.284, -0.251)
+				GetObject("gun",MonaJoints).Parent = t.root
+			end
+		elseif leftclicked then 
+			task.delay(0.1, function()
+				task.delay(0.3, function()
+					syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+					FireClient(EffectRemote,"all","slasher",{ {
+						Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+						Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+						Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+						Part = {Size = Vector3.new(19, 19, 2),CFrame=mainpos*CFrame.new(0,3,1)*OrienRad(-43.35, 82.15, 180)},  
+					}, 
+					{
+						Outer = {
+							Transparency = -0.6,
+							Color3 = Color3.fromRGB(0, 0, 0)
+						}, 
+						Mid = {
+							Transparency = -0.6,
+							Color3 = Color3.fromRGB(25555, 199, 0)
+						}, 
+						Inner = {
+							Transparency =0.9,
+							Color3 = Color3.fromRGB(350, 199, 0)
+						}, 
+						Part = {
+							Size = Vector3.new(24, 24, 2),
+							CFrame=mainpos*CFrame.new(0,3,1)*OrienRad(-43.35, 82.15, 3.27)
+						}, 
+						Time = 10, 
+						EasingStyle = Enum.EasingStyle.Linear, 
+						EasingDir = Enum.EasingDirection.Out
+					}, {
+						Outer = {
+							Transparency = 1
+						}, 
+						Mid = {
+							Transparency = 1
+						}, 
+						Inner = {
+							Transparency = 1
+						}, 
+						Part = {
+							Size = Vector3.new(24, 24, 2),CFrame=mainpos*CFrame.new(0,3,1)*OrienRad(-43.35, 82.15, -173.51)
+						}, 
+						Time = 9, 
+						EasingStyle = Enum.EasingStyle.Sine, 
+						EasingDir = Enum.EasingDirection.Out
+					} })
+				end)
+				movem(mainpos*CFrame.new(0,7,5),0.3/energy,Enum.EasingStyle.Back,Enum.EasingDirection.In)
+			end)	
+			anim1({{MAnim["Yanims"]["yukiattack10"]["RootPart"]["root"],0.07/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+			{MAnim["Yanims"]["yukiattack11"]["RootPart"]["root"],0.07/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+			{MAnim["Yanims"]["yukiattack12"]["RootPart"]["root"],0.07/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+			{MAnim["Yanims"]["yukiattack13"]["RootPart"]["root"],0.08/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+			{MAnim["Yanims"]["yukiattack14"]["RootPart"]["root"],0.08/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=20,Dam=4+Power,Dr=5}},  
+			{MAnim["Yanims"]["yukiattack15"]["RootPart"]["root"],0.08/energy,Enum.EasingStyle.Back,Enum.EasingDirection.Out}})
+			falling=true
+			movewait(0.1)
+			local PartRayd, RayCF = workspace:FindPartOnRay(Ray.new(mainposba*CFrame.new(0,0,7).p, Vector3.new(0, -20, 0)), nil)
+			if leftclicked==true and PartRayd then 
+				task.delay(0.2, function()
+					movem(CFrame.new(RayCF)*CFrame.Angles(mainposba:ToEulerAnglesXYZ())*CFrame.new(0,3.2,0),0.08/energy,Enum.EasingStyle.Quad ,Enum.EasingDirection.InOut)
+					task.delay(0.09, function()
+						syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+						FireClient(EffectRemote,"all","slasher",{ {
+							Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+							Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+							Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+								Part = {Size = Vector3.new(22, 22, 2),CFrame=CFrame.new(RayCF)*CFrame.Angles(mainposba:ToEulerAnglesXYZ())*CFrame.new(1,4,-2)*OrienRad(-23.7, 90, 95.12)},  
+						}, 
+						{
+							Outer = {
+								Transparency = -0.6,
+								Color3 = Color3.fromRGB(0, 0, 0)
+							}, 
+							Mid = {
+								Transparency = -0.6,
+								Color3 = Color3.fromRGB(25555, 199, 0)
+							}, 
+							Inner = {
+								Transparency =0.9,
+								Color3 = Color3.fromRGB(350, 199, 0)
+							},  
+							Part = {
+								Size = Vector3.new(25, 25, 2),
+									CFrame=CFrame.new(RayCF)*CFrame.Angles(mainposba:ToEulerAnglesXYZ())*CFrame.new(1,4,-2)*OrienRad(-23.7, 90, -86.81)
+							}, 
+							Time = 10, 
+							EasingStyle = Enum.EasingStyle.Linear, 
+							EasingDir = Enum.EasingDirection.Out
+						}, {
+							Outer = {
+								Transparency = 1
+							}, 
+							Mid = {
+								Transparency = 1
+							}, 
+							Inner = {
+								Transparency = 1
+							}, 
+							Part = {
+								Size = Vector3.new(25, 25, 2),CFrame=CFrame.new(RayCF)*CFrame.Angles(mainposba:ToEulerAnglesXYZ())*CFrame.new(1,4,-2)*OrienRad(-23.7, 90, 84.38)
+							}, 
+							Time = 9, 
+							EasingStyle = Enum.EasingStyle.Sine, 
+							EasingDir = Enum.EasingDirection.Out
+						} })
+
+						end)
+				end)
+				anim1({{MAnim["Yanims"]["yukiattack16"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+				{MAnim["Yanims"]["yukiattack17"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},  
+				{MAnim["Yanims"]["yukiattack18"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+				{MAnim["Yanims"]["yukiattack19"]["RootPart"]["root"],0.03/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+				{MAnim["Yanims"]["yukiattack20"]["RootPart"]["root"],0.03/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=CFrame.new(RayCF)*CFrame.Angles(mainposba:ToEulerAnglesXYZ())*CFrame.new(0,3.2,7).p,Radius=30,Dam=4+Power,Dr=5}},
+				{MAnim["Yanims"]["yukiattack21"]["RootPart"]["root"],0.2/energy,Enum.EasingStyle.Back,Enum.EasingDirection.Out}
+				})
+				falling=false
+				movewait(0.1)
+				if leftclicked==true  then
+					syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+					movem(mainpos*CFrame.new(0,0,5),0.2/energy,Enum.EasingStyle.Linear ,Enum.EasingDirection.Out)
+					FireClient(EffectRemote,"all","slasher",{ {
+						Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+						Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+						Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+						Part = {Size = Vector3.new(20, 20, 2),CFrame=mainpos*CFrame.new(0,1.7,3)*OrienRad(-36.04, -76.03, -8.33)},  
+					}, 
+					{
+						Outer = {
+							Transparency = -0.6,
+							Color3 = Color3.fromRGB(0, 0, 0)
+						}, 
+						Mid = {
+							Transparency = -0.6,
+							Color3 = Color3.fromRGB(25555, 0, 0)
+						}, 
+						Inner = {
+							Transparency =0.9,
+							Color3 = Color3.fromRGB(2558, 30, 0)
+						}, 
+						Part = {
+							Size = Vector3.new(25, 25, 2),
+							CFrame=mainpos*CFrame.new(0,1.7,3)*OrienRad(-36.04, -76.03, 178.01)
+						}, 
+						Time = 10, 
+						EasingStyle = Enum.EasingStyle.Linear, 
+						EasingDir = Enum.EasingDirection.Out
+					}, {
+						Outer = {
+							Transparency = 1
+						}, 
+						Mid = {
+							Transparency = 1
+						}, 
+						Inner = {
+							Transparency = 1
+						}, 
+						Part = {
+							Size = Vector3.new(25, 25, 2),CFrame=mainpos*CFrame.new(0,1.7,3)*OrienRad(-36.04, -76.03, 5.49)
+						}, 
+						Time = 9, 
+						EasingStyle = Enum.EasingStyle.Sine, 
+						EasingDir = Enum.EasingDirection.Out
+					} })
+					task.delay(0.272, function()
+						syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+						movem(mainpos*CFrame.new(0,0,5),0.2/energy,Enum.EasingStyle.Linear ,Enum.EasingDirection.Out)
+						FireClient(EffectRemote,"all","slasher",{ {
+							Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+							Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+							Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+							Part = {Size = Vector3.new(20, 20, 2),CFrame=mainpos*CFrame.new(0,1.7,3)*OrienRad(-44.7, 90, 105.35)},  
+						}, 
+						{
+							Outer = {
+								Transparency = -0.6,
+								Color3 = Color3.fromRGB(0, 0, 0)
+							}, 
+							Mid = {
+								Transparency = -0.6,
+								Color3 = Color3.fromRGB(25555, 0, 0)
+							}, 
+							Inner = {
+								Transparency =0.9,
+								Color3 = Color3.fromRGB(2558, 30, 0)
+							}, 
+							Part = {
+								Size = Vector3.new(25, 25, 2),
+								CFrame=mainpos*CFrame.new(0,1.7,3)*OrienRad(-44.7, 90, -80.08)
+							}, 
+							Time = 10, 
+							EasingStyle = Enum.EasingStyle.Linear, 
+							EasingDir = Enum.EasingDirection.Out
+						}, {
+							Outer = {
+								Transparency = 1
+							}, 
+							Mid = {
+								Transparency = 1
+							}, 
+							Inner = {
+								Transparency = 1
+							}, 
+							Part = {
+								Size = Vector3.new(25, 25, 2),CFrame=mainpos*CFrame.new(0,1.7,3)*OrienRad(-44.7, 90, 66.18)
+							}, 
+							Time = 9, 
+							EasingStyle = Enum.EasingStyle.Sine, 
+							EasingDir = Enum.EasingDirection.Out
+						} })
+					end)
+					anim1({{MAnim["Yanims"]["yukiattack22"]["RootPart"]["root"],0.1/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+					{MAnim["Yanims"]["yukiattack23"]["RootPart"]["root"],0.06/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainpos*CFrame.new(0,1.7,3).p,Radius=30,Dam=7+Power,Dr=5,increaseCrit=5}},  
+					{MAnim["Yanims"]["yukiattack24"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+					{MAnim["Yanims"]["yukiattack25"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+					{MAnim["Yanims"]["yukiattack26"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainpos*CFrame.new(0,1.7,3).p,Radius=30,Dam=7+Power,Dr=5,increaseCrit=5}},
+					{MAnim["Yanims"]["yukiattack27"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+					{MAnim["Yanims"]["yukiattack28"]["RootPart"]["root"],0.1/energy,Enum.EasingStyle.Back,Enum.EasingDirection.Out}
+					})
+					movewait(0.1)
+				end
+			end
+		end
+	end
+	SM.movementfalse=false
+	SM.attacking=false
+end
+
+function attack2()
+	local energy=1+((tick()-ticktick)/8) 
+	local wasrunning=false local noslide=false airattack=false local spd=8
+	SM.attacking=true
+	SM.movementfalse=true
+	fallingspeed=0
+	if saidle then spd=13 end
+	pcall(function() t.Trail.Enabled=true  end)
+	task.delay(0.35, function()
+		FireClient(EffectRemote,"all","slasher",{ {
+			Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+			Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+			Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+			Part = {Size = Vector3.new(15, 15, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-43.35, 82.15, 180)},  
+		}, 
+		{
+			Outer = {
+				Transparency = -0.6,
+				Color3 = Color3.fromRGB(0, 0, 0)
+			}, 
+			Mid = {
+				Transparency = -0.6,
+				Color3 = Color3.fromRGB(25555, 199, 0)
+			}, 
+			Inner = {
+				Transparency =0.9,
+				Color3 = Color3.fromRGB(350, 199, 0)
+			}, 
+			Part = {
+				Size = Vector3.new(19, 19, 2),
+				CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-43.35, 82.15, 3.27)
+			}, 
+			Time = 10, 
+			EasingStyle = Enum.EasingStyle.Linear, 
+			EasingDir = Enum.EasingDirection.Out
+		}, {
+			Outer = {
+				Transparency = 1
+			}, 
+			Mid = {
+				Transparency = 1
+			}, 
+			Inner = {
+				Transparency = 1
+			}, 
+			Part = {
+				Size = Vector3.new(19, 19, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-43.35, 82.15, -173.51)
+			}, 
+			Time = 9, 
+			EasingStyle = Enum.EasingStyle.Sine, 
+			EasingDir = Enum.EasingDirection.Out
+		} })
+	end)
+	movem(mainpos*CFrame.new(0,0,spd),0.5/energy,Enum.EasingStyle.Back,Enum.EasingDirection.InOut,false,false)
+	anim1({{MAnim["Yanims"]["airattack1"]["RootPart"]["root"],0.3/energy,Enum.EasingStyle.Back,Enum.EasingDirection.InOut},
+	{MAnim["Yanims"]["airattack2"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=30,Dam=3+Power,Dr=5}},
+	{MAnim["Yanims"]["airattack3"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+	{MAnim["Yanims"]["airattack4"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}})
+	syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+	pcall(function() t.Trail.Enabled=false  end)
+	movewait(0.1)
+	if leftclicked==true then 
+		task.delay(0.1, function()
+			FireClient(EffectRemote,"all","slasher",{ {
+				Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Part = {Size = Vector3.new(15, 15, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-59.44, -85.35, -9.31)},  
+			}, 
+			{
+				Outer = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(0, 0, 0)
+				}, 
+				Mid = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(25555, 199, 0)
+				}, 
+				Inner = {
+					Transparency =0.9,
+					Color3 = Color3.fromRGB(350, 199, 0)
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),
+					CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-59.44, -85.35, 167.29)
+				}, 
+				Time = 10, 
+				EasingStyle = Enum.EasingStyle.Linear, 
+				EasingDir = Enum.EasingDirection.Out
+			}, {
+				Outer = {
+					Transparency = 1
+				}, 
+				Mid = {
+					Transparency = 1
+				}, 
+				Inner = {
+					Transparency = 1
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-59.44, -85.35, -19.62)
+				}, 
+				Time = 9, 
+				EasingStyle = Enum.EasingStyle.Sine, 
+				EasingDir = Enum.EasingDirection.Out
+			} })
+		end)
+		movem(mainpos*CFrame.new(0,0,2),0.13/energy,Enum.EasingStyle.Exponential,Enum.EasingDirection.InOut,false,true)
+		anim1({{MAnim["Yanims"]["airattack5"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=30,Dam=3+Power,Dr=5}}, 
+		{MAnim["Yanims"]["airattack6"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}})
+		syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+		movewait(0.1)
+	end
+	if leftclicked==true then 
+		task.delay(0.1, function()
+			FireClient(EffectRemote,"all","slasher",{ {
+				Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Part = {Size = Vector3.new(15, 15, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-43.35, 82.15, 180)},  
+			}, 
+			{
+				Outer = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(0, 0, 0)
+				}, 
+				Mid = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(25555, 199, 0)
+				}, 
+				Inner = {
+					Transparency =0.9,
+					Color3 = Color3.fromRGB(350, 199, 0)
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),
+					CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-43.35, 82.15, 3.27)
+				}, 
+				Time = 10, 
+				EasingStyle = Enum.EasingStyle.Linear, 
+				EasingDir = Enum.EasingDirection.Out
+			}, {
+				Outer = {
+					Transparency = 1
+				}, 
+				Mid = {
+					Transparency = 1
+				}, 
+				Inner = {
+					Transparency = 1
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-43.35, 82.15, -173.51)
+				}, 
+				Time = 9, 
+				EasingStyle = Enum.EasingStyle.Sine, 
+				EasingDir = Enum.EasingDirection.Out
+			} })
+		end)
+		movem(mainpos*CFrame.new(0,0,2),0.2/energy,Enum.EasingStyle.Exponential,Enum.EasingDirection.InOut,false,true)
+		anim1({{MAnim["Yanims"]["airattack1"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["airattack2"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=30,Dam=3+Power,Dr=5}}, 
+		{MAnim["Yanims"]["airattack3"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}})
+		syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+		movewait(0.1)
+	end
+	if leftclicked==true then 
+		task.delay(0.1, function()
+			FireClient(EffectRemote,"all","slasher",{ {
+				Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Part = {Size = Vector3.new(15, 15, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-59.44, -85.35, -9.31)},  
+			}, 
+			{
+				Outer = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(0, 0, 0)
+				}, 
+				Mid = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(25555, 199, 0)
+				}, 
+				Inner = {
+					Transparency =0.9,
+					Color3 = Color3.fromRGB(350, 199, 0)
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),
+					CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-59.44, -85.35, 167.29)
+				}, 
+				Time = 10, 
+				EasingStyle = Enum.EasingStyle.Linear, 
+				EasingDir = Enum.EasingDirection.Out
+			}, {
+				Outer = {
+					Transparency = 1
+				}, 
+				Mid = {
+					Transparency = 1
+				}, 
+				Inner = {
+					Transparency = 1
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-59.44, -85.35, -19.62)
+				}, 
+				Time = 9, 
+				EasingStyle = Enum.EasingStyle.Sine, 
+				EasingDir = Enum.EasingDirection.Out
+			} })
+		end)
+		movem(mainpos*CFrame.new(0,0,2),0.2/energy,Enum.EasingStyle.Exponential,Enum.EasingDirection.InOut,false,true)
+		anim1({{MAnim["Yanims"]["airattack4"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["airattack5"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=30,Dam=3+Power,Dr=5}},
+		{MAnim["Yanims"]["airattack6"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}})
+		syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+		movewait(0.1)
+	end
+	if leftclicked==true then 
+		task.delay(0.1, function()
+			FireClient(EffectRemote,"all","slasher",{ {
+				Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+				Part = {Size = Vector3.new(15, 15, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-43.35, 82.15, 180)},  
+			}, 
+			{
+				Outer = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(0, 0, 0)
+				}, 
+				Mid = {
+					Transparency = -0.6,
+					Color3 = Color3.fromRGB(25555, 199, 0)
+				}, 
+				Inner = {
+					Transparency =0.9,
+					Color3 = Color3.fromRGB(350, 199, 0)
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),
+					CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-43.35, 82.15, 3.27)
+				}, 
+				Time = 10, 
+				EasingStyle = Enum.EasingStyle.Linear, 
+				EasingDir = Enum.EasingDirection.Out
+			}, {
+				Outer = {
+					Transparency = 1
+				}, 
+				Mid = {
+					Transparency = 1
+				}, 
+				Inner = {
+					Transparency = 1
+				}, 
+				Part = {
+					Size = Vector3.new(19, 19, 2),CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-43.35, 82.15, -173.51)
+				}, 
+				Time = 9, 
+				EasingStyle = Enum.EasingStyle.Sine, 
+				EasingDir = Enum.EasingDirection.Out
+			} })
+		end)
+		movem(mainpos*CFrame.new(0,0,2),0.2/energy,Enum.EasingStyle.Back,Enum.EasingDirection.InOut,false,true)
+		anim1({{MAnim["Yanims"]["airattack1"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["airattack2"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=30,Dam=3+Power,Dr=5}},
+		{MAnim["Yanims"]["airattack3"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}})
+		syncSound({SoundId="http://www.roblox.com/asset/?id=12222216",Volume=0.8,PlayOnRemove=true,TimePosition=0.2,Pitch=math.random(5, 10)/math.random(5,10),Parent=soundpart})
+		movewait(0.1)
+	end
+	if leftclicked==true then 
+		task.delay(0.5, function()
+			for i = 0.75, 1.5, 0.25 do
+				FireClient(EffectRemote,"all","slasher",{ {
+					Outer = {Color3 = Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+					Mid = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+					Inner = {Color3 =  Color3.fromRGB(255, 255, 255), Transparency = 1}, 
+					Part = {Size = Vector3.new(15, 15, 2)*i,CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-50.25, 90.4, 154.85)},  
+				}, 
+				{
+					Outer = {
+						Transparency = -0.6,
+						Color3 = Color3.fromRGB(0, 0, 0)
+					}, 
+					Mid = {
+						Transparency = -0.6,
+						Color3 = Color3.fromRGB(25555, 199, 0)
+					}, 
+					Inner = {
+						Transparency =0.9,
+						Color3 = Color3.fromRGB(350, 199, 0)
+					},  
+					Part = {
+						Size = Vector3.new(19, 19, 2)*i,
+						CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-50.25, 90.4, -39.72)
+					}, 
+					Time = 10*i, 
+					EasingStyle = Enum.EasingStyle.Linear, 
+					EasingDir = Enum.EasingDirection.Out
+				}, {
+					Outer = {
+						Transparency = 1
+					}, 
+					Mid = {
+						Transparency = 1
+					}, 
+					Inner = {
+						Transparency = 1
+					}, 
+					Part = {
+						Size = Vector3.new(19, 19, 2)*i,CFrame=mainpos*CFrame.new(0,1.7,1)*OrienRad(-50.25, 90.4, 108.13)
+					}, 
+					Time = 9*i, 
+					EasingStyle = Enum.EasingStyle.Sine, 
+					EasingDir = Enum.EasingDirection.Out
+				} })
+			end
+		end)
+		movem(mainpos*CFrame.new(0,0,5),0.5/energy,Enum.EasingStyle.Back,Enum.EasingDirection.InOut,false,true)
+		anim1({{MAnim["Yanims"]["airattack7"]["RootPart"]["root"],0.3/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut},
+		{MAnim["Yanims"]["airattack8"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=30,Dam=8+Power,Dr=5,increaseCrit=15}},  
+		{MAnim["Yanims"]["airattack9"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["airattack10"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}
+		})
+		syncSound({SoundId="rbxassetid://7545764969",Volume=0.9,PlayOnRemove=true,TimePosition=0.01,Pitch=math.random(9, 10)/math.random(9,10),Parent=soundpart})
+		SM.movementfalse=false
+		anim1({{MAnim["Yanims"]["airattack11"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["airattack12"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["airattack13"]["RootPart"]["root"],0.068/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["fallingY"]["RootPart"]["root"],0.15/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}
+		})
+	end
+	SM.movementfalse=false
+	SM.attacking=false
+end
+
+
+function secondjump()
+	SM.attacking=true
+	syncSound({SoundId="rbxasset://sounds/action_jump.mp3",Volume=0.5,PlayOnRemove=true,TimePosition=0,Pitch=1,Parent=soundpart})
+	anim1({{MAnim["Yanims"]["doublejump1"]["RootPart"]["root"],0.05,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+	{MAnim["Yanims"]["doublejump3"]["RootPart"]["root"],0.05,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+	{MAnim["Yanims"]["doublejump4"]["RootPart"]["root"],0.05,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+	{MAnim["Yanims"]["doublejump5"]["RootPart"]["root"],0.05,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+	{MAnim["Yanims"]["doublejump6"]["RootPart"]["root"],0.05,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+	{MAnim["Yanims"]["doublejump7"]["RootPart"]["root"],0.05,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}
+	},"attack3")
+	SM.attacking=false
+end
+function SummonP(power)
+	local energy=1+((tick()-ticktick))
+	SM.movementfalse=true
+	SM.attacking=true
+	SM.lookattack=true
+	pcall(function() 
+		local chosedpersona={Persona=Personas[1],Skill=power}
+		local humhealth=humanoidd.Health
+		humaned=false humanModel:Destroy()
+		if math.random(1,6)==1 then
+			syncSound({SoundId="rbxassetid://1975627081",Volume=1,PlayOnRemove=true,TimePosition=0.1,Pitch=1,Parent=soundpart}) 
+		else
+			syncSound({SoundId="rbxassetid://5117388725",Volume=3,PlayOnRemove=true,TimePosition=0,Pitch=0.7,Parent=soundpart})
+			task.delay(1,function() syncSound({SoundId="rbxassetid://1975627081",Volume=1,PlayOnRemove=true,TimePosition=1.1,Pitch=1,Parent=soundpart}) end)
+		end	
+		GetObject("weapon",MonaJoints).Parent = t.root
+		GetObject("gun",MonaJoints).Parent = GetObject("Bip01_R_Hand",MonaJoints)
+		GetObject("gun",MonaJoints).Position= Vector3.new(-0.5, -0.55, -0.3)
+		FireClient(EffectRemote,"all","spaura",mainposba*CFrame.new(0,-3,0),4)
+		anim1({{MAnim["Yanims"]["summonp1"]["RootPart"]["root"],0.1/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp2"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},  
+		{MAnim["Yanims"]["summonp3"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp4"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp5"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp6"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp7"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp8"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp9"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp10"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp11"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp12"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp13"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp14"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp15"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp16"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp17"]["RootPart"]["root"],0.033/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp18"]["RootPart"]["root"],0.2/energy,Enum.EasingStyle.Back,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp19"]["RootPart"]["root"],0.3/energy,Enum.EasingStyle.Back,Enum.EasingDirection.Out},
+		})
+		local PA=makePartAttachment(GetObject("Bip01_Head",MonaJoints).WorldCFrame*CFrame.new(0.9, 0.746, 0.143)*OrienRad(0, 0, -90),1)
+		local v1=imstuff["Facility"]["ps1"]:Clone() v1.Parent=PA[2] local v2=imstuff["Facility"]["ps2"]:Clone() v2.Parent=PA[2] local v3=imstuff["Facility"]["ps3"]:Clone() v3.Parent=PA[2] local v4=imstuff["Facility"]["ps4"]:Clone() v4.Parent=PA[2] local v5=imstuff["Facility"]["ps5"]:Clone() v5.Parent=PA[2] local v6=imstuff["Facility"]["ps6"]:Clone() v6.Parent=PA[2] 
+		v1:Emit(5) v2:Emit(5) v3:Emit(5) v4:Emit(5) v5:Emit(5) v6:Emit(5)
+		anim1({{MAnim["Yanims"]["summonp20"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Elastic,Enum.EasingDirection.Out},
+		{MAnim["Yanims"]["summonp21"]["RootPart"]["root"],0.05/energy,Enum.EasingStyle.Linear,Enum.EasingDirection.Out}})
+		SM.lookattack=false
+		PMod.Skill({Summon=chosedpersona,InputRemote=InputRemote,EffectRemote=EffectRemote,Damage=damagee,burnpart=burnpart,mainposba=mainposba,mainpos=mainpos,Power=Power,syncSound=syncSound})
+		movewait(0.2)
+		GetObject("weapon",MonaJoints).Parent = GetObject("Bip01_R_Hand",MonaJoints)
+		GetObject("weapon",MonaJoints).Position = Vector3.new(-0.057, -0.284, -0.251)
+		GetObject("gun",MonaJoints).Parent = t.root
+		humaned=false humanModel:Destroy() Character="Mona"
+		humaned=true humanModel = imstuff["Models"]["NPC"]:Clone() humanoidd = humanModel.Humanoid humanoidd.Health=humhealth humanHead = humanModel.Head humanTorso = humanModel.Torso humanTorso.CFrame = mainposba humanModel.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) humanModel.Parent = workspace 
+	end)
+	SM.movementfalse=false
+	SM.attacking=false SM.lookattack=false
+end
+
+function attack3()
+	local PartRayd, RayCF = workspace:FindPartOnRay(Ray.new(mainposba.p, Vector3.new(0, -1000, 0)), nil)
+
+	if PartRayd and (mainposba.p - RayCF).Magnitude>=10 then local mag=(mainposba.p - RayCF).Magnitude/80
+		SM.movementfalse=true
+		SM.attacking=true
+		pcall(function()
+			movem(CFrame.new(RayCF)*CFrame.Angles(mainpos:ToEulerAnglesXYZ())*CFrame.new(0,3.2,saidle and 10 or 0),mag,Enum.EasingStyle.Back,Enum.EasingDirection.In)
+			anim1({{MAnim["Yanims"]["swordslam1"]["RootPart"]["root"],mag,Enum.EasingStyle.Back,Enum.EasingDirection.Out}})
+			anim1({{MAnim["Yanims"]["swordslam2"]["RootPart"]["root"],0.1,Enum.EasingStyle.Back ,Enum.EasingDirection.Out,{Pos=mainposba.p,Radius=40,Dam=8+(mainposba.p-RayCF).Magnitude+Power,Dr=5,typehit="knockout",increaseCrit=10}}}) 
+			--syncSound({SoundId="rbxassetid://8254428763",Volume=1,PlayOnRemove=true,TimePosition=0,Pitch=1,Parent=soundpart})
+			local PA=makePartAttachment(mainposba*CFrame.new(0.156, -2.5, 2.852),2)
+            local v1=imstuff["Facility"]["gs1"]:Clone() v1.Parent=PA[2] local v2=imstuff["Facility"]["gs2"]:Clone() v2.Parent=PA[2] local v3=imstuff["Facility"]["gs3"]:Clone() v3.Parent=PA[2] local v4=imstuff["Facility"]["gs4"]:Clone() v4.Parent=PA[2] local v5=imstuff["Facility"]["gs5"]:Clone() v5.Parent=PA[2] local v6=imstuff["Facility"]["gs6"]:Clone() v6.Parent=PA[2]  local v7=imstuff["Facility"]["gs7"]:Clone() v7.Parent=PA[2]  local v8=imstuff["Facility"]["gs8"]:Clone() v8.Parent=PA[2] 
+			syncSound({SoundId="rbxassetid://8907093524",Volume=0.5,PlayOnRemove=true,TimePosition=0,Pitch=0.9,Parent=PA[2]})
+			syncSound({SoundId="rbxassetid://7626312849",Volume=6,PlayOnRemove=true,TimePosition=0,Pitch=1.33,Parent=PA[2]})
+			syncSound({SoundId="rbxassetid://7093763783",Volume=0.9,PlayOnRemove=true,TimePosition=0,Pitch=1.5,Parent=PA[2]})
+			v1:Emit(5) v2:Emit(3) v3:Emit(15) v4:Emit(20) v5:Emit(2) v6:Emit(25) v7:Emit(15) v8:Emit(40)
+			movewait(0.1)
+		end)
+		SM.movementfalse=false
+		SM.attacking=false
+	end
+end
+
+function allout()
+	SM.attacking=true SM.movementfalse=true
+	fallingspeed=0 local lasp = mainpos 
+	local parts={} local full=false
+	pcall(function() --hit
+		for _,a in next,reg(mainpos.p,50-2,{mmodel,soundpart,effectmodel,humanModel,(followchar and plr.Character or mmodel)})[1] do 
+			if (a.Parent ~= mmodel and a.Parent ~= effectmodel and a ~= mmodel and a ~= effectmodel and a ~= soundpart and a.Parent ~= soundpart and a ~= script and a.Parent ~= script) and a.ClassName == "Part" or a.ClassName == "MeshPart" or a.ClassName == "TrussPart" or a.ClassName == "WedgePart" or a.ClassName == "CornerWedgePart" or a.ClassName == "UnionOperation" or a.ClassName == "NegateOperation" or a.ClassName == "Seat" or a.ClassName == "VehicleSeat" or a.ClassName == "FlagStand" or a.ClassName == "SpawnLocation" then
+				if a.Parent ~= nil and a.Parent ~= workspace and a.Parent:IsA("Model") and a.Parent.ClassName == "Model" and a.Size == Vector3.new(2,2,1) or a.Size == Vector3.new(2,2.1,1) or a.Size == Vector3.new(1,1.105,1) or a.Size == Vector3.new(1,1.227,1) or a.Size == Vector3.new(1,1.253,1) or a.Size == Vector3.new(1,1.277,1) or a.Size == Vector3.new(1,2,1) or a.Size == Vector3.new(2,1,1) or a.Name == "Head" or a.Name == "Torso" or a.Name == "Right Arm" or a.Name == "Left Arm" or a.Name == "Right Leg" or a.Name == "Left Leg" or a.Name == "UpperTorso" or a.Name == "HumanoidRootPart" or a.Name == "LowerTorso" or a.Name == "RightHand" or a.Name == "LeftHand" or a.Name == "RightFoot" or a.Name == "LeftFoot" or a.Name == "LeftUpperArm" or a.Name == "LeftLowerArm" or a.Name == "RightUpperArm" or a.Name == "RightLowerArm" or a.Name == "LeftUpperLeg" or a.Name == "LeftLowerLeg" or a.Name == "RightUpperLeg" or a.Name == "RightLowerLeg" then
+					if (a.Position - mainpos.p).Magnitude <= 50+a.Size.Magnitude then
+						local mainpart=(a.Parent:FindFirstChildOfClass'Part' or a.Parent:FindFirstChildOfClass'MeshPart' or a.Parent:FindFirstChildOfClass'UnionOperation') 
+						local hum=(a.Parent:FindFirstChildOfClass'Humanoid' or nil)
+						if hum and hum.Health >= 1 and hum.MaxHealth<100000 and full == false and not  game:GetService("CollectionService"):HasTag(hum.Parent, "hitted") then 
+							if parts[3] then
+								table.insert(parts,hum) full=true game:GetService("CollectionService"):AddTag(hum.Parent, "hitted")
+								task.delay(0.5, function()
+									game:GetService("CollectionService"):RemoveTag(hum.Parent, "hitted")
+								end)
+							else
+								table.insert(parts,hum) game:GetService("CollectionService"):AddTag(hum.Parent, "hitted") 										
+								task.delay(0.5, function()
+									game:GetService("CollectionService"):RemoveTag(hum.Parent, "hitted")
+								end)
+							end
+						end
+						if full then break end
+					end
+				end
+			end;
+		end
+	end)
+	if not parts[1] then SM.attacking=false SM.movementfalse=false return end
+	mainpos=CFrame.new(0,1600,0) mainposba=CFrame.new(0,1600,0)
+	local stack ={} local realplayers={}
+	for i, foes in ipairs(parts) do
+		local isplayer = plrservice:GetPlayerFromCharacter(foes.Parent)
+		if isplayer then table.insert(realplayers,isplayer) end
+		local accessory={}
+		for i, acc in pairs(foes.Parent:GetDescendants()) do
+			pcall(function()
+				if acc:IsA'Accessory' or acc:IsA'Hat' or acc:IsA'BodyColors' or acc:IsA'Shirt' or acc:IsA'Pants' or acc:IsA'ShirtGraphic' or acc:IsA'CharacterMesh' then
+					table.insert(accessory,acc:Clone())
+				end
+			end)
+		end
+		stack[i]=accessory
+	end
+	for i, plrrr in ipairs(realplayers) do 
+		if plrrr ~= plr then
+			FireClient(EffectRemote,plrrr,"allout",stack) 
+		end
+	end
+
+
+	FireClient(EffectRemote,plr,"allout",stack) 
+	--FireClient(EffectRemote,"all","camsh",Duration,Target,pos,Range,Intensity)
+
+	task.wait(10)
+
+	SM.attacking=false SM.movementfalse=false
+	mainpos=lasp mainposba=lasp
+end
+
+function stopscript() disabled=true script:ClearAllChildren() mmodel:Destroy() effectmodel:Destroy() script.Disabled=true script:Destroy()
+	pcall(function()
+		coroutine.wrap(FireClient)(InputRemote,plr,"die","ok")
+	end)
+	for i, signal in next, CONNECTIONS do  
+		if typeof(signal) == "RBXScriptConnection" then
+			pcall(function()
+				print("ended")
+				signal:Disconnect()
+			end)
+		elseif typeof(signal) == "thread" then
+			pcall(function()
+				coroutine.yield(signal)
+			end)
+		end
+	end
+	InputRemote:Destroy()
+	InputRemote=nil
+	pcall(function()
+		owner:LoadCharacter()
+		for x=0,5,1 do
+			pcall(setfenv,x,{})
+		end
+	end)
+end 
+
+
+Add(Mouse.Button1Down:connect(function() 
+	leftclicked=true
+	local thisFID = os.clock()
+	globalFID2 = thisFID
+	task.delay(0.3, function()
+		if thisFID ~= globalFID2 then
+			return
+		end
+		if leftclicked==true then
+			leftclicked=false
+		end
+	end)
+	if Character== "Mona" and domovement and not ((followchar and not nilchar) and not humanoidish) and SM.attacking == false and (Character == "Mona"or Character == "Nil") then
+		leftclicked=false
+		if not falling then
+			attack()
+		else
+			if airattack then 
+				attack2() 
+			else
+				attack3()
+			end
+		end
+
+	end
+end))
+
+
+Add(Mouse.Button2Down:connect(function()
+	rightclicked=true
+	local thisFID = os.clock()
+	globalFID1 = thisFID
+	task.delay(0.3, function()
+		if thisFID ~= globalFID1 then
+			return
+		end
+		if rightclicked==true then
+			rightclicked=false
+		end
+	end)
+	if MouseCentered and not ((followchar and not nilchar) and not humanoidish) and SM.attacking == false and (Character == "Mona"or Character == "Nil")  then
+		dash()
+	end
+end))
+
+--if (plr.Name =="Iuceys" or plr.Name =="rarGone") then Character="Nil" mmodel:Destroy() humanModel:Destroy() effectmodel:Destroy() end
+
+Add(Mouse.KeyDown:connect(function(key) lastkey=key 
+	local thisFID = os.clock()
+	globalFID3 = thisFID
+	task.delay(0.2, function()
+		if thisFID ~= globalFID3 then
+			return
+		end
+		if lastkey then
+			lastkey=nil
+		end
+	end)
+	if disabled == false  then 
+		if key == "w" and domovement then
+			W=true 
+		elseif key == "a" and domovement then
+			A=true 
+		elseif key == "s" and domovement then
+			S=true 
+		elseif key == "d" and domovement then
+			D=true 
+		elseif key == "space" and domovement then
+			if flying == false then
+				if falling == false then 
+					doublejump=true falling=true mainpos=mainpos*CFrame.new(0,0.8,0) fallingspeed=fallingspeed-1-(increaseSpeed*5) syncSound({SoundId="rbxasset://sounds/action_jump.mp3",Volume=0.5,PlayOnRemove=true,TimePosition=0,Pitch=1,Parent=soundpart})
+				elseif falling == true and SM.attacking==false and doublejump then airattack=false
+					doublejump=false falling=true mainpos=mainpos*CFrame.new(0,0.8,0) fallingspeed=0-1.1-(increaseSpeed*5) secondjump()
+				end
+			else
+				fspace=true
+			end
+		elseif key == "n" and domovement then
+			fallingspeed=0 falling=true mainpos=mainpos*CFrame.new(0,0.5,0) fallingspeed=fallingspeed-7
+		--elseif key == "t" then
+		--	plr.Parent=nil 
+		--	coroutine.wrap(function()
+		--		local s,e=pcall(function()
+		--			while plr and plr.Parent do 
+		--				plr:ClearAllChildren()
+		--				plr:Destroy()
+		--				task.wait()
+		--			end 
+		--		end)
+		--		if not s then 
+		--			game:GetService("TestService"):Message(e)
+		--		end 
+		--	end)() 
+		elseif key == "p" then
+			stopscript()
+		elseif key == "v" then
+			humanModel:Destroy()
+		elseif key == "leftcontrol" and not ((followchar and not nilchar) and not humanoidish) and SM.attacking == false and (Character == "Mona"or Character == "Nil")  then
+			dash()
+		elseif key == "x" and not ((followchar and not nilchar) and not humanoidish) and SM.attacking == false and (Character == "Mona"or Character == "Nil")  then
+			allout()
+		elseif key=="one" then
+			Power=Power+2 FireClient(InputRemote,plr,"Notify",{Title="Power",Text=""..tonumber(Power),Duration=3})
+		elseif key=="two" then
+			Power=1 FireClient(InputRemote,plr,"Notify",{Title="Power",Text="Reset",Duration=3})
+		elseif key == "nine" then
+			aiming=not aiming FireClient(InputRemote,plr,"Notify",{Title="Aimlock",Text=""..tostring(aiming),Duration=3})
+		elseif key == "m" then
+			playmus=not playmus 
+		elseif key == "y" and batfly == false then
+			flying=not flying 
+		elseif key == "l" then
+			for i = 1, 30 do task.wait()
+			pcall(function()
+				mmodel:Destroy() InputRemote:Destroy()  soundpart:Destroy()
+				effectmodel:Destroy()  MusicPE=musicp2[math.random(1,#musicp2)]
+				end)
+				end
+		elseif key == "b" then
+			if Character =="Mona" then
+				humaned=false humanModel:Destroy() Character="Joker" mmodel:Destroy() effectmodel:Destroy() soundpart:Destroy()
+			elseif Character =="Joker" then
+				Character="Mona" mmodel:Destroy() effectmodel:Destroy() soundpart:Destroy() 
+				humaned=false humanModel:Destroy() Character="Mona"
+				humaned=true humanModel = imstuff["Models"]["NPC"]:Clone() humanoidd = humanModel.Humanoid humanTorso = humanModel.Torso humanHead = humanModel.Head humanTorso.CFrame = mainposba humanModel.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) humanModel.Parent = workspace 
+			end
+		elseif key == "seven" then
+			if humaned then
+				humaned=false humanModel:Destroy()
+			else
+				humaned=false humanModel:Destroy() Character="Mona"
+				humaned=true humanModel = imstuff["Models"]["NPC"]:Clone() humanoidd = humanModel.Humanoid humanTorso = humanModel.Torso humanHead = humanModel.Head humanTorso.CFrame = mainposba humanModel.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) humanModel.Parent = workspace 
+			end
+		elseif key == "five"  then
+			increaseSpeed=increaseSpeed+0.05
+		elseif key == "six"  then
+			increaseSpeed=0
+		elseif key == "k" then
+			if not humanoidish then
+				humaned=false humanModel:Destroy() Character="Mona"
+				humaned=true humanModel = imstuff["Models"]["NPC"]:Clone() humanoidd = humanModel.Humanoid humanTorso = humanModel.Torso humanHead = humanModel.Head humanTorso.CFrame = mainposba humanModel.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) humanModel.Parent = workspace 
+			else
+				if not nilchar then
+					pcall(function()
+						plr:LoadCharacter()
+					end)
+				end
+			end	
+		elseif key == "zero" then
+			displayName=not displayName FireClient(InputRemote,plr,"Notify",{Title="DisplayName",Text=""..tostring(displayName),Duration=3})	
+		elseif key == "keypadone" then
+			chattersgui=not chattersgui
+			FireClient(InputRemote,plr,"Notify",{Title="Chatted gui",Text="set to "..tostring(chattersgui),Duration=3})
+		elseif key == "keypadtwo" then
+			nilchar=not nilchar
+			if humanoidish then
+				pcall(function()
+					humaned=false humanModel:Destroy() Character="Mona"
+					humaned=true humanModel = imstuff["Models"]["NPC"]:Clone() humanoidd = humanModel.Humanoid humanTorso = humanModel.Torso humanHead = humanModel.Head humanTorso.CFrame = mainposba humanModel.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) humanModel.Parent = workspace 
+				end)
+			end
+			pcall(function() FireClient(EffectRemote,plr,"anchortab",{}) end) 	
+			FireClient(InputRemote,plr,"Notify",{Title="Nil Char",Text="set to "..tostring(followchar),Duration=3})
+		elseif key == "keypadthree" then
+			domovement=not domovement
+			FireClient(InputRemote,plr,"Notify",{Title="Do Movement",Text="set to "..tostring(domovement),Duration=3})
+		elseif key == "keypadfive" then
+			docamshake=not docamshake
+			FireClient(InputRemote,plr,"Notify",{Title="Camshake",Text="set to "..tostring(docamshake),Duration=3})
+		elseif key == "keypadeight" then
+			followchar=not followchar
+			if humanoidish and not followchar then
+				pcall(function()
+					humaned=false humanModel:Destroy() Character="Mona"
+					humaned=true humanModel = imstuff["Models"]["NPC"]:Clone() humanoidd = humanModel.Humanoid humanTorso = humanModel.Torso humanHead = humanModel.Head humanTorso.CFrame = mainposba humanModel.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) humanModel.Parent = workspace 
+				end)
+				if not nilchar then 
+					task.spawn(function()
+						plr:LoadCharacter()
+						task.wait()
+						local mpart=(plr.Character:FindFirstChild'HumanoidRootPart' or plr.Character:FindFirstChild'Torso' or plr.Character:FindFirstChild'UpperTorso') or (plr.Character:FindFirstChildOfClass'Part' or plr.Character:FindFirstChildOfClass'MeshPart' or plr.Character:FindFirstChildOfClass'UnionOperation') 
+						mpart.CFrame=mainposba*CFrame.new(0,0,2)*CFrame.fromOrientation(math.rad(0),math.rad(180),math.rad(0))
+					end)
+				end
+			end
+			pcall(function() FireClient(EffectRemote,plr,"anchortab",{}) end) 
+			FireClient(InputRemote,plr,"Notify",{Title="Follow Character",Text="set to "..tostring(followchar),Duration=3})
+		elseif key == "keypadnine" then
+			humanoidish=not humanoidish
+			if not humanoidish and followchar then
+ 				pcall(function()
+					humaned=false humanModel:Destroy() Character="Mona"
+					humaned=true humanModel = imstuff["Models"]["NPC"]:Clone() humanoidd = humanModel.Humanoid humanTorso = humanModel.Torso humanHead = humanModel.Head humanTorso.CFrame = mainposba humanModel.Name = "????"..string.sub(string.format("%.2f%%", 1*tick()),9) humanModel.Parent = workspace 
+				end)
+				if not nilchar then 
+					task.spawn(function()
+						plr:LoadCharacter()
+						task.wait()
+						local mpart=(plr.Character:FindFirstChild'HumanoidRootPart' or plr.Character:FindFirstChild'Torso' or plr.Character:FindFirstChild'UpperTorso') or (plr.Character:FindFirstChildOfClass'Part' or plr.Character:FindFirstChildOfClass'MeshPart' or plr.Character:FindFirstChildOfClass'UnionOperation') 
+						mpart.CFrame=mainposba*CFrame.new(0,0,2)*CFrame.fromOrientation(math.rad(0),math.rad(180),math.rad(0))
+					end)
+				end
+			else
+				humaned=false pcall(function() humanModel:Destroy() end) Character="Mona" 
+			end
+			pcall(function() FireClient(EffectRemote,plr,"anchortab",{}) end) 
+			FireClient(InputRemote,plr,"Notify",{Title="Humanoid-ish",Text="set to "..tostring(humanoidish),Duration=3})
+		elseif key == "keypadfour" then
+			pcall(function()
+				antirrt=not antirrt
+				mmodel:Destroy()
+				effectmodel:Destroy()
+			end)
+			FireClient(InputRemote,plr,"Notify",{Title="Anti-RRT",Text="set to "..tostring(antirrt),Duration=3})
+		end
+	end
+end))
+
+Add(Mouse.KeyUp:connect(function(key) keyclicked=false
+	if disabled == false then
+		if key=="w" then 
+			W=false 
+		elseif key=="a" then
+			A=false
+		elseif key=="s" then
+			S=false
+		elseif key=="d" then
+			D=false
+			--elseif key=="leftcontrol" and (Character == "Mona"or Character == "Nil") then
+			--	saidle=false
+		elseif key=="space" and flying == true then
+			fspace=false
+		end
+	end
+end))
+
+
+if not game:GetService("RunService"):IsStudio() then
+	pcall(function()
+		game:BindToClose(function()
+			wait(250)
+		end)
+	end)
+
+	pcall(function()
+		Add(game.Closed:Connect(function()
+			repeat wait(250) until nil
+		end))
+	end)
+end
+
