@@ -771,7 +771,7 @@ for i, v in next, split do
 end
 words = table.concat(formatted, "\n")
 
-local crsource = [===[local plr = game:GetService("Players").LocalPlayer]===]
+local crsource = local plr = game:GetService("Players").LocalPlayer
 local id = plr.UserId
 local ownerid = script:WaitForChild("ID").Value
 
